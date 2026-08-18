@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aktuelles – Red Lotus Asian Food | Biberach &amp; Ulm</title>
+<meta name="description" content="Der aktuelle Wochen-Speiseplan sowie News, Specials und Events von Red Lotus Asian Food in Biberach, Ulm und Umgebung.">
+<link rel="canonical" href="https://redlotus-asianfood.com/aktuelles.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aktuelles – Red Lotus Asian Food">
+<meta property="og:description" content="Der aktuelle Wochen-Speiseplan sowie News, Specials und Events von Red Lotus Asian Food in Biberach, Ulm und Umgebung.">
+<meta property="og:url" content="https://redlotus-asianfood.com/aktuelles.html">
+<meta property="og:image" content="https://redlotus-asianfood.com/img/og/og-default.jpg">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/lotus-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://redlotus-asianfood.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Aktuelles", "item": "https://redlotus-asianfood.com/aktuelles.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Illertisser Gartentage bei der Staudengärtnerei Gaißmayer",
+  "startDate": "2026-09-12",
+  "endDate": "2026-09-13",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "Staudengärtnerei Gaißmayer",
+    "address": { "@type": "PostalAddress", "addressLocality": "Illertissen", "addressCountry": "DE" }
+  },
+  "performer": { "@type": "FoodEstablishment", "name": "Red Lotus Asian Food" },
+  "description": "Red Lotus Asian Food ist bei den Illertisser Gartentagen auf dem Gelände der Staudengärtnerei Gaißmayer mit dabei."
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1c1a17;
+    --bg-2:#232019;
+    --red:#c8382b;
+    --red-bright:#e0473a;
+    --gold:#d3b78c;
+    --gold-soft:#bfa274;
+    --cream:#f5f0e6;
+    --cream-dim:#cdc6b8;
+    --line:rgba(211,183,140,0.22);
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Bricolage Grotesque', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px;}
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--cream);}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 30px;
+    font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
+    border-radius:2px;
+    transition:all .25s ease;
+    border:1px solid transparent;
+    white-space:nowrap;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--red);color:var(--cream);}
+  .btn-primary:hover{background:var(--red-bright);transform:translateY(-1px);}
+  .btn-outline{border-color:var(--gold-soft);color:var(--cream);}
+  .btn-outline:hover{border-color:var(--gold);background:rgba(211,183,140,0.08);}
+
+  /* Header */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:linear-gradient(to bottom, rgba(23,20,17,0.92), rgba(23,20,17,0));
+    padding:22px 0;
+  }
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .logo img{height:58px;width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,0.5));}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);width:44px;height:44px;border-radius:50%;color:var(--cream);font-size:1.1rem;align-items:center;justify-content:center;}
+  nav{display:flex;align-items:center;gap:34px;}
+  nav a{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--cream-dim);position:relative;padding:6px 0;}
+  nav a:hover, nav a.active{color:var(--gold);}
+  .nav-dropdown{position:relative;}
+  .nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+  .dropdown-menu{
+    position:absolute;top:100%;left:50%;transform:translate(-50%,6px);
+    background:var(--bg-2);border:1px solid var(--line);
+    min-width:230px;padding:10px 0;margin-top:8px;
+    opacity:0;visibility:hidden;transition:all .2s ease;
+  }
+  .dropdown-menu a{display:block;padding:12px 22px;font-size:0.7rem;letter-spacing:0.08em;color:var(--cream-dim);}
+  .dropdown-menu a:hover{color:var(--gold);background:rgba(211,183,140,0.06);}
+  .header-icons{display:flex;gap:16px;align-items:center;}
+  .header-icons a{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:0.9rem;}
+  .header-icons a:hover{border-color:var(--gold);}
+
+  /* Page hero (simple, no image) */
+  .page-hero-simple{padding:180px 0 70px;text-align:center;}
+  .breadcrumb{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:20px;display:block;}
+  .breadcrumb a{color:var(--gold);}
+  .page-hero-simple h1{font-size:clamp(2.2rem,4.6vw,3.2rem);margin-bottom:18px;}
+  .page-hero-simple p{color:var(--cream-dim);max-width:560px;margin:0 auto;}
+
+  /* Section generic */
+  section{padding:120px 0;}
+  .section-head{max-width:640px;margin:0 auto 56px;text-align:center;}
+  .section-head .eyebrow{display:block;margin-bottom:16px;}
+  .section-head h2{font-size:clamp(2rem,3.6vw,2.6rem);}
+  .section-head p{color:var(--cream-dim);margin-top:18px;font-size:1rem;}
+
+  /* Speiseplan */
+  .plan-note{
+    max-width:640px;margin:0 auto 48px;text-align:center;
+    font-size:0.8rem;color:var(--gold-soft);border:1px dashed var(--line);padding:14px 20px;border-radius:2px;
+  }
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .plan-card{background:var(--bg-2);padding:40px 32px;}
+  .plan-card .day{font-family:var(--serif);font-size:1.5rem;color:var(--red);margin-bottom:6px;}
+  .plan-card .place{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:18px;display:block;}
+  .plan-card .dish{font-family:var(--serif);font-size:1.1rem;margin-bottom:8px;}
+  .plan-card .dish-desc{font-size:0.86rem;color:var(--cream-dim);}
+
+  /* News/Events */
+  .news-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .news-item{background:var(--bg);padding:32px 36px;display:grid;grid-template-columns:140px 1fr;gap:28px;align-items:start;}
+  .news-date{font-family:var(--serif);font-size:1.2rem;color:var(--red);}
+  .news-tag{display:inline-block;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);border-radius:2px;padding:3px 10px;margin-bottom:10px;}
+  .news-item h3{font-size:1.15rem;margin-bottom:8px;}
+  .news-item p{color:var(--cream-dim);font-size:0.9rem;}
+
+  /* CTA band */
+  .cta-band{background:var(--bg-2);text-align:center;}
+  .cta-band h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:20px;}
+  .cta-band p{color:var(--cream-dim);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;}
+  .cta-ctas{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;}
+
+  /* Footer */
+  footer{background:var(--bg-2);border-top:1px solid var(--line);padding:80px 0 40px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px;}
+  .footer-logo img{height:70px;margin-bottom:20px;}
+  .footer-grid p{color:var(--cream-dim);font-size:0.88rem;max-width:280px;}
+  .footer-col h3{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .footer-col a{display:block;font-size:0.85rem;color:var(--cream-dim);margin-bottom:12px;}
+  .footer-col a:hover{color:var(--gold);}
+  .footer-social{display:flex;gap:14px;margin-top:20px;}
+  .footer-social a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);}
+  .footer-insta-teaser{font-size:0.8rem;color:var(--cream-dim);margin-top:16px;}
+  .footer-insta-teaser a{color:var(--gold);border-bottom:1px solid var(--line);}
+  .footer-bottom{border-top:1px solid var(--line);padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:0.75rem;color:var(--cream-dim);}
+  .footer-bottom a{margin-left:18px;}
+
+  .mobile-nav{display:none;}
+  @media(max-width:960px){
+    nav{display:none;}
+    .nav-toggle{display:flex;width:38px;height:38px;font-size:0.95rem;}
+    header{background-color:#1c1a17;background-image:none;padding:14px 0;}
+    .logo img{height:32px;}
+    .header-icons{gap:10px;}
+    .header-icons a{width:30px;height:30px;font-size:0.8rem;}
+    .mobile-nav{
+      display:block;
+      position:absolute;top:100%;left:0;right:0;
+      background-color:#1c1a17;
+      opacity:0;visibility:hidden;transform:translateY(-6px);
+      transition:opacity .2s ease, transform .2s ease, visibility .2s;
+      max-height:80vh;overflow-y:auto;
+      box-shadow:0 12px 24px rgba(0,0,0,0.4);
+    }
+    .mobile-nav.open{opacity:1;visibility:visible;transform:translateY(0);}
+    .mobile-nav-inner{display:flex;flex-direction:column;background-color:#1c1a17;}
+    .mobile-nav a{padding:12px 28px;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);border-top:1px solid var(--line);background-color:#1c1a17;}
+    .mobile-nav a:hover{color:var(--gold);}
+    .page-hero-simple{padding:120px 0 50px;}
+    .plan-grid{grid-template-columns:1fr;}
+    .news-item{grid-template-columns:1fr;gap:8px;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    section{padding:80px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+    <nav>
+      <div class="nav-dropdown">
+        <a href="index.html#catering">Catering ▾</a>
+        <div class="dropdown-menu">
+          <a href="catering-firmenevents.html">Firmenevents</a>
+          <a href="catering-hochzeiten.html">Hochzeiten</a>
+          <a href="catering-private-feiern.html">Private Feiern</a>
+        </div>
+      </div>
+      <a href="kochkurse.html">Kochkurse</a>
+      <a href="foodtruck.html">Foodtruck</a>
+      <a href="aktuelles.html" class="active">Aktuelles</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="faq.html">Häufige Fragen</a>
+    </nav>
+    <div class="header-icons">
+      <a href="https://wa.me/4915155460254" aria-label="WhatsApp" title="WhatsApp">✆</a>
+      <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram" title="Instagram">◎</a>
+      <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail" title="E-Mail">✉</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <nav id="mobileNav" class="mobile-nav">
+    <div class="mobile-nav-inner">
+      <a href="catering-firmenevents.html">Catering — Firmenevents</a>
+      <a href="catering-hochzeiten.html">Catering — Hochzeiten</a>
+      <a href="catering-private-feiern.html">Catering — Private Feiern</a>
+      <a href="kochkurse.html">Kochkurse</a>
+      <a href="foodtruck.html">Foodtruck</a>
+      <a href="aktuelles.html" class="active">Aktuelles</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="faq.html">Häufige Fragen</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero-simple">
+  <div class="wrap">
+    <span class="breadcrumb"><a href="index.html">Start</a> · Aktuelles</span>
+    <h1>Aktuelles</h1>
+    <p>Unser Speiseplan für diese Woche sowie News, Specials und Events – Urlaube, Ausfälle und wo ihr uns sonst noch antrefft.</p>
+  </div>
+</section>
+
+<section id="speiseplan">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Diese Woche</span>
+      <h2>Unser Speiseplan</h2>
+    </div>
+    <p class="plan-note">Unsere festen Standorte und Zeiten findet ihr auf der <a href="foodtruck.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Foodtruck-Seite</a>. Kurzfristige Änderungen oder Ausfälle kündigen wir hier sowie per <a href="https://wa.me/4915155460254" style="color:var(--gold);border-bottom:1px solid var(--line);">WhatsApp</a> an.</p>
+    <div class="plan-grid" id="planGrid">
+      <div class="plan-card" data-plan-doc="speiseplan_biberach">
+        <span class="day">Mittwoch</span>
+        <span class="place">Wochenmarkt Biberach</span>
+        <div class="plan-body">
+          <div class="dish">Speiseplan folgt in Kürze</div>
+        </div>
+      </div>
+      <div class="plan-card" data-plan-doc="speiseplan_laupheim">
+        <span class="day">Donnerstag</span>
+        <span class="place">Wochenmarkt Laupheim</span>
+        <div class="plan-body">
+          <div class="dish">Speiseplan folgt in Kürze</div>
+        </div>
+      </div>
+      <div class="plan-card" data-plan-doc="speiseplan_warthausen">
+        <span class="day">Freitag</span>
+        <span class="place">Wochenmarkt Warthausen</span>
+        <div class="plan-body">
+          <div class="dish">Speiseplan folgt in Kürze</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="news" style="background:var(--bg-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">News, Specials &amp; Events</span>
+      <h2>Wo ihr uns sonst noch findet</h2>
+      <p>Sonderveranstaltungen, Urlaube und kurzfristige Änderungen tragen wir hier ein, sobald sie feststehen.</p>
+    </div>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">12.–13. Sept. 2026</div>
+        <div>
+          <span class="news-tag">Event</span>
+          <h3>Illertisser Gartentage bei der Staudengärtnerei Gaißmayer</h3>
+          <p>Wir sind mit dabei! Am 12. und 13. September 2026 sind wir nicht auf dem regulären Wochenmarkt, sondern bei den Illertisser Gartentagen auf dem Gelände der Staudengärtnerei Gaißmayer.</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">–</div>
+        <div>
+          <span class="news-tag">In Vorbereitung</span>
+          <h3>Weitere Termine folgen</h3>
+          <p>Sonderveranstaltungen, Betriebsurlaub oder ein kurzfristiger Ausfall tragen wir hier ein, sobald sie feststehen. Für kurzfristige Fragen erreicht ihr uns am schnellsten per <a href="https://wa.me/4915155460254" style="color:var(--gold);border-bottom:1px solid var(--line);">WhatsApp</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Fragen zu unserem Angebot?</h2>
+    <p>Schaut in unsere häufigen Fragen oder schreibt uns direkt.</p>
+    <div class="cta-ctas">
+      <a href="faq.html" class="btn btn-primary">Häufige Fragen</a>
+      <a href="https://wa.me/4915155460254" class="btn btn-outline">Direkt per WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+        <p>Asiatisches Catering, Foodtruck und Kochkurse in Biberach, Ulm und ganz Baden-Württemberg.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>
+          <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram">◎</a>
+          <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail">✉</a>
+        </div>
+        <p class="footer-insta-teaser">Folgt uns auf <a href="https://www.instagram.com/red_lotus_asianfood/">Instagram</a> für exklusive Einblicke hinter die Kulissen.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Catering</h3>
+        <a href="catering-firmenevents.html">Firmenevents</a>
+        <a href="catering-hochzeiten.html">Hochzeiten</a>
+        <a href="catering-private-feiern.html">Private Feiern</a>
+      </div>
+      <div class="footer-col">
+        <h3>Mehr</h3>
+        <a href="kochkurse.html">Kochkurse</a>
+        <a href="foodtruck.html">Foodtruck &amp; Wochenmarkt</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="aktuelles.html">Aktuelles</a>
+        <a href="ueber-uns.html">Über uns</a>
+      </div>
+      <div class="footer-col">
+        <h3>Kontakt</h3>
+        <a href="https://wa.me/4915155460254">+49 151 55460254</a>
+        <a href="mailto:info@redlotus-asianfood.com">info@redlotus-asianfood.com</a>
+        <a href="https://www.instagram.com/red_lotus_asianfood/">@red_lotus_asianfood</a>
+        <a href="faq.html">Häufige Fragen</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Red Lotus Asian Food</span>
+      <span>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.textContent = isOpen ? '✕' : '☰';
+  });
+</script>
+
+<!--
+  Live-Speiseplan aus dem Red Lotus Eventkalender (Firebase/Firestore).
+  Liest ausschließlich lesend aus der Collection "website" (öffentlich
+  lesbar laut Firestore-Regeln, Schreiben bleibt den Team-Mitgliedern in
+  der App vorbehalten). Ein Dokument pro Standort, ID-Muster
+  "speiseplan_<ort>", Felder: datum (String "YYYY-MM-DD"),
+  gerichte (Array aus { name, variante }).
+  Fällt bei fehlender Verbindung oder fehlenden Daten lautlos auf den
+  HTML-Platzhalter zurück ("Speiseplan folgt in Kürze") — kein Fehler
+  sichtbar für Website-Besucher.
+-->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA0y6NWpF3N7241mA72Cj-gU_pvbqpNdD4",
+    authDomain: "red-lotus-eventkalender.firebaseapp.com",
+    projectId: "red-lotus-eventkalender",
+    storageBucket: "red-lotus-eventkalender.firebasestorage.app",
+    messagingSenderId: "864967561482",
+    appId: "1:864967561482:web:98ee51f304748e511f2af3",
+    measurementId: "G-BZX4RFERTR"
+  };
+
+  function formatDatum(iso) {
+    if (typeof iso !== 'string') return '';
+    const teile = iso.split('-');
+    if (teile.length !== 3) return '';
+    const [jahr, monat, tag] = teile;
+    return `${tag}.${monat}.${jahr}`;
+  }
+
+  function baueGerichtBlock(name, variante) {
+    const wrapper = document.createDocumentFragment();
+    const dish = document.createElement('div');
+    dish.className = 'dish';
+    dish.textContent = name || '';
+    wrapper.appendChild(dish);
+    if (variante) {
+      const desc = document.createElement('div');
+      desc.className = 'dish-desc';
+      desc.textContent = variante;
+      wrapper.appendChild(desc);
+    }
+    return wrapper;
+  }
+
+  async function ladeSpeiseplan() {
+    let app, db;
+    try {
+      app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+    } catch (err) {
+      console.error('Firebase konnte nicht initialisiert werden:', err);
+      return;
+    }
+
+    let snap;
+    try {
+      snap = await getDocs(collection(db, 'website'));
+    } catch (err) {
+      // Kein Netz, keine Rechte, o.ä. — Platzhalter bleibt einfach stehen.
+      console.error('Speiseplan konnte nicht geladen werden:', err);
+      return;
+    }
+
+    snap.forEach((docSnap) => {
+      const card = document.querySelector(`.plan-card[data-plan-doc="${docSnap.id}"]`);
+      if (!card) return; // unbekannter Standort/Dokument-Name, ignorieren
+
+      const data = docSnap.data();
+      if (!Array.isArray(data.gerichte) || data.gerichte.length === 0) return;
+
+      const body = card.querySelector('.plan-body');
+      if (!body) return;
+      body.innerHTML = '';
+
+      data.gerichte.forEach((gericht) => {
+        if (!gericht || !gericht.name) return;
+        body.appendChild(baueGerichtBlock(gericht.name, gericht.variante));
+      });
+
+      const stand = formatDatum(data.datum);
+      if (stand) {
+        const standEl = document.createElement('div');
+        standEl.className = 'dish-desc';
+        standEl.style.marginTop = '14px';
+        standEl.style.opacity = '0.65';
+        standEl.textContent = `Stand: ${stand}`;
+        body.appendChild(standEl);
+      }
+    });
+  }
+
+  ladeSpeiseplan();
+</script>
+</body>
+</html>

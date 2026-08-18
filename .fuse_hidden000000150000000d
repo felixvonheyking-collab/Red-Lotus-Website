@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Häufige Fragen – Red Lotus Asian Food | Biberach &amp; Ulm</title>
+<meta name="description" content="Häufige Fragen zu Red Lotus Asian Food: für Wochenmarkt-Besucher und für Veranstalter von Firmenevents, Hochzeiten und privaten Feiern.">
+<link rel="canonical" href="https://redlotus-asianfood.com/faq.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Häufige Fragen – Red Lotus Asian Food">
+<meta property="og:description" content="Häufige Fragen zu Red Lotus Asian Food: für Wochenmarkt-Besucher und für Veranstalter von Firmenevents, Hochzeiten und privaten Feiern.">
+<meta property="og:url" content="https://redlotus-asianfood.com/faq.html">
+<meta property="og:image" content="https://redlotus-asianfood.com/img/og/og-default.jpg">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/lotus-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://redlotus-asianfood.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Häufige Fragen", "item": "https://redlotus-asianfood.com/faq.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie kann ich bezahlen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Wir akzeptieren Barzahlung und PayPal – Kartenzahlung ist an unserem Truck aktuell leider nicht möglich." }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es vegane oder glutenfreie Optionen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, wir haben immer mindestens ein veganes und ein glutenfreies Gericht im Angebot." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kommt ihr auch zu privaten Events oder Firmenfeiern?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, unser Foodtruck ist auch für Firmenevents, Hochzeiten und private Feiern buchbar." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was passiert bei schlechtem Wetter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Unser Truck ist wettergeschützt, daher stehen wir bei den meisten Wetterlagen wie gewohnt vor Ort. Kurzfristige Ausfälle kündigen wir über unsere Instagram-Kanäle an." }
+    },
+    {
+      "@type": "Question",
+      "name": "Muss ich vorbestellen oder reservieren?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein, auf den Wochenmärkten ist keine Reservierung nötig – einfach vorbeikommen. Für Firmenevents empfehlen wir eine frühzeitige Anfrage." }
+    },
+    {
+      "@type": "Question",
+      "name": "Welchen Stromanschluss braucht ihr?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Unsere kleine Knutschkugel braucht 1x16A Starkstrom (CEE). Unser großer Truck braucht je nach Bedarf 1x16A, 1x32A oder 2x16A Starkstrom (CEE). Wir sagen euch vorab genau, was für euer Event nötig ist." }
+    },
+    {
+      "@type": "Question",
+      "name": "Braucht ihr einen Wasseranschluss?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein, wir sind mit unserem eigenen Wasservorrat autark unterwegs – ein Wasseranschluss vor Ort ist nicht nötig." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel Stellfläche brauchen eure Trucks?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die kleine Knutschkugel braucht ca. 3,20 m Länge (mit Deichsel) und 2 m Breite. Unser großer Truck braucht ca. 4,50 m Länge (mit Deichsel) und 2,6 m Breite. Dazu etwas Rangierfläche zum Ein- und Ausparken." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel Vorlauf braucht ihr für eine Anfrage?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das kommt auf Saison und Wochentag an: Für einen Samstag im Juli solltet ihr eher frühzeitig anfragen, für einen Mittwoch im Oktober klappt es oft auch kurzfristiger. Im Zweifel fragt einfach an." }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1c1a17;
+    --bg-2:#232019;
+    --red:#c8382b;
+    --red-bright:#e0473a;
+    --gold:#d3b78c;
+    --gold-soft:#bfa274;
+    --cream:#f5f0e6;
+    --cream-dim:#cdc6b8;
+    --line:rgba(211,183,140,0.22);
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Bricolage Grotesque', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--cream);}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 30px;
+    font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
+    border-radius:2px;
+    transition:all .25s ease;
+    border:1px solid transparent;
+    white-space:nowrap;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--red);color:var(--cream);}
+  .btn-primary:hover{background:var(--red-bright);transform:translateY(-1px);}
+  .btn-outline{border-color:var(--gold-soft);color:var(--cream);}
+  .btn-outline:hover{border-color:var(--gold);background:rgba(211,183,140,0.08);}
+
+  /* Header */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:linear-gradient(to bottom, rgba(23,20,17,0.92), rgba(23,20,17,0));
+    padding:22px 0;
+  }
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .logo img{height:58px;width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,0.5));}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);width:44px;height:44px;border-radius:50%;color:var(--cream);font-size:1.1rem;align-items:center;justify-content:center;}
+  nav{display:flex;align-items:center;gap:28px;}
+  nav a{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--cream-dim);position:relative;padding:6px 0;}
+  nav a:hover, nav a.active{color:var(--gold);}
+  .nav-dropdown{position:relative;}
+  .nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+  .dropdown-menu{
+    position:absolute;top:100%;left:50%;transform:translate(-50%,6px);
+    background:var(--bg-2);border:1px solid var(--line);
+    min-width:230px;padding:10px 0;margin-top:8px;
+    opacity:0;visibility:hidden;transition:all .2s ease;
+  }
+  .dropdown-menu a{display:block;padding:12px 22px;font-size:0.7rem;letter-spacing:0.08em;color:var(--cream-dim);}
+  .dropdown-menu a:hover{color:var(--gold);background:rgba(211,183,140,0.06);}
+  .header-icons{display:flex;gap:16px;align-items:center;}
+  .header-icons a{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:0.9rem;}
+  .header-icons a:hover{border-color:var(--gold);}
+
+  /* Page hero (simple, no image) */
+  .page-hero-simple{padding:180px 0 70px;text-align:center;}
+  .breadcrumb{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:20px;display:block;}
+  .breadcrumb a{color:var(--gold);}
+  .page-hero-simple h1{font-size:clamp(2.2rem,4.6vw,3.2rem);margin-bottom:18px;}
+  .page-hero-simple p{color:var(--cream-dim);max-width:560px;margin:0 auto;}
+
+  /* Jump nav */
+  .jump-nav{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding-bottom:80px;}
+  .jump-nav a{
+    padding:12px 26px;border:1px solid var(--gold-soft);border-radius:2px;
+    font-size:0.74rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--cream);
+  }
+  .jump-nav a:hover{border-color:var(--gold);background:rgba(211,183,140,0.08);}
+
+  /* Section generic */
+  section{padding:120px 0;}
+  .section-head{max-width:640px;margin:0 auto 56px;text-align:center;}
+  .section-head .eyebrow{display:block;margin-bottom:16px;}
+  .section-head h2{font-size:clamp(2rem,3.6vw,2.6rem);}
+  .section-head p{color:var(--cream-dim);margin-top:18px;font-size:1rem;}
+
+  /* FAQ accordion */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item summary{
+    padding:22px 0;font-family:var(--serif);font-size:1.15rem;font-weight:500;color:var(--cream);
+    cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    list-style:none;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:'+';font-family:var(--sans);font-size:1.3rem;color:var(--gold);flex-shrink:0;transition:transform .2s ease;}
+  .faq-item[open] summary::after{transform:rotate(45deg);}
+  .faq-item p{color:var(--cream-dim);padding-bottom:22px;font-size:0.92rem;max-width:640px;}
+
+  /* Spec table (Veranstalter) */
+  .spec-table{max-width:760px;margin:36px auto 0;border:1px solid var(--line);}
+  .spec-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);}
+  .spec-row:first-child{border-top:none;}
+  .spec-row div{padding:18px 24px;font-size:0.9rem;}
+  .spec-row .label{color:var(--gold);font-weight:600;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;background:var(--bg-2);}
+  .spec-row .value{color:var(--cream-dim);}
+
+  /* CTA band */
+  .cta-band{background:var(--bg-2);text-align:center;}
+  .cta-band h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:20px;}
+  .cta-band p{color:var(--cream-dim);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;}
+  .cta-ctas{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;}
+
+  /* Footer */
+  footer{background:var(--bg-2);border-top:1px solid var(--line);padding:80px 0 40px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px;}
+  .footer-logo img{height:70px;margin-bottom:20px;}
+  .footer-grid p{color:var(--cream-dim);font-size:0.88rem;max-width:280px;}
+  .footer-col h3{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .footer-col a{display:block;font-size:0.85rem;color:var(--cream-dim);margin-bottom:12px;}
+  .footer-col a:hover{color:var(--gold);}
+  .footer-social{display:flex;gap:14px;margin-top:20px;}
+  .footer-social a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);}
+  .footer-insta-teaser{font-size:0.8rem;color:var(--cream-dim);margin-top:16px;}
+  .footer-insta-teaser a{color:var(--gold);border-bottom:1px solid var(--line);}
+  .footer-bottom{border-top:1px solid var(--line);padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:0.75rem;color:var(--cream-dim);}
+  .footer-bottom a{margin-left:18px;}
+
+  .mobile-nav{display:none;}
+  @media(max-width:960px){
+    nav{display:none;}
+    .nav-toggle{display:flex;width:38px;height:38px;font-size:0.95rem;}
+    header{background-color:#1c1a17;background-image:none;padding:14px 0;}
+    .logo img{height:32px;}
+    .header-icons{gap:10px;}
+    .header-icons a{width:30px;height:30px;font-size:0.8rem;}
+    .mobile-nav{
+      display:block;
+      position:absolute;top:100%;left:0;right:0;
+      background-color:#1c1a17;
+      opacity:0;visibility:hidden;transform:translateY(-6px);
+      transition:opacity .2s ease, transform .2s ease, visibility .2s;
+      max-height:80vh;overflow-y:auto;
+      box-shadow:0 12px 24px rgba(0,0,0,0.4);
+    }
+    .mobile-nav.open{opacity:1;visibility:visible;transform:translateY(0);}
+    .mobile-nav-inner{display:flex;flex-direction:column;background-color:#1c1a17;}
+    .mobile-nav a{padding:12px 28px;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);border-top:1px solid var(--line);background-color:#1c1a17;}
+    .mobile-nav a:hover{color:var(--gold);}
+    .page-hero-simple{padding:120px 0 50px;}
+    .spec-row{grid-template-columns:1fr;}
+    .spec-row .label{border-bottom:1px solid var(--line);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    section{padding:80px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+    <nav>
+      <div class="nav-dropdown">
+        <a href="index.html#catering">Catering ▾</a>
+        <div class="dropdown-menu">
+          <a href="catering-firmenevents.html">Firmenevents</a>
+          <a href="catering-hochzeiten.html">Hochzeiten</a>
+          <a href="catering-private-feiern.html">Private Feiern</a>
+        </div>
+      </div>
+      <a href="kochkurse.html">Kochkurse</a>
+      <a href="foodtruck.html">Foodtruck</a>
+      <a href="aktuelles.html">Aktuelles</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="faq.html" class="active">Häufige Fragen</a>
+    </nav>
+    <div class="header-icons">
+      <a href="https://wa.me/4915155460254" aria-label="WhatsApp" title="WhatsApp">✆</a>
+      <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram" title="Instagram">◎</a>
+      <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail" title="E-Mail">✉</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <nav id="mobileNav" class="mobile-nav">
+    <div class="mobile-nav-inner">
+      <a href="catering-firmenevents.html">Catering — Firmenevents</a>
+      <a href="catering-hochzeiten.html">Catering — Hochzeiten</a>
+      <a href="catering-private-feiern.html">Catering — Private Feiern</a>
+      <a href="kochkurse.html">Kochkurse</a>
+      <a href="foodtruck.html">Foodtruck</a>
+      <a href="aktuelles.html">Aktuelles</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="faq.html" class="active">Häufige Fragen</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero-simple">
+  <div class="wrap">
+    <span class="breadcrumb"><a href="index.html">Start</a> · Häufige Fragen</span>
+    <h1>Häufige Fragen</h1>
+    <p>Zwei Bereiche: Fragen für alle, die uns auf dem Wochenmarkt besuchen – und Fragen für alle, die uns für ein Event buchen möchten.</p>
+  </div>
+  <div class="jump-nav">
+    <a href="#wochenmarkt">Für Wochenmarkt-Besucher</a>
+    <a href="#veranstalter">Für Veranstalter</a>
+  </div>
+</section>
+
+<section id="wochenmarkt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Wochenmarkt &amp; Foodtruck</span>
+      <h2>Fragen rund um unseren Truck auf dem Markt</h2>
+    </div>
+    <div class="faq">
+      <details class="faq-item">
+        <summary>Wie kann ich bezahlen?</summary>
+        <p>Wir akzeptieren Barzahlung und PayPal – Kartenzahlung ist an unserem Truck aktuell leider nicht möglich.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Gibt es vegane oder glutenfreie Optionen?</summary>
+        <p>Ja, wir haben immer mindestens ein veganes und ein glutenfreies Gericht im Angebot.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Kommt ihr auch zu privaten Events oder Firmenfeiern?</summary>
+        <p>Ja, unser Foodtruck ist auch für Firmenevents, Hochzeiten und private Feiern buchbar. Mehr dazu auf unseren Catering-Seiten.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Was passiert bei schlechtem Wetter?</summary>
+        <p>Unser Truck ist wettergeschützt, daher stehen wir bei den meisten Wetterlagen wie gewohnt vor Ort. Kurzfristige Ausfälle kündigen wir über unsere Instagram-Kanäle an.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Muss ich vorbestellen oder reservieren?</summary>
+        <p>Nein, auf den Wochenmärkten ist keine Reservierung nötig – einfach vorbeikommen. Für Firmenevents empfehlen wir eine frühzeitige Anfrage.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="veranstalter" style="background:var(--bg-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Für Veranstalter</span>
+      <h2>Was wir für euer Event brauchen</h2>
+      <p>Die häufigsten technischen Fragen von Firmenkunden, Brautpaaren und privaten Gastgebern – vorab beantwortet.</p>
+    </div>
+    <div class="faq">
+      <details class="faq-item" open>
+        <summary>Welchen Stromanschluss braucht ihr?</summary>
+        <p>Unsere kleine Knutschkugel braucht 1x16A Starkstrom (CEE). Unser großer Truck braucht je nach Bedarf 1x16A, 1x32A oder 2x16A Starkstrom (CEE). Wir sagen euch vorab genau, was für euer Event nötig ist.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Braucht ihr einen Wasseranschluss?</summary>
+        <p>Nein, wir sind mit unserem eigenen Wasservorrat autark unterwegs – ein Wasseranschluss vor Ort ist nicht nötig.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wie viel Stellfläche brauchen eure Trucks?</summary>
+        <p>Die kleine Knutschkugel braucht ca. 3,20&nbsp;m Länge (mit Deichsel) und 2&nbsp;m Breite. Unser großer Truck braucht ca. 4,50&nbsp;m Länge (mit Deichsel) und 2,6&nbsp;m Breite. Dazu etwas Rangierfläche zum Ein- und Ausparken.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wie viel Vorlauf braucht ihr für eine Anfrage?</summary>
+        <p>Das kommt auf Saison und Wochentag an: Für einen Samstag im Juli solltet ihr eher frühzeitig anfragen, für einen Mittwoch im Oktober klappt es oft auch kurzfristiger. Im Zweifel fragt einfach an – wir sagen euch ehrlich, ob euer Termin noch machbar ist.</p>
+      </details>
+    </div>
+    <div class="spec-table">
+      <div class="spec-row">
+        <div class="label">Kleine Knutschkugel</div>
+        <div class="value">1x16A Starkstrom · ca. 3,20&nbsp;m × 2&nbsp;m · kein Wasseranschluss nötig</div>
+      </div>
+      <div class="spec-row">
+        <div class="label">Großer Truck</div>
+        <div class="value">1x16A / 1x32A / 2x16A Starkstrom · ca. 4,50&nbsp;m × 2,6&nbsp;m · kein Wasseranschluss nötig</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Noch offene Fragen?</h2>
+    <p>Schreibt uns einfach direkt – wir melden uns in der Regel innerhalb von 48 Stunden.</p>
+    <div class="cta-ctas">
+      <a href="catering-firmenevents.html" class="btn btn-primary">Event anfragen</a>
+      <a href="https://wa.me/4915155460254" class="btn btn-outline">Direkt per WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+        <p>Asiatisches Catering, Foodtruck und Kochkurse in Biberach, Ulm und ganz Baden-Württemberg.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>
+          <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram">◎</a>
+          <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail">✉</a>
+        </div>
+        <p class="footer-insta-teaser">Folgt uns auf <a href="https://www.instagram.com/red_lotus_asianfood/">Instagram</a> für exklusive Einblicke hinter die Kulissen.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Catering</h3>
+        <a href="catering-firmenevents.html">Firmenevents</a>
+        <a href="catering-hochzeiten.html">Hochzeiten</a>
+        <a href="catering-private-feiern.html">Private Feiern</a>
+      </div>
+      <div class="footer-col">
+        <h3>Mehr</h3>
+        <a href="kochkurse.html">Kochkurse</a>
+        <a href="foodtruck.html">Foodtruck &amp; Wochenmarkt</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="aktuelles.html">Aktuelles</a>
+        <a href="ueber-uns.html">Über uns</a>
+      </div>
+      <div class="footer-col">
+        <h3>Kontakt</h3>
+        <a href="https://wa.me/4915155460254">+49 151 55460254</a>
+        <a href="mailto:info@redlotus-asianfood.com">info@redlotus-asianfood.com</a>
+        <a href="https://www.instagram.com/red_lotus_asianfood/">@red_lotus_asianfood</a>
+        <a href="faq.html">Häufige Fragen</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Red Lotus Asian Food</span>
+      <span>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.textContent = isOpen ? '✕' : '☰';
+  });
+</script>
+</body>
+</html>
