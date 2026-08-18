@@ -284,10 +284,35 @@
   .footer-bottom a{margin-left:18px;}
 
   .mobile-nav{display:none;}
+  /* Wochenkarte (gleiche Gestaltung wie auf aktuelles.html) */
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .plan-card{background:var(--bg-2);padding:36px 30px 32px;display:flex;flex-direction:column;position:relative;}
+  /* Kopf der Karte: Wochentag und Ort gehören zusammen und werden durch eine
+     Haarlinie vom Gerichte-Teil getrennt — das war vorher eine durchgehende
+     Textwand ohne erkennbare Gliederung. */
+  .plan-head{padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid var(--line);}
+  .plan-card .day{font-family:var(--serif);font-size:1.6rem;color:var(--cream);display:block;line-height:1.15;}
+  .plan-card .place{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-soft);margin-top:8px;display:block;}
+  /* Rot ist jetzt dem heutigen Tag vorbehalten statt jede Karte gleich laut
+     zu machen. Kennzeichnung setzt das Skript unten. */
+  .plan-card.is-today{background:linear-gradient(to bottom, rgba(200,56,43,0.07), transparent 220px);}
+  .plan-card.is-today::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);}
+  .plan-card.is-today .day{color:var(--red);}
+  .today-tag{display:inline-block;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);border:1px solid var(--red);border-radius:2px;padding:2px 8px;margin-bottom:12px;}
+  .plan-body{display:flex;flex-direction:column;gap:14px;flex:1;}
+  /* Jedes Gericht als eigener Block mit Trennlinie — vorher standen Name und
+     Varianten mehrerer Gerichte ohne Abgrenzung untereinander. */
+  .plan-dish + .plan-dish{padding-top:14px;border-top:1px solid rgba(211,183,140,0.10);}
+  .plan-card .dish{font-family:var(--serif);font-size:1.15rem;color:var(--cream);line-height:1.3;}
+  .plan-card .dish-desc{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-soft);margin-top:5px;}
+  .plan-empty{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream-dim);opacity:0.75;}
+  .plan-stand{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);opacity:0.6;}
+
   @media(max-width:1080px){
     nav{gap:18px;}
   }
   @media(max-width:960px){
+    .plan-grid{grid-template-columns:1fr;}
     nav{display:none;}
     .nav-toggle{display:flex;width:38px;height:38px;font-size:0.95rem;}
     header{background-color:#1c1a17;background-image:none;padding:14px 0;}
@@ -395,6 +420,51 @@
     </div>
   </div>
 </div>
+
+<!-- Wochenkarte direkt auf der Startseite: Viele Marktkunden wollen schlicht
+     wissen, was es diese Woche gibt. Vorher war das nur über einen Klick auf
+     "Aktuelles" erreichbar. Gleiche Firestore-Quelle, gleiche Gestaltung. -->
+<section id="wochenkarte" style="background:var(--bg-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Diese Woche auf dem Markt</span>
+      <h2>Was gibt es zu essen?</h2>
+      <p>Frisch am Truck gekocht — immer mit mindestens einem veganen und einem glutenfreien Gericht.</p>
+    </div>
+    <div class="plan-grid">
+      <div class="plan-card" data-plan-doc="speiseplan_biberach" data-weekday="3">
+        <div class="plan-head">
+          <span class="day">Mittwoch</span>
+          <span class="place">Wochenmarkt Biberach</span>
+        </div>
+        <div class="plan-body">
+          <div class="plan-empty">Speiseplan folgt in Kürze</div>
+        </div>
+      </div>
+      <div class="plan-card" data-plan-doc="speiseplan_laupheim" data-weekday="4">
+        <div class="plan-head">
+          <span class="day">Donnerstag</span>
+          <span class="place">Wochenmarkt Laupheim</span>
+        </div>
+        <div class="plan-body">
+          <div class="plan-empty">Speiseplan folgt in Kürze</div>
+        </div>
+      </div>
+      <div class="plan-card" data-plan-doc="speiseplan_warthausen" data-weekday="5">
+        <div class="plan-head">
+          <span class="day">Freitag</span>
+          <span class="place">Wochenmarkt Warthausen</span>
+        </div>
+        <div class="plan-body">
+          <div class="plan-empty">Speiseplan folgt in Kürze</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="aktuelles.html" class="btn btn-outline">Alle Termine &amp; Neuigkeiten</a>
+    </div>
+  </div>
+</section>
 
 <section id="werte">
   <div class="wrap">
@@ -602,6 +672,144 @@
     navToggle.setAttribute('aria-expanded', isOpen);
     navToggle.textContent = isOpen ? '✕' : '☰';
   });
+</script>
+<!--
+  Live-Speiseplan aus dem Red Lotus Eventkalender (Firebase/Firestore).
+  Identisch zu aktuelles.html — beide Seiten lesen dieselben Dokumente.
+  Liest ausschließlich lesend aus der Collection "website" (öffentlich
+  lesbar laut Firestore-Regeln, Schreiben bleibt den Team-Mitgliedern in
+  der App vorbehalten). Ein Dokument pro Standort, ID-Muster
+  "speiseplan_<ort>", Felder: datum (String "YYYY-MM-DD"),
+  gerichte (Array aus { name, variante }).
+  Fällt bei fehlender Verbindung oder fehlenden Daten lautlos auf den
+  HTML-Platzhalter zurück ("Speiseplan folgt in Kürze") — kein Fehler
+  sichtbar für Website-Besucher.
+-->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA0y6NWpF3N7241mA72Cj-gU_pvbqpNdD4",
+    authDomain: "red-lotus-eventkalender.firebaseapp.com",
+    projectId: "red-lotus-eventkalender",
+    storageBucket: "red-lotus-eventkalender.firebasestorage.app",
+    messagingSenderId: "864967561482",
+    appId: "1:864967561482:web:98ee51f304748e511f2af3",
+    measurementId: "G-BZX4RFERTR"
+  };
+
+  function formatDatum(iso) {
+    if (typeof iso !== 'string') return '';
+    const teile = iso.split('-');
+    if (teile.length !== 3) return '';
+    const [jahr, monat, tag] = teile;
+    return `${tag}.${monat}.${jahr}`;
+  }
+
+  // Fasst mehrere Einträge desselben Gerichts zu einem Block zusammen.
+  // Aus "Grünes Curry/Hühnchen" + "Grünes Curry/Vegan" wird ein Eintrag
+  // "Grünes Curry" mit der Variantenzeile "Hühnchen · Vegan".
+  // Reihenfolge richtet sich nach dem ersten Auftreten im Firestore-Array.
+  function gruppiereGerichte(gerichte) {
+    const gruppen = new Map();
+    gerichte.forEach((g) => {
+      if (!g || !g.name) return;
+      const name = String(g.name).trim();
+      if (!name) return;
+      if (!gruppen.has(name)) gruppen.set(name, []);
+      const variante = g.variante ? String(g.variante).trim() : '';
+      const liste = gruppen.get(name);
+      // Doppelte Varianten (z. B. versehentlich zweimal "Vegan") nur einmal zeigen
+      if (variante && !liste.includes(variante)) liste.push(variante);
+    });
+    return gruppen;
+  }
+
+  // Ein Gericht = ein eigener Block. Die Trennlinie zwischen den Blöcken macht
+  // das CSS (.plan-dish + .plan-dish), damit auch bei nur einem Gericht keine
+  // überflüssige Linie stehen bleibt.
+  function baueGerichtBlock(name, varianten) {
+    const block = document.createElement('div');
+    block.className = 'plan-dish';
+    const dish = document.createElement('div');
+    dish.className = 'dish';
+    dish.textContent = name;
+    block.appendChild(dish);
+    if (varianten && varianten.length) {
+      const desc = document.createElement('div');
+      desc.className = 'dish-desc';
+      desc.textContent = varianten.join(' · ');
+      block.appendChild(desc);
+    }
+    return block;
+  }
+
+  // Markiert die Karte des heutigen Wochentags. Läuft unabhängig von Firestore,
+  // damit die Hervorhebung auch dann stimmt, wenn keine Daten geladen werden.
+  function markiereHeute() {
+    const heute = String(new Date().getDay()); // 0 = Sonntag … 3 = Mittwoch
+    document.querySelectorAll('.plan-card[data-weekday]').forEach((card) => {
+      if (card.dataset.weekday !== heute) return;
+      card.classList.add('is-today');
+      const kopf = card.querySelector('.plan-head');
+      if (!kopf) return;
+      const tag = document.createElement('span');
+      tag.className = 'today-tag';
+      tag.textContent = 'Heute';
+      kopf.insertBefore(tag, kopf.firstChild);
+    });
+  }
+
+  async function ladeSpeiseplan() {
+    let app, db;
+    try {
+      app = initializeApp(firebaseConfig);
+      // "default" ist hier ein benannter Datenbankname, NICHT Firestores
+      // Standard-Datenbank "(default)". Ohne das zweite Argument sucht das
+      // SDK die Standard-Datenbank und bekommt 404 NOT_FOUND.
+      db = getFirestore(app, "default");
+    } catch (err) {
+      console.error('Firebase konnte nicht initialisiert werden:', err);
+      return;
+    }
+
+    let snap;
+    try {
+      snap = await getDocs(collection(db, 'website'));
+    } catch (err) {
+      // Kein Netz, keine Rechte, o.ä. — Platzhalter bleibt einfach stehen.
+      console.error('Speiseplan konnte nicht geladen werden:', err);
+      return;
+    }
+
+    snap.forEach((docSnap) => {
+      const card = document.querySelector(`.plan-card[data-plan-doc="${docSnap.id}"]`);
+      if (!card) return; // unbekannter Standort/Dokument-Name, ignorieren
+
+      const data = docSnap.data();
+      if (!Array.isArray(data.gerichte) || data.gerichte.length === 0) return;
+
+      const body = card.querySelector('.plan-body');
+      if (!body) return;
+      body.innerHTML = '';
+
+      gruppiereGerichte(data.gerichte).forEach((varianten, name) => {
+        body.appendChild(baueGerichtBlock(name, varianten));
+      });
+
+      const stand = formatDatum(data.datum);
+      if (stand) {
+        const standEl = document.createElement('div');
+        standEl.className = 'plan-stand';
+        standEl.textContent = `Stand: ${stand}`;
+        card.appendChild(standEl);   // ans Kartenende, nicht zwischen die Gerichte
+      }
+    });
+  }
+
+  markiereHeute();
+  ladeSpeiseplan();
 </script>
 </body>
 </html>

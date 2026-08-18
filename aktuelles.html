@@ -143,11 +143,27 @@
     font-size:0.8rem;color:var(--gold-soft);border:1px dashed var(--line);padding:14px 20px;border-radius:2px;
   }
   .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .plan-card{background:var(--bg-2);padding:40px 32px;}
-  .plan-card .day{font-family:var(--serif);font-size:1.5rem;color:var(--red);margin-bottom:6px;}
-  .plan-card .place{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:18px;display:block;}
-  .plan-card .dish{font-family:var(--serif);font-size:1.1rem;margin-bottom:8px;}
-  .plan-card .dish-desc{font-size:0.86rem;color:var(--cream-dim);}
+  .plan-card{background:var(--bg-2);padding:36px 30px 32px;display:flex;flex-direction:column;position:relative;}
+  /* Kopf der Karte: Wochentag und Ort gehören zusammen und werden durch eine
+     Haarlinie vom Gerichte-Teil getrennt — das war vorher eine durchgehende
+     Textwand ohne erkennbare Gliederung. */
+  .plan-head{padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid var(--line);}
+  .plan-card .day{font-family:var(--serif);font-size:1.6rem;color:var(--cream);display:block;line-height:1.15;}
+  .plan-card .place{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-soft);margin-top:8px;display:block;}
+  /* Rot ist jetzt dem heutigen Tag vorbehalten statt jede Karte gleich laut
+     zu machen. Kennzeichnung setzt das Skript unten. */
+  .plan-card.is-today{background:linear-gradient(to bottom, rgba(200,56,43,0.07), transparent 220px);}
+  .plan-card.is-today::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);}
+  .plan-card.is-today .day{color:var(--red);}
+  .today-tag{display:inline-block;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);border:1px solid var(--red);border-radius:2px;padding:2px 8px;margin-bottom:12px;}
+  .plan-body{display:flex;flex-direction:column;gap:14px;flex:1;}
+  /* Jedes Gericht als eigener Block mit Trennlinie — vorher standen Name und
+     Varianten mehrerer Gerichte ohne Abgrenzung untereinander. */
+  .plan-dish + .plan-dish{padding-top:14px;border-top:1px solid rgba(211,183,140,0.10);}
+  .plan-card .dish{font-family:var(--serif);font-size:1.15rem;color:var(--cream);line-height:1.3;}
+  .plan-card .dish-desc{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-soft);margin-top:5px;}
+  .plan-empty{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream-dim);opacity:0.75;}
+  .plan-stand{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);opacity:0.6;}
 
   /* News/Events */
   .news-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);}
@@ -267,25 +283,31 @@
     </div>
     <p class="plan-note">Unsere festen Standorte und Zeiten findet ihr auf der <a href="foodtruck.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Foodtruck-Seite</a>. Kurzfristige Änderungen oder Ausfälle kündigen wir hier sowie per <a href="https://wa.me/4915155460254" style="color:var(--gold);border-bottom:1px solid var(--line);">WhatsApp</a> an.</p>
     <div class="plan-grid" id="planGrid">
-      <div class="plan-card" data-plan-doc="speiseplan_biberach">
-        <span class="day">Mittwoch</span>
-        <span class="place">Wochenmarkt Biberach</span>
+      <div class="plan-card" data-plan-doc="speiseplan_biberach" data-weekday="3">
+        <div class="plan-head">
+          <span class="day">Mittwoch</span>
+          <span class="place">Wochenmarkt Biberach</span>
+        </div>
         <div class="plan-body">
-          <div class="dish">Speiseplan folgt in Kürze</div>
+          <div class="plan-empty">Speiseplan folgt in Kürze</div>
         </div>
       </div>
-      <div class="plan-card" data-plan-doc="speiseplan_laupheim">
-        <span class="day">Donnerstag</span>
-        <span class="place">Wochenmarkt Laupheim</span>
+      <div class="plan-card" data-plan-doc="speiseplan_laupheim" data-weekday="4">
+        <div class="plan-head">
+          <span class="day">Donnerstag</span>
+          <span class="place">Wochenmarkt Laupheim</span>
+        </div>
         <div class="plan-body">
-          <div class="dish">Speiseplan folgt in Kürze</div>
+          <div class="plan-empty">Speiseplan folgt in Kürze</div>
         </div>
       </div>
-      <div class="plan-card" data-plan-doc="speiseplan_warthausen">
-        <span class="day">Freitag</span>
-        <span class="place">Wochenmarkt Warthausen</span>
+      <div class="plan-card" data-plan-doc="speiseplan_warthausen" data-weekday="5">
+        <div class="plan-head">
+          <span class="day">Freitag</span>
+          <span class="place">Wochenmarkt Warthausen</span>
+        </div>
         <div class="plan-body">
-          <div class="dish">Speiseplan folgt in Kürze</div>
+          <div class="plan-empty">Speiseplan folgt in Kürze</div>
         </div>
       </div>
     </div>
@@ -438,19 +460,39 @@
     return gruppen;
   }
 
+  // Ein Gericht = ein eigener Block. Die Trennlinie zwischen den Blöcken macht
+  // das CSS (.plan-dish + .plan-dish), damit auch bei nur einem Gericht keine
+  // überflüssige Linie stehen bleibt.
   function baueGerichtBlock(name, varianten) {
-    const wrapper = document.createDocumentFragment();
+    const block = document.createElement('div');
+    block.className = 'plan-dish';
     const dish = document.createElement('div');
     dish.className = 'dish';
     dish.textContent = name;
-    wrapper.appendChild(dish);
+    block.appendChild(dish);
     if (varianten && varianten.length) {
       const desc = document.createElement('div');
       desc.className = 'dish-desc';
       desc.textContent = varianten.join(' · ');
-      wrapper.appendChild(desc);
+      block.appendChild(desc);
     }
-    return wrapper;
+    return block;
+  }
+
+  // Markiert die Karte des heutigen Wochentags. Läuft unabhängig von Firestore,
+  // damit die Hervorhebung auch dann stimmt, wenn keine Daten geladen werden.
+  function markiereHeute() {
+    const heute = String(new Date().getDay()); // 0 = Sonntag … 3 = Mittwoch
+    document.querySelectorAll('.plan-card[data-weekday]').forEach((card) => {
+      if (card.dataset.weekday !== heute) return;
+      card.classList.add('is-today');
+      const kopf = card.querySelector('.plan-head');
+      if (!kopf) return;
+      const tag = document.createElement('span');
+      tag.className = 'today-tag';
+      tag.textContent = 'Heute';
+      kopf.insertBefore(tag, kopf.firstChild);
+    });
   }
 
   async function ladeSpeiseplan() {
@@ -493,15 +535,14 @@
       const stand = formatDatum(data.datum);
       if (stand) {
         const standEl = document.createElement('div');
-        standEl.className = 'dish-desc';
-        standEl.style.marginTop = '14px';
-        standEl.style.opacity = '0.65';
+        standEl.className = 'plan-stand';
         standEl.textContent = `Stand: ${stand}`;
-        body.appendChild(standEl);
+        card.appendChild(standEl);   // ans Kartenende, nicht zwischen die Gerichte
       }
     });
   }
 
+  markiereHeute();
   ladeSpeiseplan();
 </script>
 </body>
