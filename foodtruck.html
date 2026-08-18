@@ -141,9 +141,16 @@
   .split-img{position:relative;overflow:hidden;}
   .split-img img{width:100%;height:100%;object-fit:cover;display:block;}
   .split-text{background:var(--bg-2);display:flex;align-items:center;padding:64px 60px;}
-  /* Live-Cooking-Variante: schmaleres, kürzeres Bild statt komplett bildschirmfüllendem Portrait-Crop */
-  #live-cooking .split{grid-template-columns:0.68fr 1.32fr;min-height:0;}
-  #live-cooking .split-img{align-self:center;max-height:440px;}
+  /* Bildausschnitte: Pearl liegt in beiden Fotos links der Mitte und im oberen Drittel —
+     ohne object-position schneidet der Mittelpunkt-Crop sie bei schmalen Spalten weg. */
+  #am-truck .split-img img{object-position:36% 34%;}
+  #live-cooking .split-img img{object-position:32% 24%;}
+  /* Live-Cooking-Variante nur am Desktop: schmalere Bildspalte, damit das Hochformat-Foto
+     nicht die halbe Seite füllt. Bewusst per min-width gescoped — als ID-Regel ohne Media Query
+     hat sie die mobile Stapel-Regel unten überstimmt (höhere Spezifität). */
+  @media(min-width:961px){
+    #live-cooking .split{grid-template-columns:0.62fr 1.38fr;min-height:0;}
+  }
   .split-text .eyebrow{display:block;margin-bottom:16px;}
   .split-text h2{font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:18px;}
   .split-text p{color:var(--cream-dim);margin-bottom:12px;}
@@ -235,7 +242,10 @@
     .markets{grid-template-columns:1fr;}
     .split{grid-template-columns:1fr;min-height:0;}
     .split-text{padding:56px 28px;}
-    .split-img{height:340px;}
+    /* Feste Höhe durch Seitenverhältnis ersetzt: das Querformat-Foto wird komplett gezeigt,
+       das Hochformat-Foto bekommt einen hohen Ausschnitt statt eines schmalen Streifens. */
+    .split-img{height:auto;aspect-ratio:3/2;}
+    #live-cooking .split-img{aspect-ratio:4/5;}
     .impressions-grid{grid-template-columns:1fr 1fr;}
     .impressions-grid .gallery-trigger{height:180px;}
     .trucks-grid{grid-template-columns:1fr;}

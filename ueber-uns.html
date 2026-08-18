@@ -92,9 +92,16 @@
   .split-text .eyebrow{display:block;margin-bottom:18px;}
   .split-text h2{font-size:clamp(1.8rem,2.6vw,2.4rem);margin-bottom:20px;}
   .split-text p{color:var(--cream-dim);margin-bottom:12px;}
-  /* Story-Variante: foodtruck-paew.jpg ist ein Portrait-Crop, hier schmaler halten statt bildschirmfüllend zu weiten */
-  #story .split{grid-template-columns:0.68fr 1.32fr;min-height:0;}
-  #story .split-img{align-self:center;max-height:460px;}
+  /* Bildausschnitt: Pearl steht im Foto links der Mitte und im oberen Drittel — ohne
+     object-position schneidet der Mittelpunkt-Crop sie bei schmalen Spalten weg. */
+  #story .split-img img{object-position:36% 34%;}
+  /* Story-Variante nur am Desktop. foodtruck-paew.jpg ist Querformat (4:3), deshalb eine
+     Bildspalte in ähnlichem Verhältnis — dann bleibt das Foto nahezu unbeschnitten.
+     Bewusst per min-width gescoped: als ID-Regel ohne Media Query hat sie die mobile
+     Stapel-Regel unten überstimmt (höhere Spezifität). */
+  @media(min-width:961px){
+    #story .split{grid-template-columns:0.9fr 1.1fr;min-height:0;}
+  }
 
   .roles{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
   .role-card{background:var(--bg-2);padding:48px 40px;}
@@ -140,7 +147,9 @@
     .page-hero-simple{padding:120px 0 50px;}
     .split{grid-template-columns:1fr;min-height:0;}
     .split-text{padding:56px 28px;}
-    .split-img{height:360px;}
+    /* Feste Höhe durch das native Seitenverhältnis des Fotos ersetzt — so ist Pearl
+       auf dem Handy vollständig zu sehen statt am Rand angeschnitten. */
+    .split-img{height:auto;aspect-ratio:4/3;}
     .roles{grid-template-columns:1fr;}
     .footer-grid{grid-template-columns:1fr 1fr;}
     section{padding:80px 0;}
