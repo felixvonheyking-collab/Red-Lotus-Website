@@ -112,7 +112,9 @@
     --sans:'Bricolage Grotesque', sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
+  /* Die Kopfzeile ist fixiert (ca. 102 px, mobil ca. 60 px). Ohne diesen Versatz
+     springt ein Anker-Link so, dass die Überschrift knapp darunter verschwindet. */
+  html{scroll-behavior:smooth;scroll-padding-top:112px;}
   body{
     background:var(--bg);
     color:var(--cream);
@@ -319,6 +321,7 @@
     .kochkurs img{height:320px;}
     .footer-grid{grid-template-columns:1fr 1fr;}
     section{padding:80px 0;}
+    html{scroll-padding-top:72px;}
   }
 </style>
 </head>
@@ -369,8 +372,14 @@
       <span class="eyebrow">Red Lotus Asian Food · Biberach &amp; Ulm</span>
       <h1>Asiatisches Catering<br>für <em>besondere</em> Momente.</h1>
       <p class="lead">Firmenevents, Hochzeiten und private Feiern – frisch gekocht, individuell geplant, mit Liebe zum Detail serviert. Für Anlässe, die in Erinnerung bleiben sollen.</p>
+      <!-- Zwei Wege statt einem: Der Hero-Text nennt Firmenevents, Hochzeiten und
+           private Feiern — ein Knopf, der direkt zu Firmenevents führte, schickte
+           Hochzeitspaare in die falsche Richtung. "Catering anfragen" führt jetzt
+           zur Auswahl weiter unten, der zweite Knopf bildet die andere Hälfte des
+           Geschäfts ab (Wochenmarkt/Foodtruck), die oben bisher gar nicht vorkam. -->
       <div class="hero-ctas">
-        <a href="catering-firmenevents.html" class="btn btn-primary">Firmenevents anfragen</a>
+        <a href="#catering" class="btn btn-primary">Catering anfragen</a>
+        <a href="foodtruck.html" class="btn btn-outline">Foodtruck &amp; Wochenmarkt</a>
       </div>
     </div>
   </div>
