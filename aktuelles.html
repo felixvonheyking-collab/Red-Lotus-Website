@@ -172,6 +172,12 @@
   .news-tag{display:inline-block;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);border-radius:2px;padding:3px 10px;margin-bottom:10px;}
   .news-item h3{font-size:1.15rem;margin-bottom:8px;}
   .news-item p{color:var(--cream-dim);font-size:0.9rem;}
+  /* Veranstaltungsposter. Bewusst schmal gehalten: Das Plakat ist ein Beleg zum
+     Termin, nicht der Hauptinhalt — in voller Breite würde es den Textfluss
+     erschlagen. Zum Lesen lässt es sich anklicken. */
+  .news-poster{display:block;max-width:260px;margin-top:18px;border:1px solid var(--line);transition:border-color .25s ease;}
+  .news-poster:hover{border-color:var(--gold);}
+  .news-poster img{width:100%;height:auto;}
 
   /* CTA band */
   .cta-band{background:var(--bg-2);text-align:center;}
@@ -328,6 +334,14 @@
           <span class="news-tag">Event</span>
           <h3>Illertisser Gartentage bei der Staudengärtnerei Gaißmayer</h3>
           <p>Wir sind mit dabei! Am 12. und 13. September 2026 sind wir nicht auf dem regulären Wochenmarkt, sondern bei den Illertisser Gartentagen auf dem Gelände der Staudengärtnerei Gaißmayer.</p>
+          <!-- Veranstaltungsposter. Anklickbar, damit das Kleingedruckte lesbar wird.
+               loading="lazy": Das Bild steht weit unten auf der Seite und soll den
+               ersten Seitenaufbau nicht bremsen. -->
+          <a class="news-poster" href="img/event-illertisser-gartentage-2026.jpg" target="_blank" rel="noopener">
+            <img src="img/event-illertisser-gartentage-2026.jpg"
+                 alt="Veranstaltungsplakat der Illertisser Gartentage am 12. und 13. September bei der Staudengärtnerei Gaißmayer"
+                 width="1080" height="1350" loading="lazy">
+          </a>
         </div>
       </div>
       <div class="news-item">
