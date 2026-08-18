@@ -438,7 +438,10 @@
     let app, db;
     try {
       app = initializeApp(firebaseConfig);
-      db = getFirestore(app);
+      // "default" ist hier ein benannter Datenbankname, NICHT Firestores
+      // Standard-Datenbank "(default)". Ohne das zweite Argument sucht das
+      // SDK die Standard-Datenbank und bekommt 404 NOT_FOUND.
+      db = getFirestore(app, "default");
     } catch (err) {
       console.error('Firebase konnte nicht initialisiert werden:', err);
       return;
