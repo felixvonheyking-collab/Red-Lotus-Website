@@ -419,16 +419,35 @@
     return `${tag}.${monat}.${jahr}`;
   }
 
-  function baueGerichtBlock(name, variante) {
+  // Fasst mehrere Einträge desselben Gerichts zu einem Block zusammen.
+  // Aus "Grünes Curry/Hühnchen" + "Grünes Curry/Vegan" wird ein Eintrag
+  // "Grünes Curry" mit der Variantenzeile "Hühnchen · Vegan".
+  // Reihenfolge richtet sich nach dem ersten Auftreten im Firestore-Array.
+  function gruppiereGerichte(gerichte) {
+    const gruppen = new Map();
+    gerichte.forEach((g) => {
+      if (!g || !g.name) return;
+      const name = String(g.name).trim();
+      if (!name) return;
+      if (!gruppen.has(name)) gruppen.set(name, []);
+      const variante = g.variante ? String(g.variante).trim() : '';
+      const liste = gruppen.get(name);
+      // Doppelte Varianten (z. B. versehentlich zweimal "Vegan") nur einmal zeigen
+      if (variante && !liste.includes(variante)) liste.push(variante);
+    });
+    return gruppen;
+  }
+
+  function baueGerichtBlock(name, varianten) {
     const wrapper = document.createDocumentFragment();
     const dish = document.createElement('div');
     dish.className = 'dish';
-    dish.textContent = name || '';
+    dish.textContent = name;
     wrapper.appendChild(dish);
-    if (variante) {
+    if (varianten && varianten.length) {
       const desc = document.createElement('div');
       desc.className = 'dish-desc';
-      desc.textContent = variante;
+      desc.textContent = varianten.join(' · ');
       wrapper.appendChild(desc);
     }
     return wrapper;
@@ -467,9 +486,8 @@
       if (!body) return;
       body.innerHTML = '';
 
-      data.gerichte.forEach((gericht) => {
-        if (!gericht || !gericht.name) return;
-        body.appendChild(baueGerichtBlock(gericht.name, gericht.variante));
+      gruppiereGerichte(data.gerichte).forEach((varianten, name) => {
+        body.appendChild(baueGerichtBlock(name, varianten));
       });
 
       const stand = formatDatum(data.datum);
