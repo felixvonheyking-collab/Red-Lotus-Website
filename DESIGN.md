@@ -11,6 +11,11 @@ colors:
   cream: "#f5f0e6"
   cream-dim: "#cdc6b8"
   line: "rgba(211,183,140,0.22)"
+  # Halbtransparente Werte. Nicht als Flaechenfarbe gedacht, sondern um Fotos
+  # abzudunkeln (Lesbarkeit heller Schrift) und um Ebenen voneinander abzusetzen.
+  scrim: "rgba(20,17,14,ALPHA)"       # Verlaeufe ueber Hero-Fotos, 0.5–0.98; Lightbox 0.85
+  header-veil: "rgba(23,20,17,0.92)"  # Verlauf hinter der fixierten Kopfzeile, unten auf 0 auslaufend
+  shadow: "rgba(0,0,0,0.4)"           # Schlagschatten Mobile-Menue; Logo nutzt 0.5
 typography:
   display:
     fontFamily: "Cormorant Garamond, Georgia, serif"
