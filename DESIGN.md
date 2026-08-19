@@ -174,4 +174,6 @@ Circular, 30–44px depending on context (header vs. footer vs. nav-toggle), 1px
 - **Don't** add box-shadows to cards or buttons for generic "polish" — depth here comes from background layering, not shadows.
 - **Don't** round corners beyond the established `2px` button radius or the circular icon-buttons; square-edged cards are intentional.
 - **Don't** use the serif (Cormorant Garamond) outside headlines — it never appears in body copy, labels, or buttons.
-- **Don't** use stock or AI-generated imagery anywhere on the site (a rejected trait of the previous Wix site) — every photo must be real Red Lotus event/food photography.
+- **Don't** use stock imagery anywhere on the site (a rejected trait of the previous Wix site) — the food, the people and the trucks must always be genuinely Red Lotus.
+  - **Dish shots** (`img/gerichte/`) are the one permitted exception to untouched photography: the plated food is real, but the studio setting behind it may be retouched or generated. It stays on-register — dark wood, warm low light, black bowls — so it reads as the same kitchen, not as a different brand.
+  - **People, trucks, events and locations** are never generated or composited. Those photos carry the trust; faking them would undo the point of the whole system.
