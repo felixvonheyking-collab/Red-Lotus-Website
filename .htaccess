@@ -29,26 +29,18 @@ RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 # ---------------------------------------------------------------------------
 # Die alte Seite nutzte URLs ohne Dateiendung. Jede Regel akzeptiert die
 # Adresse mit und ohne abschließenden Schrägstrich.
-# Das NE-Flag bei /catering verhindert, dass das # im Ziel kodiert wird.
+#
+# Stand 19.08.2026: Alle Ziele sind vollwertige Seiten. Die anfänglichen
+# Näherungen (/catering auf den Startseiten-Abschnitt, /kontakt auf die FAQ)
+# sind entfallen, seit catering.html und kontakt.html existieren.
 
-# Catering: Die alte Sammelseite hat noch keine 1:1-Entsprechung.
-# Ziel ist der Catering-Abschnitt der Startseite — dort stehen alle drei
-# Anlassseiten. Sobald /catering.html als eigene Hub-Seite existiert,
-# wird dieses Ziel hierher umgestellt.
-# QSD verwirft einen etwaigen Query-String. Ohne das Flag würde Apache ihn
-# hinter das Fragment hängen ("/#catering?utm_source=…") — eine ungültige URL.
-RewriteRule ^catering/?$              /#catering              [R=301,L,NE,QSD]
-
+RewriteRule ^catering/?$              /catering.html          [R=301,L]
 RewriteRule ^foodtruck/?$             /foodtruck.html         [R=301,L]
 RewriteRule ^galerie/?$               /galerie.html           [R=301,L]
 RewriteRule ^faq/?$                   /faq.html               [R=301,L]
 RewriteRule ^impressum/?$             /impressum.html         [R=301,L]
-
-# Kontakt: Es gibt derzeit keine eigene Kontaktseite. Die FAQ-Seite endet
-# mit den Kontaktmöglichkeiten, Telefon und E-Mail stehen zusätzlich im
-# Footer jeder Seite. Ziel wechselt auf /kontakt.html, sobald die existiert.
-RewriteRule ^kontakt/?$               /faq.html               [R=301,L]
-RewriteRule ^contact-5/?$             /faq.html               [R=301,L]
+RewriteRule ^kontakt/?$               /kontakt.html           [R=301,L]
+RewriteRule ^contact-5/?$             /kontakt.html           [R=301,L]
 
 # Umlaut-Adressen der alten Seite. Je nach Serverkonfiguration erreicht den
 # RewriteRule-Vergleich die dekodierte oder die prozentkodierte Form,
