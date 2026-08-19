@@ -35,7 +35,9 @@ RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 # Ziel ist der Catering-Abschnitt der Startseite — dort stehen alle drei
 # Anlassseiten. Sobald /catering.html als eigene Hub-Seite existiert,
 # wird dieses Ziel hierher umgestellt.
-RewriteRule ^catering/?$              /#catering              [R=301,L,NE]
+# QSD verwirft einen etwaigen Query-String. Ohne das Flag würde Apache ihn
+# hinter das Fragment hängen ("/#catering?utm_source=…") — eine ungültige URL.
+RewriteRule ^catering/?$              /#catering              [R=301,L,NE,QSD]
 
 RewriteRule ^foodtruck/?$             /foodtruck.html         [R=301,L]
 RewriteRule ^galerie/?$               /galerie.html           [R=301,L]
