@@ -1,0 +1,99 @@
+# Red Lotus Asian Food — Serverkonfiguration
+# Hostinger (LiteSpeed, Apache-kompatibel)
+#
+# Zweck dieser Datei:
+#   1. Weiterleitungen der alten Wix-URLs auf die neuen .html-Adressen
+#   2. Vereinheitlichung auf die Variante ohne www
+#   3. Kompression und Browser-Caching
+#
+# Angelegt 19.08.2026 nach dem SEO-Audit. Hintergrund: Beim Umzug von Wix
+# auf die statische Seite (17./18.08.2026) wurden die alten URLs nicht
+# weitergeleitet. Sie stehen aber noch im Google-Index und liefern seither
+# eine Fehlerseite. Die Weiterleitungen übertragen die Ranking-Signale der
+# alten Adressen auf die neuen.
+
+RewriteEngine On
+
+# ---------------------------------------------------------------------------
+# 1. www entfernen
+# ---------------------------------------------------------------------------
+# Alle canonical-Angaben und die sitemap.xml zeigen auf die Variante ohne www.
+# Bisher lieferten beide Varianten die Seite gleichwertig aus.
+# %1 ist die Domain ohne "www.", übernommen aus der RewriteCond.
+
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+# ---------------------------------------------------------------------------
+# 2. Weiterleitungen der alten Wix-Adressen
+# ---------------------------------------------------------------------------
+# Die alte Seite nutzte URLs ohne Dateiendung. Jede Regel akzeptiert die
+# Adresse mit und ohne abschließenden Schrägstrich.
+# Das NE-Flag bei /catering verhindert, dass das # im Ziel kodiert wird.
+
+# Catering: Die alte Sammelseite hat noch keine 1:1-Entsprechung.
+# Ziel ist der Catering-Abschnitt der Startseite — dort stehen alle drei
+# Anlassseiten. Sobald /catering.html als eigene Hub-Seite existiert,
+# wird dieses Ziel hierher umgestellt.
+RewriteRule ^catering/?$              /#catering              [R=301,L,NE]
+
+RewriteRule ^foodtruck/?$             /foodtruck.html         [R=301,L]
+RewriteRule ^galerie/?$               /galerie.html           [R=301,L]
+RewriteRule ^faq/?$                   /faq.html               [R=301,L]
+RewriteRule ^impressum/?$             /impressum.html         [R=301,L]
+
+# Kontakt: Es gibt derzeit keine eigene Kontaktseite. Die FAQ-Seite endet
+# mit den Kontaktmöglichkeiten, Telefon und E-Mail stehen zusätzlich im
+# Footer jeder Seite. Ziel wechselt auf /kontakt.html, sobald die existiert.
+RewriteRule ^kontakt/?$               /faq.html               [R=301,L]
+RewriteRule ^contact-5/?$             /faq.html               [R=301,L]
+
+# Umlaut-Adressen der alten Seite. Je nach Serverkonfiguration erreicht den
+# RewriteRule-Vergleich die dekodierte oder die prozentkodierte Form,
+# deshalb sind beide Schreibweisen hinterlegt.
+RewriteRule ^über-uns/?$              /ueber-uns.html         [R=301,L]
+RewriteRule ^%C3%BCber-uns/?$         /ueber-uns.html         [R=301,L]
+RewriteRule ^ueber-uns/?$             /ueber-uns.html         [R=301,L]
+
+RewriteRule ^datenschutzerklärung/?$      /datenschutz.html   [R=301,L]
+RewriteRule ^datenschutzerkl%C3%A4rung/?$ /datenschutz.html   [R=301,L]
+RewriteRule ^datenschutzerklaerung/?$     /datenschutz.html   [R=301,L]
+
+# Wix-Startseitenvariante
+RewriteRule ^home/?$                  /                       [R=301,L]
+
+# ---------------------------------------------------------------------------
+# 3. Kompression
+# ---------------------------------------------------------------------------
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# 4. Browser-Caching
+# ---------------------------------------------------------------------------
+# Bilder und Schriften ändern sich selten und bekommen eine lange Frist.
+# HTML bleibt kurz, damit Änderungen an der Seite sofort ankommen.
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg          "access plus 1 year"
+  ExpiresByType image/png           "access plus 1 year"
+  ExpiresByType image/webp          "access plus 1 year"
+  ExpiresByType image/avif          "access plus 1 year"
+  ExpiresByType image/svg+xml       "access plus 1 year"
+  ExpiresByType font/woff2          "access plus 1 year"
+  ExpiresByType text/css            "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html           "access plus 1 hour"
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# 5. Zeichenkodierung
+# ---------------------------------------------------------------------------
+
+AddDefaultCharset UTF-8

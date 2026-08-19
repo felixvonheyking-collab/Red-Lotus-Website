@@ -181,7 +181,7 @@
     <p>Felix Falk Udo Baron von Heyking<br>Food Truck und Eventcatering<br>Am Bergegüble 7<br>88447 Warthausen<br>Telefon: <a href="tel:+4915155460254">+49 151 55460254</a><br>E-Mail: <a href="mailto:info@redlotus-asianfood.com">info@redlotus-asianfood.com</a></p>
 
     <h2>2. Allgemeines zur Datenverarbeitung</h2>
-    <p>Diese Website ist überwiegend als statische Seite ohne eigenes Datenbank-Backend umgesetzt. Eine Ausnahme bildet die Speiseplan-Anzeige auf der Seite „Aktuelles", die Daten aus einer Cloud-Datenbank nachlädt (siehe Ziffer 5). Es werden auf dieser Website keine Cookies gesetzt und keine Analyse- oder Trackingtools eingesetzt.</p>
+    <p>Diese Website ist überwiegend als statische Seite ohne eigenes Datenbank-Backend umgesetzt. Ausnahmen bilden die Speiseplan-Anzeige auf der Seite „Aktuelles", die Daten aus einer Cloud-Datenbank nachlädt (siehe Ziffer 5), sowie die Anfrageformulare, die Ihre Eingaben an eine externe Schnittstelle übermitteln (siehe Ziffer 6). Es werden auf dieser Website keine Cookies gesetzt und keine Analyse- oder Trackingtools eingesetzt.</p>
 
     <h2>3. Hosting und Server-Logfiles</h2>
     <p>Beim Aufruf dieser Website erhebt der Hosting-Provider automatisch technische Informationen (sogenannte Server-Logfiles), die Ihr Browser übermittelt. Dazu gehören etwa Browsertyp, verwendetes Betriebssystem, Referrer-URL, IP-Adresse und Uhrzeit der Anfrage. Diese Daten dienen ausschließlich der technischen Bereitstellung der Website und werden nicht mit anderen Datenquellen zusammengeführt.</p>
@@ -194,8 +194,15 @@
     <p>Beim Aufruf der Seite lädt Ihr Browser das Firebase-JavaScript-SDK von einem Content-Delivery-Netzwerk (CDN) und fragt anschließend die Speiseplan-Daten direkt bei Google Firestore ab. Dabei wird technisch zwangsläufig Ihre IP-Adresse an Google-Server übermittelt; eine Übermittlung kann dabei auch in die USA erfolgen. Die abgefragten Inhalte selbst (Gerichte, Standort, Datum) sind öffentliche Informationen und enthalten keine personenbezogenen Daten von Ihnen. Im Rahmen dieser Funktion werden keine Formulardaten, Log-ins oder sonstigen Nutzereingaben übertragen.</p>
     <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer technisch einfachen, stets aktuellen Darstellung des Speiseplans). Weitere Informationen zum Datenschutz bei Google Firebase finden Sie unter <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a> sowie in der Datenschutzerklärung von Google (siehe Ziffer 4).</p>
 
-    <h2>6. Kontaktformulare</h2>
-    <p>Die Anfrageformulare auf dieser Website (z.&nbsp;B. für Firmenevents, Hochzeiten, private Feiern und Kochkurse) öffnen beim Absenden Ihr lokales E-Mail-Programm mit einer vorausgefüllten E-Mail an unsere Adresse. Die eingegebenen Daten werden dabei nicht auf einem Server dieser Website gespeichert oder verarbeitet, sondern ausschließlich über Ihr eigenes E-Mail-Programm an uns versendet. Rechtsgrundlage für die anschließende Verarbeitung Ihrer Anfrage ist Art. 6 Abs. 1 lit. b DSGVO (Anbahnung eines Vertrags).</p>
+    <h2>6. Anfrageformulare</h2>
+    <p>Auf dieser Website stehen Anfrageformulare für Firmenevents, Hochzeiten, private Feiern und Kochkurse zur Verfügung. Je nach Formular werden dabei Angaben wie Name, Firma, E-Mail-Adresse, Telefonnummer, Wunschtermin, Gästezahl, Anlass und Ihre Nachricht erhoben. Die Angabe ist freiwillig; ohne Kontaktdaten können wir Ihre Anfrage allerdings nicht beantworten.</p>
+
+    <h3>6.1 Übermittlung an unsere Anfrageverwaltung</h3>
+    <p>Beim Absenden werden die von Ihnen eingegebenen Daten an eine von uns betriebene Schnittstelle übermittelt, die auf <strong>Google&nbsp;Cloud&nbsp;Run</strong> gehostet ist (Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Serverstandort ist die Region Europa-West. Von dort werden die Daten in unsere Anfrage- und Terminverwaltung eingetragen, damit Ihre Anfrage bei uns nicht verloren geht. Technisch bedingt wird dabei auch Ihre IP-Adresse an den Server übertragen.</p>
+    <p>Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO (Durchführung vorvertraglicher Maßnahmen auf Ihre Anfrage hin). Wir verarbeiten die Daten ausschließlich zur Bearbeitung Ihrer Anfrage und löschen sie, sobald sie für diesen Zweck nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.</p>
+
+    <h3>6.2 Rückfallweg per E-Mail-Programm</h3>
+    <p>Sollte die Übermittlung nach Ziffer&nbsp;6.1 fehlschlagen – etwa weil der Dienst vorübergehend nicht erreichbar ist –, öffnet die Website stattdessen Ihr lokales E-Mail-Programm mit einer vorausgefüllten Nachricht an <a href="mailto:info@redlotus-asianfood.com">info@redlotus-asianfood.com</a>. In diesem Fall werden die Daten ausschließlich über Ihr eigenes E-Mail-Programm an uns versendet und nicht auf einem Server dieser Website gespeichert. Ob und wann Sie diese Nachricht absenden, entscheiden Sie selbst.</p>
 
     <h2>7. Verlinkte externe Plattformen</h2>
     <p>Auf dieser Website verweisen wir mit einfachen Links auf unsere Profile bei WhatsApp und Instagram sowie auf externe Kartendienste. Es werden dabei keine Inhalte dieser Anbieter automatisch eingebettet oder nachgeladen – erst wenn Sie aktiv auf einen solchen Link klicken, verlassen Sie unsere Seite und es gilt die Datenschutzerklärung des jeweiligen Anbieters:</p>
@@ -222,6 +229,7 @@
         <div class="footer-social">
           <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>
           <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram">◎</a>
+          <a href="https://www.facebook.com/profile.php?id=100082880545078" aria-label="Facebook">ⓕ</a>
           <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail">✉</a>
         </div>
         <p class="footer-insta-teaser">Folgt uns auf <a href="https://www.instagram.com/red_lotus_asianfood/">Instagram</a> für exklusive Einblicke hinter die Kulissen.</p>
