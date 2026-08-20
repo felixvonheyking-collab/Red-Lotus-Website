@@ -1048,7 +1048,12 @@
      Lage und Durchmesser der Teller sind von Hand vermessen (tools/, siehe
      Commit-Verlauf); die Zuschnitte setzen den Teller mittig und auf 80 % der
      Bildbreite. width/height verhindern Layoutsprünge beim Nachladen. */
-  .dish img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;margin:0 0 24px;border:1px solid var(--line);}
+  /* Feste Höchstbreite statt Prozentwert: Unter 1080px wird das Raster
+     einspaltig, die Karte also doppelt so breit. Mit einem Prozentwert wäre
+     das Bild auf einem schmalen Fenster größer als auf einem breiten.
+     Linksbündig, damit es auf jeder Breite an der Kante von Überschrift und
+     Text sitzt — zentriert schwimmt es in der einspaltigen Ansicht. */
+  .dish img{width:100%;max-width:300px;height:auto;aspect-ratio:1/1;object-fit:cover;margin:0 0 24px;border:1px solid var(--line);}
   .dish h3{font-size:1.5rem;margin-bottom:12px;}
   .dish > p{color:var(--cream-dim);font-size:0.92rem;margin-bottom:18px;}
   .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
