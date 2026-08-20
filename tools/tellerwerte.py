@@ -20,7 +20,10 @@ TELLER = {
  "gruenes-thai-curry":            (0.45, 0.50, 0.74),
  "hoisin-chicken":                (0.51, 0.50, 0.78),
  "indonesische-glasnudelsuppe":   (0.53, 0.50, 0.70),
- "java-curry":                    (0.51, 0.50, 0.93),
+ # Vorlage am 20.08.2026 in Canva mit Magic Expand nach oben und unten
+ # erweitert; vorher (0.51, 0.50, 0.93) und damit das einzige Bild, bei dem
+ # der Teller den Ausschnitt randlos fuellte.
+ "java-curry":                    (0.51, 0.53, 0.49),
  "kimchi-bacon-udon":             (0.47, 0.52, 0.70),
  "mango-sticky-rice":             (0.57, 0.55, 0.70),   # Mitnahmebox statt Teller
  "massaman-thai-curry":           (0.52, 0.50, 0.65),
