@@ -1039,7 +1039,7 @@
   .section-head p{color:var(--cream-dim);margin-top:18px;font-size:1rem;}
 
   /* Gerichte */
-  .dishes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .dishes{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
   .dish{background:var(--bg);padding:44px 36px;}
   section[style] .dish{background:var(--bg-2);}
   /* Quadratisches Format: Nur so passt ein runder Teller vollständig und in
@@ -1048,14 +1048,17 @@
      Lage und Durchmesser der Teller sind von Hand vermessen (tools/, siehe
      Commit-Verlauf); die Zuschnitte setzen den Teller mittig und auf 80 % der
      Bildbreite. width/height verhindern Layoutsprünge beim Nachladen. */
-  /* Feste Höchstbreite statt Prozentwert: Unter 1080px wird das Raster
-     einspaltig, die Karte also doppelt so breit. Mit einem Prozentwert wäre
-     das Bild auf einem schmalen Fenster größer als auf einem breiten.
-     Linksbündig, damit es auf jeder Breite an der Kante von Überschrift und
-     Text sitzt — zentriert schwimmt es in der einspaltigen Ansicht. */
-  .dish img{width:100%;max-width:300px;height:auto;aspect-ratio:1/1;object-fit:cover;margin:0 0 24px;border:1px solid var(--line);}
+  /* Eine Karte pro Zeile, darin Bild links und Text rechts. Zweispaltig
+     nebeneinander ginge nicht: Bei zwei Karten je Reihe blieben neben einem
+     320px-Bild nur rund 130px für die vierspaltige Preistabelle. */
+  .dish{display:flex;align-items:flex-start;gap:36px;}
+  .dish img{
+    flex:0 0 320px;width:320px;height:auto;aspect-ratio:1/1;object-fit:cover;
+    margin:0;border:1px solid var(--line);
+  }
+  .dish-body{flex:1;min-width:0;}
   .dish h3{font-size:1.5rem;margin-bottom:12px;}
-  .dish > p{color:var(--cream-dim);font-size:0.92rem;margin-bottom:18px;}
+  .dish-body > p{color:var(--cream-dim);font-size:0.92rem;margin-bottom:18px;max-width:64ch;}
   .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
   .tag{
     font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
@@ -1127,7 +1130,6 @@
   .mobile-nav{display:none;}
   @media(max-width:1080px){
     nav{gap:18px;}
-    .dishes{grid-template-columns:1fr;}
   }
   @media(max-width:960px){
     nav{display:none;}
@@ -1151,9 +1153,9 @@
     .mobile-nav a:hover{color:var(--gold);}
     .page-hero-simple{padding:120px 0 50px;}
     section{padding:80px 0;}
-    .dishes{grid-template-columns:1fr;}
-    .dish{padding:36px 26px;}
-    .dish img{margin-bottom:20px;}
+    /* Unter 960px reicht die Breite nicht mehr für Bild neben Preistabelle. */
+    .dish{display:block;padding:36px 26px;}
+    .dish img{width:100%;margin-bottom:20px;}
     /* Vier Spalten auf schmalen Displays: Schrift und Innenabstand zurücknehmen,
        damit "Mit Hähnchen" und drei Preise nebeneinander passen. */
     .preise th,.preise td{padding:10px 4px;font-size:0.78rem;}
@@ -1253,45 +1255,57 @@
     <div class="dishes">
       <article class="dish">
         <img src="img/gerichte/gruenes-thai-curry.webp" width="700" height="700" loading="lazy" alt="Grünes Thai Curry mit grünen Bohnen und Hähnchen">
-        <h3>Grünes Thai Curry</h3>
-        <p>Ein feuriges Thai Curry mit Zucchini, grünen Bohnen und Karotten. Entweder mit mariniertem Hähnchenfleisch oder als vegane Variante mit Süßkartoffeln.</p>
-        <div class="tags"><span class="tag">vegan möglich</span><span class="tag">feurig</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Grünes Thai Curry</h3>
+          <p>Ein feuriges Thai Curry mit Zucchini, grünen Bohnen und Karotten. Entweder mit mariniertem Hähnchenfleisch oder als vegane Variante mit Süßkartoffeln.</p>
+          <div class="tags"><span class="tag">vegan möglich</span><span class="tag">feurig</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/gelbes-thai-curry.webp" width="700" height="700" loading="lazy" alt="Gelbes Thai Curry mit Kartoffeln in dunkler Schale">
-        <h3>Gelbes Thai Curry</h3>
-        <p>Ein mildes südthailändisches Curry mit Kartoffeln, Zwiebeln und Karotten. Entweder mit zartem Hähnchenfleisch oder alternativ mit Süßkartoffeln.</p>
-        <div class="tags"><span class="tag">vegan möglich</span><span class="tag">mild</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Gelbes Thai Curry</h3>
+          <p>Ein mildes südthailändisches Curry mit Kartoffeln, Zwiebeln und Karotten. Entweder mit zartem Hähnchenfleisch oder alternativ mit Süßkartoffeln.</p>
+          <div class="tags"><span class="tag">vegan möglich</span><span class="tag">mild</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/panang-thai-curry.webp" width="700" height="700" loading="lazy" alt="Panang Thai Curry mit Karotten und grünen Bohnen">
-        <h3>Panang Thai Curry</h3>
-        <p>Pikantes Thai Curry mit grünen Bohnen, Karotten, Brokkoli und Kaffirlimettenblättern. Entweder mit mariniertem Hähnchenfleisch oder alternativ mit Süßkartoffeln.</p>
-        <div class="tags"><span class="tag">vegan möglich</span><span class="tag">pikant</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Panang Thai Curry</h3>
+          <p>Pikantes Thai Curry mit grünen Bohnen, Karotten, Brokkoli und Kaffirlimettenblättern. Entweder mit mariniertem Hähnchenfleisch oder alternativ mit Süßkartoffeln.</p>
+          <div class="tags"><span class="tag">vegan möglich</span><span class="tag">pikant</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/massaman-thai-curry.webp" width="700" height="700" loading="lazy" alt="Massaman Curry mit Kartoffeln in dunkler Schale">
-        <h3>Massaman Thai Curry</h3>
-        <p>Ein würziges, leicht pikantes Thai Curry mit Kokosmilch, Kartoffeln, Zwiebeln und Karotten. Entweder mit zartem Hähnchenfleisch oder alternativ mit Süßkartoffeln.</p>
-        <div class="tags"><span class="tag">vegan möglich</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Massaman Thai Curry</h3>
+          <p>Ein würziges, leicht pikantes Thai Curry mit Kokosmilch, Kartoffeln, Zwiebeln und Karotten. Entweder mit zartem Hähnchenfleisch oder alternativ mit Süßkartoffeln.</p>
+          <div class="tags"><span class="tag">vegan möglich</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/nepalesisches-pilzcurry.webp" width="700" height="700" loading="lazy" alt="Nepalesisches Pilzcurry mit Champignons und Erbsen">
-        <h3>Nepalesisches Pilzcurry</h3>
-        <p>Ein mit verschiedenen Gewürzen aromatisiertes, mildes Curry mit Champignons, Erbsen und Tomatenstücken. Entweder mit zartem Hähnchenfleisch oder alternativ mit extra Gemüse.</p>
-        <div class="tags"><span class="tag">vegan möglich</span><span class="tag">mild</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Nepalesisches Pilzcurry</h3>
+          <p>Ein mit verschiedenen Gewürzen aromatisiertes, mildes Curry mit Champignons, Erbsen und Tomatenstücken. Entweder mit zartem Hähnchenfleisch oder alternativ mit extra Gemüse.</p>
+          <div class="tags"><span class="tag">vegan möglich</span><span class="tag">mild</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/java-curry.webp" width="700" height="700" loading="lazy" alt="Java Curry mit Kichererbsen und Jasminreis">
-        <h3>Java Curry</h3>
-        <p>Ein exotisches Kichererbsencurry mit Jasminreis, Limettenschnitz und frischem Koriander. Cremig durch die Kichererbsen, frisch durch Koriander und Limette – leicht, aber mit Charakter.</p>
-        <div class="tags"><span class="tag">vegan möglich</span><span class="tag">cremig</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Java Curry</h3>
+          <p>Ein exotisches Kichererbsencurry mit Jasminreis, Limettenschnitz und frischem Koriander. Cremig durch die Kichererbsen, frisch durch Koriander und Limette – leicht, aber mit Charakter.</p>
+          <div class="tags"><span class="tag">vegan möglich</span><span class="tag">cremig</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
     </div>
   </div>
@@ -1307,24 +1321,30 @@
     <div class="dishes">
       <article class="dish">
         <img src="img/gerichte/pad-thai.webp" width="700" height="700" loading="lazy" alt="Pad Thai mit Limette und gerösteten Erdnüssen auf dunklem Holz">
-        <h3>Pad Thai</h3>
-        <p>In Pearls selbstgemachter Pad-Thai-Sauce angebratene Reisbandnudeln mit Karottenstreifen, Frühlingszwiebeln und Ei. Entweder mit mariniertem Hähnchenfleisch oder Crispy Tofu.</p>
-        <div class="tags"><span class="tag">vegetarisch möglich</span><span class="tag">enthält Ei</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegetarisch</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Pad Thai</h3>
+          <p>In Pearls selbstgemachter Pad-Thai-Sauce angebratene Reisbandnudeln mit Karottenstreifen, Frühlingszwiebeln und Ei. Entweder mit mariniertem Hähnchenfleisch oder Crispy Tofu.</p>
+          <div class="tags"><span class="tag">vegetarisch möglich</span><span class="tag">enthält Ei</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegetarisch</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/yakisoba.webp" width="700" height="700" loading="lazy" alt="Yakisoba mit Spitzkohl, Karotten und Noristreifen">
-        <h3>Yakisoba</h3>
-        <p>In Ingwer und Knoblauch angebratene Ramennudeln mit knackigem Spitzkohl, Frühlingszwiebeln und Karottenstreifen. Entweder mit gebratenem Hähnchenfleisch oder alternativ mit Crispy Tofu.</p>
-        <div class="tags"><span class="tag">vegan möglich</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Yakisoba</h3>
+          <p>In Ingwer und Knoblauch angebratene Ramennudeln mit knackigem Spitzkohl, Frühlingszwiebeln und Karottenstreifen. Entweder mit gebratenem Hähnchenfleisch oder alternativ mit Crispy Tofu.</p>
+          <div class="tags"><span class="tag">vegan möglich</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/kimchi-bacon-udon.webp" width="700" height="700" loading="lazy" alt="Kimchi-Bacon Udonnudeln mit Spiegelei">
-        <h3>Kimchi-Bacon Udonnudeln</h3>
-        <p>Gebratene Udonnudeln in einer feurigen Gochujang-Soße mit pikantem Kimchi, Frühlingszwiebeln, Noristreifen und koreanischem Spitzkohlsalat. Dazu knuspriger Bacon oder Crispy Tofu, wahlweise mit Spiegelei.</p>
-        <div class="tags"><span class="tag">vegetarisch möglich</span><span class="tag">feurig scharf</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Ohne Spiegelei</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Mit Spiegelei</th><td data-label="Normal">11,90 €</td><td data-label="Klein">9,50 €</td><td data-label="Schüler">9,50 €</td></tr><tr><th scope="row">Vegetarisch</th><td data-label="Normal">10,40 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Kimchi-Bacon Udonnudeln</h3>
+          <p>Gebratene Udonnudeln in einer feurigen Gochujang-Soße mit pikantem Kimchi, Frühlingszwiebeln, Noristreifen und koreanischem Spitzkohlsalat. Dazu knuspriger Bacon oder Crispy Tofu, wahlweise mit Spiegelei.</p>
+          <div class="tags"><span class="tag">vegetarisch möglich</span><span class="tag">feurig scharf</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Ohne Spiegelei</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Mit Spiegelei</th><td data-label="Normal">11,90 €</td><td data-label="Klein">9,50 €</td><td data-label="Schüler">9,50 €</td></tr><tr><th scope="row">Vegetarisch</th><td data-label="Normal">10,40 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr></tbody></table>
+        </div>
       </article>
     </div>
   </div>
@@ -1340,24 +1360,30 @@
     <div class="dishes">
       <article class="dish">
         <img src="img/gerichte/orange-chicken.webp" width="700" height="700" loading="lazy" alt="Orange Chicken mit Wokgemüse und Reis in dunkler Schale">
-        <h3>Orange Chicken</h3>
-        <p>In einer fruchtigen süß-sauren Orangensoße gebratenes Wokgemüse aus Brokkoli, Paprika und Karotten. Dazu wahlweise knuspriges Hähnchen oder alternativ Crispy Tofu.</p>
-        <div class="tags"><span class="tag">vegetarisch möglich</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegetarisch</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Orange Chicken</h3>
+          <p>In einer fruchtigen süß-sauren Orangensoße gebratenes Wokgemüse aus Brokkoli, Paprika und Karotten. Dazu wahlweise knuspriges Hähnchen oder alternativ Crispy Tofu.</p>
+          <div class="tags"><span class="tag">vegetarisch möglich</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegetarisch</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/hoisin-chicken.webp" width="700" height="700" loading="lazy" alt="Hoisin Chicken mit Brokkoli, Paprika und Reis">
-        <h3>Hoisin Chicken</h3>
-        <p>Knackiges Wokgemüse aus Brokkoli, Paprika und Zwiebeln mit gerösteten Cashewnüssen in einer aromatischen Hoisinsauce. Wahlweise mit knusprigem Hähnchen oder Crispy Tofu.</p>
-        <div class="tags"><span class="tag">vegan möglich</span><span class="tag">enthält Cashewnüsse</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Hoisin Chicken</h3>
+          <p>Knackiges Wokgemüse aus Brokkoli, Paprika und Zwiebeln mit gerösteten Cashewnüssen in einer aromatischen Hoisinsauce. Wahlweise mit knusprigem Hähnchen oder Crispy Tofu.</p>
+          <div class="tags"><span class="tag">vegan möglich</span><span class="tag">enthält Cashewnüsse</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/chicken-manchurian.webp" width="700" height="700" loading="lazy" alt="Chicken Manchurian mit Paprika und Reis">
-        <h3>Chicken Manchurian</h3>
-        <p>Von einem chinesischen Koch in Mumbai entdeckt und von uns interpretiert: würziges Fried Chicken mit knackiger Paprika in einer süß-säuerlichen Soße. Für Vegetarier bereiten wir auf dieselbe Art frittierte Blumenkohlröschen zu.</p>
-        <div class="tags"><span class="tag">vegetarisch möglich</span><span class="tag">mild würzig</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Mit Blumenkohl</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Chicken Manchurian</h3>
+          <p>Von einem chinesischen Koch in Mumbai entdeckt und von uns interpretiert: würziges Fried Chicken mit knackiger Paprika in einer süß-säuerlichen Soße. Für Vegetarier bereiten wir auf dieselbe Art frittierte Blumenkohlröschen zu.</p>
+          <div class="tags"><span class="tag">vegetarisch möglich</span><span class="tag">mild würzig</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Mit Blumenkohl</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr></tbody></table>
+        </div>
       </article>
     </div>
   </div>
@@ -1373,17 +1399,21 @@
     <div class="dishes">
       <article class="dish">
         <img src="img/gerichte/pork-adobo.webp" width="700" height="700" loading="lazy" alt="Pork Adobo mit Jasminreis auf dunklem Teller">
-        <h3>Pork Adobo</h3>
-        <p>Das philippinische Nationalgericht: in dunkler Sojasoße und Essig marinierter und geschmorter Schweinenacken mit Kartoffelwürfeln und Zwiebeln. Dazu aromatischer Jasminreis.</p>
-        <div class="tags"><span class="tag">würzig aromatisch</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Schweinefleisch</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Pork Adobo</h3>
+          <p>Das philippinische Nationalgericht: in dunkler Sojasoße und Essig marinierter und geschmorter Schweinenacken mit Kartoffelwürfeln und Zwiebeln. Dazu aromatischer Jasminreis.</p>
+          <div class="tags"><span class="tag">würzig aromatisch</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Schweinefleisch</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/creamy-cajun-chicken.webp" width="700" height="700" loading="lazy" alt="Creamy Cajun Chicken mit Spinat, Cherrytomaten und Reis">
-        <h3>Creamy Cajun Chicken</h3>
-        <p>Zartes, in Kokosöl angebratenes Hähnchenfleisch in einer Soße aus Kokosmilch, Cajun-Gewürzen, Kaffirlimettenblättern, Spinat und Cherrytomaten. Dazu Jasminreis.</p>
-        <div class="tags"><span class="tag">vegetarisch möglich</span><span class="tag">feurig scharf</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Mit Crispy Tofu</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,90 €</td><td data-label="Schüler">7,90 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Creamy Cajun Chicken</h3>
+          <p>Zartes, in Kokosöl angebratenes Hähnchenfleisch in einer Soße aus Kokosmilch, Cajun-Gewürzen, Kaffirlimettenblättern, Spinat und Cherrytomaten. Dazu Jasminreis.</p>
+          <div class="tags"><span class="tag">vegetarisch möglich</span><span class="tag">feurig scharf</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Mit Crispy Tofu</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,90 €</td><td data-label="Schüler">7,90 €</td></tr></tbody></table>
+        </div>
       </article>
     </div>
   </div>
@@ -1399,31 +1429,39 @@
     <div class="dishes">
       <article class="dish">
         <img src="img/gerichte/thailaendischer-glasnudelsalat.webp" width="700" height="700" loading="lazy" alt="Thailändischer Glasnudelsalat mit Crispy Tofu und Erdnüssen">
-        <h3>Thailändischer Glasnudelsalat</h3>
-        <p>Ein erfrischender Salat mit Glasnudeln, Rotkohl, Karottenstreifen, Paprika, Frühlingszwiebeln, frischer Minze und Koriander. Entweder mit gebratenem Hähnchenfleisch oder alternativ mit Crispy Tofu.</p>
-        <div class="tags"><span class="tag">vegan möglich</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Thailändischer Glasnudelsalat</h3>
+          <p>Ein erfrischender Salat mit Glasnudeln, Rotkohl, Karottenstreifen, Paprika, Frühlingszwiebeln, frischer Minze und Koriander. Entweder mit gebratenem Hähnchenfleisch oder alternativ mit Crispy Tofu.</p>
+          <div class="tags"><span class="tag">vegan möglich</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/soba-nudelsalat.webp" width="700" height="700" loading="lazy" alt="Soba Nudelsalat mit Tomaten, Gurke und Hähnchen">
-        <h3>Soba Nudelsalat</h3>
-        <p>Ein sommerlicher Nudelsalat mit japanischen Buchweizennudeln, Karottenstreifen, Tomaten, Gurken und Edamame, angemacht in einem erfrischenden Ponzudressing. Entweder mit Hähnchen oder Crispy Tofu. Enthält eine gute Portion Knoblauch.</p>
-        <div class="tags"><span class="tag">vegan möglich</span><span class="tag">kräftig mit Knoblauch</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">8,00 €</td><td data-label="Schüler">8,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Soba Nudelsalat</h3>
+          <p>Ein sommerlicher Nudelsalat mit japanischen Buchweizennudeln, Karottenstreifen, Tomaten, Gurken und Edamame, angemacht in einem erfrischenden Ponzudressing. Entweder mit Hähnchen oder Crispy Tofu. Enthält eine gute Portion Knoblauch.</p>
+          <div class="tags"><span class="tag">vegan möglich</span><span class="tag">kräftig mit Knoblauch</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">8,00 €</td><td data-label="Schüler">8,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/ramennudelsalat.webp" width="700" height="700" loading="lazy" alt="Ramennudelsalat mit Sesamdressing, Gurke und Tomaten">
-        <h3>Ramennudelsalat mit Sesamdressing</h3>
-        <p>Japanische Ramennudeln in einem leckeren Sesamdressing, mit Rotkohl, Salat, Karottenstreifen, Tomaten und Gurken. Entweder mit gebratenem Hähnchenfleisch oder alternativ mit Crispy Tofu. Auf Wunsch mit einem Ei.</p>
-        <div class="tags"><span class="tag">vegetarisch möglich</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Ramennudelsalat mit Sesamdressing</h3>
+          <p>Japanische Ramennudeln in einem leckeren Sesamdressing, mit Rotkohl, Salat, Karottenstreifen, Tomaten und Gurken. Entweder mit gebratenem Hähnchenfleisch oder alternativ mit Crispy Tofu. Auf Wunsch mit einem Ei.</p>
+          <div class="tags"><span class="tag">vegetarisch möglich</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr><tr><th scope="row">Vegan</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
       <article class="dish">
         <img src="img/gerichte/bun-bun-salat.webp" width="700" height="700" loading="lazy" alt="Bun Bun Salat mit Reisnudeln, Tomaten und frischen Kräutern">
-        <h3>Bun Bun Salat</h3>
-        <p>Ein sommerlicher Salat mit Reisnudeln, Karottenstreifen, Babyspinat, Cocktailtomaten, Gurken, roten Zwiebeln, Minze und auf Wunsch mit Koriander. Zur Wahl stehen gezupfte Hähnchenbrust oder veganes Hack.</p>
-        <div class="tags"><span class="tag">vegan möglich</span><span class="tag">mild würzig</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegetarisch</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Bun Bun Salat</h3>
+          <p>Ein sommerlicher Salat mit Reisnudeln, Karottenstreifen, Babyspinat, Cocktailtomaten, Gurken, roten Zwiebeln, Minze und auf Wunsch mit Koriander. Zur Wahl stehen gezupfte Hähnchenbrust oder veganes Hack.</p>
+          <div class="tags"><span class="tag">vegan möglich</span><span class="tag">mild würzig</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">10,90 €</td><td data-label="Klein">8,50 €</td><td data-label="Schüler">8,50 €</td></tr><tr><th scope="row">Vegetarisch</th><td data-label="Normal">9,40 €</td><td data-label="Klein">7,00 €</td><td data-label="Schüler">7,00 €</td></tr></tbody></table>
+        </div>
       </article>
     </div>
   </div>
@@ -1438,10 +1476,12 @@
     <div class="dishes">
       <article class="dish">
         <img src="img/gerichte/indonesische-glasnudelsuppe.webp" width="700" height="700" loading="lazy" alt="Indonesische Glasnudelsuppe mit Paprika und Pilzen">
-        <h3>Indonesische Glasnudelsuppe</h3>
-        <p>Pikante Hühnersuppe mit gezupftem Hähnchenfleisch, Champignons, Paprika, Mu-Err-Pilzen und Glasnudeln.</p>
-        <div class="tags"><span class="tag">pikant</span></div>
-        <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr></tbody></table>
+        <div class="dish-body">
+          <h3>Indonesische Glasnudelsuppe</h3>
+          <p>Pikante Hühnersuppe mit gezupftem Hähnchenfleisch, Champignons, Paprika, Mu-Err-Pilzen und Glasnudeln.</p>
+          <div class="tags"><span class="tag">pikant</span></div>
+          <table class="preise"><thead><tr><th scope="col"><span class="vh">Variante</span></th><th scope="col">Normal</th><th scope="col">Klein</th><th scope="col">Schüler</th></tr></thead><tbody><tr><th scope="row">Mit Hähnchen</th><td data-label="Normal">9,90 €</td><td data-label="Klein">7,50 €</td><td data-label="Schüler">7,50 €</td></tr></tbody></table>
+        </div>
       </article>
     </div>
   </div>
@@ -1456,10 +1496,12 @@
     <div class="dishes">
       <article class="dish">
         <img src="img/gerichte/mango-sticky-rice.webp" width="700" height="700" loading="lazy" alt="Mango Sticky Rice mit Sesam und Kokossoße in der Mitnahmebox">
-        <h3>Mango Sticky Rice</h3>
-        <p>Das bekannteste thailändische Dessert. Selbstgemachter Sticky Rice mit süß-salziger Kokossoße und hochwertiger Flugmango. Ein Nachtisch, der nicht zu süß ist.</p>
-        <div class="tags"><span class="tag">vegan</span></div>
-        <div class="preis-einzeln"><span>Pro Portion</span><strong>6,90 €</strong></div>
+        <div class="dish-body">
+          <h3>Mango Sticky Rice</h3>
+          <p>Das bekannteste thailändische Dessert. Selbstgemachter Sticky Rice mit süß-salziger Kokossoße und hochwertiger Flugmango. Ein Nachtisch, der nicht zu süß ist.</p>
+          <div class="tags"><span class="tag">vegan</span></div>
+          <div class="preis-einzeln"><span>Pro Portion</span><strong>6,90 €</strong></div>
+        </div>
       </article>
     </div>
   </div>
