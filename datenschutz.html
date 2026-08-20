@@ -24,10 +24,32 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/bricolage-grotesque-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/cormorant-garamond-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  /* Schriften liegen auf dem eigenen Server, nicht bei Google.
+     Zwei Gründe: Beim Nachladen von fonts.googleapis.com ging die IP-Adresse
+     jedes Besuchers an Google, bevor er irgendetwas zustimmen konnte. Und es
+     kostete zwei zusätzliche Namensauflösungen samt Verbindungsaufbau, bevor
+     der erste Text in der richtigen Schrift erscheinen konnte.
+     Zeichensatz auf Latein begrenzt (wie zuvor bei Google), bei Bricolage
+     zusätzlich die Breitenachse fest auf 100 — schmale Schnitte nutzen wir nicht. */
+  @font-face{
+    font-family:'Bricolage Grotesque';
+    src:url('fonts/bricolage-grotesque-latin-var.woff2') format('woff2');
+    font-weight:400 700;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'Cormorant Garamond';
+    src:url('fonts/cormorant-garamond-latin-var.woff2') format('woff2');
+    font-weight:400 600;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'Cormorant Garamond';
+    src:url('fonts/cormorant-garamond-latin-italic-500.woff2') format('woff2');
+    font-weight:500;font-style:italic;font-display:swap;
+  }
+
   :root{
     --bg:#1c1a17;
     --bg-2:#232019;
@@ -196,8 +218,8 @@
     <h2>3. Hosting und Server-Logfiles</h2>
     <p>Beim Aufruf dieser Website erhebt der Hosting-Provider automatisch technische Informationen (sogenannte Server-Logfiles), die Ihr Browser übermittelt. Dazu gehören etwa Browsertyp, verwendetes Betriebssystem, Referrer-URL, IP-Adresse und Uhrzeit der Anfrage. Diese Daten dienen ausschließlich der technischen Bereitstellung der Website und werden nicht mit anderen Datenquellen zusammengeführt.</p>
 
-    <h2>4. Google Fonts</h2>
-    <p>Diese Website nutzt zur einheitlichen Darstellung von Schriftarten Google Fonts, einen Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Beim Aufruf der Seite wird eine Verbindung zu Servern von Google aufgebaut, wobei Ihre IP-Adresse an Google übermittelt werden kann. Weitere Informationen finden Sie in der <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Google</a>.</p>
+    <h2>4. Schriftarten</h2>
+    <p>Die auf dieser Website verwendeten Schriftarten (Cormorant Garamond und Bricolage Grotesque) sind auf unserem eigenen Server gespeichert und werden ausschließlich von dort ausgeliefert. Beim Aufruf der Seite wird dafür keine Verbindung zu Servern von Google oder anderen Dritten aufgebaut; eine Übermittlung Ihrer IP-Adresse an Dritte findet insoweit nicht statt.</p>
 
     <h2>5. Speiseplan-Anzeige (Google Firebase/Firestore)</h2>
     <p>Auf der Seite „Aktuelles" wird der aktuelle Speiseplan nicht statisch eingebunden, sondern direkt in Ihrem Browser aus einer Cloud-Datenbank (Google Firebase/Cloud Firestore) nachgeladen. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, bzw. Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA (Google Cloud Platform).</p>

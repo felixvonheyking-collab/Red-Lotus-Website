@@ -117,10 +117,32 @@
   }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/bricolage-grotesque-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/cormorant-garamond-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  /* Schriften liegen auf dem eigenen Server, nicht bei Google.
+     Zwei Gründe: Beim Nachladen von fonts.googleapis.com ging die IP-Adresse
+     jedes Besuchers an Google, bevor er irgendetwas zustimmen konnte. Und es
+     kostete zwei zusätzliche Namensauflösungen samt Verbindungsaufbau, bevor
+     der erste Text in der richtigen Schrift erscheinen konnte.
+     Zeichensatz auf Latein begrenzt (wie zuvor bei Google), bei Bricolage
+     zusätzlich die Breitenachse fest auf 100 — schmale Schnitte nutzen wir nicht. */
+  @font-face{
+    font-family:'Bricolage Grotesque';
+    src:url('fonts/bricolage-grotesque-latin-var.woff2') format('woff2');
+    font-weight:400 700;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'Cormorant Garamond';
+    src:url('fonts/cormorant-garamond-latin-var.woff2') format('woff2');
+    font-weight:400 600;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'Cormorant Garamond';
+    src:url('fonts/cormorant-garamond-latin-italic-500.woff2') format('woff2');
+    font-weight:500;font-style:italic;font-display:swap;
+  }
+
   :root{
     --bg:#1c1a17;
     --bg-2:#232019;
