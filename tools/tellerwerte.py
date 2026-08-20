@@ -35,8 +35,15 @@ TELLER = {
  "yakisoba":                      (0.53, 0.55, 0.77),
 }
 
-# Zielanteil des Tellers an der Bildbreite. 0,80 liegt oberhalb des Medians
-# (0,73) und ist fuer 15 der 20 Vorlagen ohne Anschnitt erreichbar. Die fuenf
-# darueber (0,82 bis 0,93) behalten ihren groesseren Teller — dort ist im
-# Original schlicht kein Rand mehr uebrig.
-ZIEL_D = 0.80
+# Zielanteil des Tellers an der Bildbreite.
+#
+# 0,80 war zu formatfuellend — der Teller stand bis fast an den Rand. 0,72 gibt
+# spuerbar mehr Luft und ist fuer neun der zwanzig Vorlagen exakt erreichbar;
+# die uebrigen bleiben groesser, weil im Original schlicht kein Rand mehr da ist.
+#
+# Kleinere Werte bringen nichts: Bei 0,65 erreicht nur noch ein einziges Bild
+# das Ziel, alle anderen liegen zwischen 0,65 und 1,00 — die Streuung waere also
+# groesser statt kleiner. Fehlenden Rand durch eine unscharfe Fortsetzung des
+# Bildes zu ergaenzen wurde getestet und verworfen: Beim Java Curry entstand ein
+# sichtbarer heller Ring, beim Hoisin Chicken eine senkrechte Kante.
+ZIEL_D = 0.72
