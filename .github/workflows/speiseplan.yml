@@ -1,0 +1,46 @@
+name: Speiseplan statisch schreiben
+
+# Trägt den aktuellen Speiseplan aus Firestore als HTML in index.html und
+# aktuelles.html ein. Grund: Das JavaScript auf den Seiten holt die Daten erst
+# im Browser — Googlebot rendert das verzögert, die Crawler von ChatGPT,
+# Perplexity und Claude in der Regel gar nicht. Ohne diesen Lauf steht im
+# ausgelieferten HTML dauerhaft "Speiseplan folgt in Kürze".
+#
+# Ein Commit hier löst das Hostinger-Deployment aus, die Änderung ist also
+# wenige Minuten später live. Wenn sich nichts geändert hat, wird nicht
+# committet — es entstehen keine Leerläufe in der Historie.
+
+on:
+  schedule:
+    # 04:00 und 12:00 UTC. Der frühe Lauf greift Änderungen vom Vorabend auf,
+    # bevor mittwochs um 9:30 der erste Markt beginnt.
+    - cron: "0 4,12 * * *"
+  workflow_dispatch:        # von Hand über den Actions-Reiter startbar
+
+permissions:
+  contents: write
+
+concurrency:
+  group: speiseplan
+  cancel-in-progress: false
+
+jobs:
+  schreiben:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Speiseplan holen und eintragen
+        run: python3 tools/speiseplan-statisch.py
+
+      - name: Bei Änderung committen
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Keine Änderung — nichts zu committen."
+            exit 0
+          fi
+          git config user.name  "Speiseplan-Bot"
+          git config user.email "actions@github.com"
+          git add index.html aktuelles.html
+          git commit -m "Speiseplan aktualisiert ($(date -u +%d.%m.%Y))"
+          git push
