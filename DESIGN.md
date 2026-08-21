@@ -85,7 +85,8 @@ Two typefaces carry the whole voice: an italic-capable serif for anything that n
 A near-monochrome anthracite palette lit by exactly two warm accents; color is spent sparingly and always on purpose.
 
 ### Primary
-- **Lotus Red** (`#c8382b`): the CTA and emphasis color — primary buttons, hero em-word, section numerals, list bullets (❊). Used sparingly; its rarity is the point.
+- **Lotus Red** (`#c8382b`): the CTA and emphasis color — primary buttons, hero em-word, sequence numerals, list bullets (❊). Used sparingly; its rarity is the point.
+  - **Numerals only for true sequences.** Red 01/02/03 markers appear only where order carries information (the request → talk → offer → event process steps). Cards whose order is arbitrary (value props, catering paths) use the ❊ mark or a meaningful label instead — decorative numbering on non-sequences is the fastest way to make the system read as templated.
 - **Lotus Red Bright** (`#e0473a`): hover/active state for Lotus Red, never used at rest.
 
 ### Secondary
