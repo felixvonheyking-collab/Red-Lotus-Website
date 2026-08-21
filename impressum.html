@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c1a17">
 <title>Impressum – Red Lotus Asian Food</title>
 <meta name="description" content="Impressum von Red Lotus Asian Food – Food Truck und Eventcatering, Warthausen.">
 <link rel="canonical" href="https://redlotus-asianfood.com/impressum.html">
@@ -73,7 +74,7 @@
   .eyebrow{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:600;}
   h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--cream);}
   .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:all .25s ease;border:1px solid transparent;white-space:nowrap;cursor:pointer;}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:background-color .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;border:1px solid transparent;white-space:nowrap;cursor:pointer;}
   .btn-primary{background:var(--red);color:var(--cream);}
   .btn-primary:hover{background:var(--red-bright);transform:translateY(-1px);}
   .btn-outline{border-color:var(--gold-soft);color:var(--cream);}
@@ -88,7 +89,7 @@
   nav a:hover, nav a.active{color:var(--gold);}
   .nav-dropdown{position:relative;}
   .nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
-  .dropdown-menu{position:absolute;top:100%;left:50%;transform:translate(-50%,6px);background:var(--bg-2);border:1px solid var(--line);min-width:230px;padding:10px 0;margin-top:8px;opacity:0;visibility:hidden;transition:all .2s ease;}
+  .dropdown-menu{position:absolute;top:100%;left:50%;transform:translate(-50%,6px);background:var(--bg-2);border:1px solid var(--line);min-width:230px;padding:10px 0;margin-top:8px;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease,transform .2s ease;}
   .dropdown-menu a{display:block;padding:12px 22px;font-size:0.7rem;letter-spacing:0.08em;color:var(--cream-dim);}
   .dropdown-menu a:hover{color:var(--gold);background:rgba(211,183,140,0.06);}
   .header-icons{display:flex;gap:16px;align-items:center;}
@@ -146,13 +147,29 @@
     .legal-block{padding:32px 26px;}
     .footer-grid{grid-template-columns:1fr 1fr;}
   }
+
+  /* Querschnitt nach den Web Interface Guidelines (21.08.2026) */
+  html{color-scheme:dark;-webkit-tap-highlight-color:rgba(211,183,140,0.18);}
+  a,button,summary,input,select,textarea{touch-action:manipulation;}
+  /* Sprungziele nicht unter der fixierten Kopfzeile verschwinden lassen */
+  [id]{scroll-margin-top:120px;}
+  h1,h2,h3{text-wrap:balance;}
+  table{font-variant-numeric:tabular-nums;}
+  #lightbox{overscroll-behavior:contain;}
+  .skip-link{position:absolute;top:-100px;left:16px;z-index:300;background:var(--bg-2);color:var(--gold);padding:12px 20px;border:1px solid var(--line);border-radius:2px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;}
+  .skip-link:focus{top:16px;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;}
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
 <header>
   <div class="wrap">
-    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
     <nav>
       <div class="nav-dropdown">
         <a href="catering.html">Catering ▾</a>
@@ -199,7 +216,7 @@
   </nav>
 </header>
 
-<section class="page-hero-simple">
+<section id="inhalt" class="page-hero-simple">
   <div class="wrap">
     <span class="breadcrumb"><a href="index.html">Start</a> · Impressum</span>
     <h1>Impressum</h1>
@@ -251,7 +268,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
         <p>Asiatisches Catering, Foodtruck und Kochkurse in Biberach, Ulm und ganz Baden-Württemberg.</p>
         <div class="footer-social">
           <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>

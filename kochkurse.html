@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c1a17">
 <title>Asiatischer Kochkurs Biberach &amp; Ulm – privat &amp; für Firmen</title>
 <meta name="description" content="Asiatisch kochen lernen in Biberach &amp; Ulm – als Freundeskreis-Erlebnis oder Teambuilding-Format für Firmen. Hands-on statt nur zuschauen.">
 <link rel="canonical" href="https://redlotus-asianfood.com/kochkurse.html">
@@ -122,7 +123,7 @@
     padding:16px 30px;
     font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
     border-radius:2px;
-    transition:all .25s ease;
+    transition:background-color .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
     border:1px solid transparent;
     white-space:nowrap;
     cursor:pointer;
@@ -152,7 +153,7 @@
     position:absolute;top:100%;left:50%;transform:translate(-50%,6px);
     background:var(--bg-2);border:1px solid var(--line);
     min-width:230px;padding:10px 0;margin-top:8px;
-    opacity:0;visibility:hidden;transition:all .2s ease;
+    opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease,transform .2s ease;
   }
   .dropdown-menu a{display:block;padding:12px 22px;font-size:0.7rem;letter-spacing:0.08em;color:var(--cream-dim);}
   .dropdown-menu a:hover{color:var(--gold);background:rgba(211,183,140,0.06);}
@@ -245,6 +246,8 @@
     padding:13px 16px;font-family:var(--sans);font-size:0.92rem;border-radius:2px;
   }
   .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);}
+  /* outline:none oben gilt nur dem Maus-Fokus; per Tastatur bleibt der Ring sichtbar */
+  .field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
   .field input:invalid:not(:placeholder-shown),.field select:invalid:not(:placeholder-shown),.field textarea:invalid:not(:placeholder-shown){border-color:var(--red);}
   .field textarea{resize:vertical;min-height:110px;}
   .form-note{font-size:0.8rem;color:var(--cream-dim);margin-top:18px;}
@@ -303,13 +306,29 @@
     .footer-grid{grid-template-columns:1fr 1fr;}
     section{padding:80px 0;}
   }
+
+  /* Querschnitt nach den Web Interface Guidelines (21.08.2026) */
+  html{color-scheme:dark;-webkit-tap-highlight-color:rgba(211,183,140,0.18);}
+  a,button,summary,input,select,textarea{touch-action:manipulation;}
+  /* Sprungziele nicht unter der fixierten Kopfzeile verschwinden lassen */
+  [id]{scroll-margin-top:120px;}
+  h1,h2,h3{text-wrap:balance;}
+  table{font-variant-numeric:tabular-nums;}
+  #lightbox{overscroll-behavior:contain;}
+  .skip-link{position:absolute;top:-100px;left:16px;z-index:300;background:var(--bg-2);color:var(--gold);padding:12px 20px;border:1px solid var(--line);border-radius:2px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;}
+  .skip-link:focus{top:16px;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;}
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
 <header>
   <div class="wrap">
-    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
     <nav>
       <div class="nav-dropdown">
         <a href="catering.html">Catering ▾</a>
@@ -356,7 +375,7 @@
   </nav>
 </header>
 
-<section class="page-hero">
+<section id="inhalt" class="page-hero">
   <div class="wrap">
     <div class="page-hero-content">
       <span class="breadcrumb"><a href="index.html">Start</a> · Kochkurse</span>
@@ -436,12 +455,12 @@
       <p>Vom Gemüse schnippeln über die Gewürzpaste im Mörser bis zum letzten Handgriff beim Falten – bei uns steht die ganze Gruppe gemeinsam in der Küche, nicht nur ein paar Zuschauer am Rand.</p>
     </div>
     <div class="impressions-grid">
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-schneiden.jpg" data-alt="Kochkurs-Teilnehmer beim Schneiden von Karotten"><img src="img/kochkurs-schneiden.jpg" alt="Kochkurs-Teilnehmer beim Schneiden von Karotten"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-moerser.jpg" data-alt="Kochkurs-Teilnehmer beim gemeinsamen Zubereiten mit Mörser und frischen Kräutern"><img src="img/kochkurs-moerser.jpg" alt="Kochkurs-Teilnehmer beim gemeinsamen Zubereiten mit Mörser und frischen Kräutern"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-dumplings.jpg" data-alt="Gemeinsam gefaltete Dumplings beim Kochkurs"><img src="img/kochkurs-dumplings.jpg" alt="Gemeinsam gefaltete Dumplings beim Kochkurs"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-zutaten.jpg" data-alt="Frische Zutaten für den Kochkurs liebevoll angerichtet"><img src="img/kochkurs-zutaten.jpg" alt="Frische Zutaten für den Kochkurs liebevoll angerichtet"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-nudelmaschine.jpg" data-alt="Frische Nudeln werden mit der Nudelmaschine hergestellt"><img src="img/kochkurs-nudelmaschine.jpg" alt="Frische Nudeln werden mit der Nudelmaschine hergestellt"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-flambieren.jpg" data-alt="Dessert wird zum Abschluss des Kochkurses flambiert"><img src="img/kochkurs-flambieren.jpg" alt="Dessert wird zum Abschluss des Kochkurses flambiert"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-schneiden.jpg" data-alt="Kochkurs-Teilnehmer beim Schneiden von Karotten"><img src="img/kochkurs-schneiden.jpg" alt="Kochkurs-Teilnehmer beim Schneiden von Karotten" width="1600" height="901"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-moerser.jpg" data-alt="Kochkurs-Teilnehmer beim gemeinsamen Zubereiten mit Mörser und frischen Kräutern"><img src="img/kochkurs-moerser.jpg" alt="Kochkurs-Teilnehmer beim gemeinsamen Zubereiten mit Mörser und frischen Kräutern" width="1600" height="901"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-dumplings.jpg" data-alt="Gemeinsam gefaltete Dumplings beim Kochkurs"><img src="img/kochkurs-dumplings.jpg" alt="Gemeinsam gefaltete Dumplings beim Kochkurs" width="1600" height="900"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-zutaten.jpg" data-alt="Frische Zutaten für den Kochkurs liebevoll angerichtet"><img src="img/kochkurs-zutaten.jpg" alt="Frische Zutaten für den Kochkurs liebevoll angerichtet" width="1600" height="901"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-nudelmaschine.jpg" data-alt="Frische Nudeln werden mit der Nudelmaschine hergestellt"><img src="img/kochkurs-nudelmaschine.jpg" alt="Frische Nudeln werden mit der Nudelmaschine hergestellt" width="1600" height="1200"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-flambieren.jpg" data-alt="Dessert wird zum Abschluss des Kochkurses flambiert"><img src="img/kochkurs-flambieren.jpg" alt="Dessert wird zum Abschluss des Kochkurses flambiert" width="1600" height="1200"></button>
     </div>
   </div>
 </section>
@@ -482,15 +501,15 @@
         <div class="form-grid">
           <div class="field">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" autocomplete="name" required>
           </div>
           <div class="field">
             <label for="email">E-Mail</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" autocomplete="email" spellcheck="false" required>
           </div>
           <div class="field">
             <label for="telefon">Telefon</label>
-            <input type="tel" id="telefon" name="telefon">
+            <input type="tel" id="telefon" name="telefon" autocomplete="tel">
           </div>
           <div class="field">
             <label for="datum">Wunschdatum</label>
@@ -512,12 +531,12 @@
           </div>
           <div class="field full">
             <label for="nachricht">Nachricht</label>
-            <textarea id="nachricht" name="nachricht" placeholder="Erzählt uns kurz, was ihr euch vorstellt..."></textarea>
+            <textarea id="nachricht" name="nachricht" placeholder="Erzählt uns kurz, was ihr euch vorstellt…"></textarea>
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Anfrage senden</button>
         <p class="form-note">Eure Anfrage landet direkt in unserem Kalender. Nur falls das ausnahmsweise nicht klappt, öffnet sich stattdessen euer E-Mail-Programm.</p>
-        <div class="form-success" id="formSuccess">Danke! Euer E-Mail-Programm sollte sich mit der ausgefüllten Anfrage geöffnet haben. Hat sich nichts geöffnet? Dann schickt uns die Anfrage stattdessen direkt per <a href="https://wa.me/4915155460254" style="color:var(--gold);border-bottom:1px solid var(--line);">WhatsApp</a> oder schreibt an <a href="mailto:info@redlotus-asianfood.com" style="color:var(--gold);border-bottom:1px solid var(--line);">info@redlotus-asianfood.com</a>.</div>
+        <div class="form-success" id="formSuccess" role="status">Danke! Euer E-Mail-Programm sollte sich mit der ausgefüllten Anfrage geöffnet haben. Hat sich nichts geöffnet? Dann schickt uns die Anfrage stattdessen direkt per <a href="https://wa.me/4915155460254" style="color:var(--gold);border-bottom:1px solid var(--line);">WhatsApp</a> oder schreibt an <a href="mailto:info@redlotus-asianfood.com" style="color:var(--gold);border-bottom:1px solid var(--line);">info@redlotus-asianfood.com</a>.</div>
       </form>
     </div>
   </div>
@@ -527,7 +546,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
         <p>Asiatisches Catering, Foodtruck und Kochkurse in Biberach, Ulm und ganz Baden-Württemberg.</p>
         <div class="footer-social">
           <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>
@@ -608,6 +627,10 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const submitText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet…';
     const d = new FormData(form);
     const subject = encodeURIComponent('Kochkurs-Anfrage: ' + d.get('name'));
     const body = encodeURIComponent(
@@ -651,6 +674,8 @@
       formSuccess.innerHTML = formSuccessFallbackHTML;
       formSuccess.classList.add('show');
     }
+    submitBtn.disabled = false;
+    submitBtn.textContent = submitText;
   });
 </script>
 </body>

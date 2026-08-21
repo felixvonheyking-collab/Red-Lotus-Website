@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c1a17">
 <title>Asiatisches Catering Biberach &amp; Ulm – Red Lotus Asian Food</title>
 <meta name="description" content="Asiatisches Catering für Firmenevents, Hochzeiten und private Feiern in Biberach, Ulm und Umgebung. Frisch gekocht, mit Charakter.">
 <link rel="canonical" href="https://redlotus-asianfood.com/">
@@ -188,7 +189,7 @@
     padding:16px 30px;
     font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
     border-radius:2px;
-    transition:all .25s ease;
+    transition:background-color .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
     border:1px solid transparent;
     white-space:nowrap;
     cursor:pointer;
@@ -218,7 +219,7 @@
     position:absolute;top:100%;left:50%;transform:translate(-50%,6px);
     background:var(--bg-2);border:1px solid var(--line);
     min-width:230px;padding:10px 0;margin-top:8px;
-    opacity:0;visibility:hidden;transition:all .2s ease;
+    opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease,transform .2s ease;
   }
   .dropdown-menu a{display:block;padding:12px 22px;font-size:0.7rem;letter-spacing:0.08em;color:var(--cream-dim);}
   .dropdown-menu a:hover{color:var(--gold);background:rgba(211,183,140,0.06);}
@@ -394,13 +395,29 @@
     section{padding:80px 0;}
     html{scroll-padding-top:72px;}
   }
+
+  /* Querschnitt nach den Web Interface Guidelines (21.08.2026) */
+  html{color-scheme:dark;-webkit-tap-highlight-color:rgba(211,183,140,0.18);}
+  a,button,summary,input,select,textarea{touch-action:manipulation;}
+  /* Sprungziele nicht unter der fixierten Kopfzeile verschwinden lassen */
+  [id]{scroll-margin-top:120px;}
+  h1,h2,h3{text-wrap:balance;}
+  table{font-variant-numeric:tabular-nums;}
+  #lightbox{overscroll-behavior:contain;}
+  .skip-link{position:absolute;top:-100px;left:16px;z-index:300;background:var(--bg-2);color:var(--gold);padding:12px 20px;border:1px solid var(--line);border-radius:2px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;}
+  .skip-link:focus{top:16px;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;}
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#top">Zum Inhalt springen</a>
 
 <header>
   <div class="wrap">
-    <a href="#top" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+    <a href="#top" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
     <nav>
       <div class="nav-dropdown">
         <a href="catering.html">Catering ▾</a>
@@ -596,7 +613,7 @@
       </div>
     </div>
     <div class="proof-img">
-      <img src="img/night-event.jpg" alt="Red Lotus Foodtruck bei einem Abendevent mit Gästen">
+      <img src="img/night-event.jpg" alt="Red Lotus Foodtruck bei einem Abendevent mit Gästen" width="1800" height="1350">
     </div>
   </div>
 </section>
@@ -648,12 +665,12 @@
       <p>Ein Ausschnitt aus vier Jahren Firmenevents, Hochzeiten und Festivals – von der Live-Cooking-Station bis zum stillen Buffet.</p>
     </div>
     <div class="gallery-grid">
-      <a href="galerie.html"><img src="img/jar-salad-spread.jpg" alt="Glasnudelsalat-Büfett mit Kerzenlaternen"></a>
-      <a href="galerie.html"><img src="img/skewer-fruit-spread.jpg" alt="Fingerfood-Spieße und Obstplatte auf einem Catering-Büfett"></a>
-      <a href="galerie.html"><img src="img/bao-fine-dining.jpg" alt="Fein angerichtete Bao mit drei Saucen"></a>
-      <a href="galerie.html"><img src="img/summer-rolls-lantern.jpg" alt="Sommerrollen-Büfett mit Kerzenlaternen vor roter Wand"></a>
-      <a href="galerie.html"><img src="img/pad-thai-tray.jpg" alt="Pad Thai mit Garnelen im Catering-Tablett"></a>
-      <a href="galerie.html"><img src="img/springroll-tray.jpg" alt="Frische Frühlingsrollen mit Chili-Dip"></a>
+      <a href="galerie.html"><img src="img/jar-salad-spread.jpg" alt="Glasnudelsalat-Büfett mit Kerzenlaternen" width="1200" height="676"></a>
+      <a href="galerie.html"><img src="img/skewer-fruit-spread.jpg" alt="Fingerfood-Spieße und Obstplatte auf einem Catering-Büfett" width="1200" height="900"></a>
+      <a href="galerie.html"><img src="img/bao-fine-dining.jpg" alt="Fein angerichtete Bao mit drei Saucen" width="1200" height="903"></a>
+      <a href="galerie.html"><img src="img/summer-rolls-lantern.jpg" alt="Sommerrollen-Büfett mit Kerzenlaternen vor roter Wand" width="1200" height="1600"></a>
+      <a href="galerie.html"><img src="img/pad-thai-tray.jpg" alt="Pad Thai mit Garnelen im Catering-Tablett" width="1200" height="676"></a>
+      <a href="galerie.html"><img src="img/springroll-tray.jpg" alt="Frische Frühlingsrollen mit Chili-Dip" width="1800" height="1013"></a>
     </div>
   </div>
 </section>
@@ -690,7 +707,7 @@
 <section id="kochkurse">
   <div class="wrap">
     <div class="kochkurs">
-      <img src="img/kochkurs-gruppe.jpg" alt="Red Lotus Kochkurs: gemeinsam Zutaten vorbereiten">
+      <img src="img/kochkurs-gruppe.jpg" alt="Red Lotus Kochkurs: gemeinsam Zutaten vorbereiten" width="1400" height="2487">
       <div>
         <span class="eyebrow">Neu · Kochkurse</span>
         <h2>Asiatisch kochen lernen – privat oder als Teamevent.</h2>
@@ -710,7 +727,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a href="#top" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+        <a href="#top" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
         <p>Asiatisches Catering, Foodtruck und Kochkurse in Biberach, Ulm und ganz Baden-Württemberg.</p>
         <div class="footer-social">
           <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>

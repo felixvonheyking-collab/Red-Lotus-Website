@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c1a17">
 <title>Foodtruck mieten in Biberach &amp; Ulm – Red Lotus Asian Food</title>
 <meta name="description" content="Unser Foodtruck auf dem Wochenmarkt: Mittwoch Biberach, Donnerstag Laupheim, Freitag Warthausen. Frisch gekochtes asiatisches Streetfood zum Mittagstisch.">
 <link rel="canonical" href="https://redlotus-asianfood.com/foodtruck.html">
@@ -121,7 +122,7 @@
     padding:16px 30px;
     font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
     border-radius:2px;
-    transition:all .25s ease;
+    transition:background-color .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
     border:1px solid transparent;
     white-space:nowrap;
     cursor:pointer;
@@ -149,7 +150,7 @@
     position:absolute;top:100%;left:50%;transform:translate(-50%,6px);
     background:var(--bg-2);border:1px solid var(--line);
     min-width:230px;padding:10px 0;margin-top:8px;
-    opacity:0;visibility:hidden;transition:all .2s ease;
+    opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease,transform .2s ease;
   }
   .dropdown-menu a{display:block;padding:12px 22px;font-size:0.7rem;letter-spacing:0.08em;color:var(--cream-dim);}
   .dropdown-menu a:hover{color:var(--gold);background:rgba(211,183,140,0.06);}
@@ -303,13 +304,29 @@
     .footer-grid{grid-template-columns:1fr 1fr;}
     section{padding:80px 0;}
   }
+
+  /* Querschnitt nach den Web Interface Guidelines (21.08.2026) */
+  html{color-scheme:dark;-webkit-tap-highlight-color:rgba(211,183,140,0.18);}
+  a,button,summary,input,select,textarea{touch-action:manipulation;}
+  /* Sprungziele nicht unter der fixierten Kopfzeile verschwinden lassen */
+  [id]{scroll-margin-top:120px;}
+  h1,h2,h3{text-wrap:balance;}
+  table{font-variant-numeric:tabular-nums;}
+  #lightbox{overscroll-behavior:contain;}
+  .skip-link{position:absolute;top:-100px;left:16px;z-index:300;background:var(--bg-2);color:var(--gold);padding:12px 20px;border:1px solid var(--line);border-radius:2px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;}
+  .skip-link:focus{top:16px;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;}
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
 <header>
   <div class="wrap">
-    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
     <nav>
       <div class="nav-dropdown">
         <a href="catering.html">Catering ▾</a>
@@ -356,7 +373,7 @@
   </nav>
 </header>
 
-<section class="page-hero">
+<section id="inhalt" class="page-hero">
   <div class="wrap">
     <div class="page-hero-content">
       <span class="breadcrumb"><a href="index.html">Start</a> · Foodtruck &amp; Wochenmarkt</span>
@@ -400,7 +417,7 @@
 <section id="am-truck" style="padding:0;">
   <div class="split">
     <div class="split-img">
-      <img src="img/foodtruck-paew.jpg" alt="Pearl im Foodtruck-Fenster bei der Zubereitung von Grünem Thai Curry">
+      <img src="img/foodtruck-paew.jpg" alt="Pearl im Foodtruck-Fenster bei der Zubereitung von Grünem Thai Curry" width="1600" height="1200">
     </div>
     <div class="split-text">
       <div>
@@ -421,7 +438,7 @@
     </div>
     <div class="trucks-grid">
       <div class="truck-card">
-        <img src="img/foodtrucklein.jpg" alt="Unser kleiner Foodtruck, kompakt im Einsatz">
+        <img src="img/foodtrucklein.jpg" alt="Unser kleiner Foodtruck, kompakt im Einsatz" width="1600" height="2844">
         <div class="truck-card-body">
           <span class="eyebrow">Der Kompakte</span>
           <h3>Unsere kleine Knutschkugel</h3>
@@ -429,7 +446,7 @@
         </div>
       </div>
       <div class="truck-card">
-        <img src="img/foodtruck-gross.jpg" alt="Unser großer Foodtruck im Einsatz auf einem Sportplatz">
+        <img src="img/foodtruck-gross.jpg" alt="Unser großer Foodtruck im Einsatz auf einem Sportplatz" width="1600" height="900">
         <div class="truck-card-body">
           <span class="eyebrow">Der Große</span>
           <h3>Unser großer Truck</h3>
@@ -443,7 +460,7 @@
 <section id="live-cooking">
   <div class="split">
     <div class="split-img">
-      <img src="img/foodtruck-paew-teller.jpg" alt="Live-Cooking am Foodtruck mit Pearl: frisch zubereitete Nudeln werden serviert">
+      <img src="img/foodtruck-paew-teller.jpg" alt="Live-Cooking am Foodtruck mit Pearl: frisch zubereitete Nudeln werden serviert" width="1600" height="2844">
     </div>
     <div class="split-text">
       <div>
@@ -463,10 +480,10 @@
       <h2>Frisch aus der Pfanne, direkt in die Schale.</h2>
     </div>
     <div class="impressions-grid">
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-abendmarkt.jpg" data-alt="Foodtruck-Team beim Servieren am Abendmarkt"><img src="img/foodtruck-abendmarkt.jpg" alt="Foodtruck-Team beim Servieren am Abendmarkt"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-pad-thai-plate.jpg" data-alt="Pad Thai mit Hähnchen, Erdnüssen und Limette"><img src="img/foodtruck-pad-thai-plate.jpg" alt="Pad Thai mit Hähnchen, Erdnüssen und Limette"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-noodles-bowl.jpg" data-alt="Asiatische Nudelpfanne mit Hähnchen, Brokkoli und Paprika"><img src="img/foodtruck-noodles-bowl.jpg" alt="Asiatische Nudelpfanne mit Hähnchen, Brokkoli und Paprika"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-curry-reis.jpg" data-alt="Thai Curry mit Reis, frisch verpackt zum Mitnehmen am Truck"><img src="img/foodtruck-curry-reis.jpg" alt="Thai Curry mit Reis, frisch verpackt zum Mitnehmen am Truck"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-abendmarkt.jpg" data-alt="Foodtruck-Team beim Servieren am Abendmarkt"><img src="img/foodtruck-abendmarkt.jpg" alt="Foodtruck-Team beim Servieren am Abendmarkt" width="1600" height="2136"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-pad-thai-plate.jpg" data-alt="Pad Thai mit Hähnchen, Erdnüssen und Limette"><img src="img/foodtruck-pad-thai-plate.jpg" alt="Pad Thai mit Hähnchen, Erdnüssen und Limette" width="1600" height="2133"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-noodles-bowl.jpg" data-alt="Asiatische Nudelpfanne mit Hähnchen, Brokkoli und Paprika"><img src="img/foodtruck-noodles-bowl.jpg" alt="Asiatische Nudelpfanne mit Hähnchen, Brokkoli und Paprika" width="1600" height="2133"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-curry-reis.jpg" data-alt="Thai Curry mit Reis, frisch verpackt zum Mitnehmen am Truck"><img src="img/foodtruck-curry-reis.jpg" alt="Thai Curry mit Reis, frisch verpackt zum Mitnehmen am Truck" width="1600" height="1200"></button>
     </div>
   </div>
 </section>
@@ -512,7 +529,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
         <p>Asiatisches Catering, Foodtruck und Kochkurse in Biberach, Ulm und ganz Baden-Württemberg.</p>
         <div class="footer-social">
           <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>

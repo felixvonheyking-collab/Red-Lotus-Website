@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c1a17">
 <title>Galerie: Catering, Kochkurse &amp; Foodtruck – Red Lotus</title>
 <meta name="description" content="Impressionen von Red Lotus Asian Food: Catering-Buffets, Kochkurse und unser Foodtruck auf dem Wochenmarkt in Biberach, Ulm und Umgebung.">
 <link rel="canonical" href="https://redlotus-asianfood.com/galerie.html">
@@ -74,7 +75,7 @@
   h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--cream);}
   .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
   .wrap-wide{max-width:1440px;}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:all .25s ease;border:1px solid transparent;white-space:nowrap;cursor:pointer;}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:background-color .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;border:1px solid transparent;white-space:nowrap;cursor:pointer;}
   .btn-primary{background:var(--red);color:var(--cream);}
   .btn-primary:hover{background:var(--red-bright);transform:translateY(-1px);}
   .btn-outline{border-color:var(--gold-soft);color:var(--cream);}
@@ -89,7 +90,7 @@
   nav a:hover, nav a.active{color:var(--gold);}
   .nav-dropdown{position:relative;}
   .nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
-  .dropdown-menu{position:absolute;top:100%;left:50%;transform:translate(-50%,6px);background:var(--bg-2);border:1px solid var(--line);min-width:230px;padding:10px 0;margin-top:8px;opacity:0;visibility:hidden;transition:all .2s ease;}
+  .dropdown-menu{position:absolute;top:100%;left:50%;transform:translate(-50%,6px);background:var(--bg-2);border:1px solid var(--line);min-width:230px;padding:10px 0;margin-top:8px;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease,transform .2s ease;}
   .dropdown-menu a{display:block;padding:12px 22px;font-size:0.7rem;letter-spacing:0.08em;color:var(--cream-dim);}
   .dropdown-menu a:hover{color:var(--gold);background:rgba(211,183,140,0.06);}
   .header-icons{display:flex;gap:16px;align-items:center;}
@@ -166,13 +167,29 @@
     .footer-grid{grid-template-columns:1fr 1fr;}
     section{padding:80px 0;}
   }
+
+  /* Querschnitt nach den Web Interface Guidelines (21.08.2026) */
+  html{color-scheme:dark;-webkit-tap-highlight-color:rgba(211,183,140,0.18);}
+  a,button,summary,input,select,textarea{touch-action:manipulation;}
+  /* Sprungziele nicht unter der fixierten Kopfzeile verschwinden lassen */
+  [id]{scroll-margin-top:120px;}
+  h1,h2,h3{text-wrap:balance;}
+  table{font-variant-numeric:tabular-nums;}
+  #lightbox{overscroll-behavior:contain;}
+  .skip-link{position:absolute;top:-100px;left:16px;z-index:300;background:var(--bg-2);color:var(--gold);padding:12px 20px;border:1px solid var(--line);border-radius:2px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;}
+  .skip-link:focus{top:16px;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;}
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
 <header>
   <div class="wrap">
-    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+    <a href="index.html" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
     <nav>
       <div class="nav-dropdown">
         <a href="catering.html">Catering ▾</a>
@@ -219,7 +236,7 @@
   </nav>
 </header>
 
-<section class="page-hero-simple">
+<section id="inhalt" class="page-hero-simple">
   <div class="wrap">
     <span class="breadcrumb"><a href="index.html">Start</a> · Galerie</span>
     <h1>Galerie</h1>
@@ -234,18 +251,18 @@
       <h2>Firmenevents, Hochzeiten &amp; private Feiern</h2>
     </div>
     <div class="gallery-grid">
-      <button type="button" class="gallery-trigger" data-img="img/hero-buffet.jpg" data-alt="Rot-lanternenbeleuchtetes Buffet vor roter Samtwand"><img src="img/hero-buffet.jpg" alt="Rot-lanternenbeleuchtetes Buffet vor roter Samtwand"></button>
-      <button type="button" class="gallery-trigger" data-img="img/summer-rolls-lantern.jpg" data-alt="Sommerrollen-Büfett mit Kerzenlaternen vor roter Wand"><img src="img/summer-rolls-lantern.jpg" alt="Sommerrollen-Büfett mit Kerzenlaternen vor roter Wand"></button>
-      <button type="button" class="gallery-trigger" data-img="img/jar-salad-spread.jpg" data-alt="Glasnudelsalat-Büfett mit Kerzenlaternen"><img src="img/jar-salad-spread.jpg" alt="Glasnudelsalat-Büfett mit Kerzenlaternen"></button>
-      <button type="button" class="gallery-trigger" data-img="img/skewer-fruit-spread.jpg" data-alt="Fingerfood-Spieße und Obstplatte auf einem Catering-Büfett"><img src="img/skewer-fruit-spread.jpg" alt="Fingerfood-Spieße und Obstplatte auf einem Catering-Büfett"></button>
-      <button type="button" class="gallery-trigger" data-img="img/fine-dining-tasting.jpg" data-alt="Fein angerichtetes Tasting-Menü mit Pork Belly und Vorspeisen"><img src="img/fine-dining-tasting.jpg" alt="Fein angerichtetes Tasting-Menü mit Pork Belly und Vorspeisen"></button>
-      <button type="button" class="gallery-trigger" data-img="img/bao-fine-dining.jpg" data-alt="Fein angerichtete Bao mit drei Saucen"><img src="img/bao-fine-dining.jpg" alt="Fein angerichtete Bao mit drei Saucen"></button>
-      <button type="button" class="gallery-trigger" data-img="img/night-event.jpg" data-alt="Red Lotus Foodtruck bei einem Abendevent mit Gästen"><img src="img/night-event.jpg" alt="Red Lotus Foodtruck bei einem Abendevent mit Gästen"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-abend-buffet.jpg" data-alt="Buffet bei einem Abendevent mit Lichterketten und Gästen"><img src="img/foodtruck-abend-buffet.jpg" alt="Buffet bei einem Abendevent mit Lichterketten und Gästen"></button>
-      <button type="button" class="gallery-trigger" data-img="img/dessert-jars.jpg" data-alt="Dessert-Büfett mit Gläschen"><img src="img/dessert-jars.jpg" alt="Dessert-Büfett mit Gläschen"></button>
-      <button type="button" class="gallery-trigger" data-img="img/fruit-platter.jpg" data-alt="Obstplatte mit essbaren Blüten"><img src="img/fruit-platter.jpg" alt="Obstplatte mit essbaren Blüten"></button>
-      <button type="button" class="gallery-trigger" data-img="img/pad-thai-tray.jpg" data-alt="Pad Thai mit Garnelen im Catering-Tablett"><img src="img/pad-thai-tray.jpg" alt="Pad Thai mit Garnelen im Catering-Tablett"></button>
-      <button type="button" class="gallery-trigger" data-img="img/springroll-tray.jpg" data-alt="Frische Frühlingsrollen mit Chili-Dip"><img src="img/springroll-tray.jpg" alt="Frische Frühlingsrollen mit Chili-Dip"></button>
+      <button type="button" class="gallery-trigger" data-img="img/hero-buffet.jpg" data-alt="Rot-lanternenbeleuchtetes Buffet vor roter Samtwand"><img src="img/hero-buffet.jpg" alt="Rot-lanternenbeleuchtetes Buffet vor roter Samtwand" width="1800" height="1013" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/summer-rolls-lantern.jpg" data-alt="Sommerrollen-Büfett mit Kerzenlaternen vor roter Wand"><img src="img/summer-rolls-lantern.jpg" alt="Sommerrollen-Büfett mit Kerzenlaternen vor roter Wand" width="1200" height="1600" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/jar-salad-spread.jpg" data-alt="Glasnudelsalat-Büfett mit Kerzenlaternen"><img src="img/jar-salad-spread.jpg" alt="Glasnudelsalat-Büfett mit Kerzenlaternen" width="1200" height="676" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/skewer-fruit-spread.jpg" data-alt="Fingerfood-Spieße und Obstplatte auf einem Catering-Büfett"><img src="img/skewer-fruit-spread.jpg" alt="Fingerfood-Spieße und Obstplatte auf einem Catering-Büfett" width="1200" height="900" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/fine-dining-tasting.jpg" data-alt="Fein angerichtetes Tasting-Menü mit Pork Belly und Vorspeisen"><img src="img/fine-dining-tasting.jpg" alt="Fein angerichtetes Tasting-Menü mit Pork Belly und Vorspeisen" width="1600" height="1200" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/bao-fine-dining.jpg" data-alt="Fein angerichtete Bao mit drei Saucen"><img src="img/bao-fine-dining.jpg" alt="Fein angerichtete Bao mit drei Saucen" width="1200" height="903" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/night-event.jpg" data-alt="Red Lotus Foodtruck bei einem Abendevent mit Gästen"><img src="img/night-event.jpg" alt="Red Lotus Foodtruck bei einem Abendevent mit Gästen" width="1800" height="1350" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-abend-buffet.jpg" data-alt="Buffet bei einem Abendevent mit Lichterketten und Gästen"><img src="img/foodtruck-abend-buffet.jpg" alt="Buffet bei einem Abendevent mit Lichterketten und Gästen" width="1920" height="1440" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/dessert-jars.jpg" data-alt="Dessert-Büfett mit Gläschen"><img src="img/dessert-jars.jpg" alt="Dessert-Büfett mit Gläschen" width="1200" height="676" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/fruit-platter.jpg" data-alt="Obstplatte mit essbaren Blüten"><img src="img/fruit-platter.jpg" alt="Obstplatte mit essbaren Blüten" width="1200" height="676" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/pad-thai-tray.jpg" data-alt="Pad Thai mit Garnelen im Catering-Tablett"><img src="img/pad-thai-tray.jpg" alt="Pad Thai mit Garnelen im Catering-Tablett" width="1200" height="676" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/springroll-tray.jpg" data-alt="Frische Frühlingsrollen mit Chili-Dip"><img src="img/springroll-tray.jpg" alt="Frische Frühlingsrollen mit Chili-Dip" width="1800" height="1013" loading="lazy"></button>
     </div>
   </div>
 </section>
@@ -257,14 +274,14 @@
       <h2>Gemeinsam kochen, gemeinsam genießen</h2>
     </div>
     <div class="gallery-grid">
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-gruppe.jpg" data-alt="Red Lotus Kochkurs: gemeinsam Zutaten vorbereiten"><img src="img/kochkurs-gruppe.jpg" alt="Red Lotus Kochkurs: gemeinsam Zutaten vorbereiten"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-moerser.jpg" data-alt="Kochkurs-Teilnehmer beim gemeinsamen Zubereiten mit Mörser und frischen Kräutern"><img src="img/kochkurs-moerser.jpg" alt="Kochkurs-Teilnehmer beim gemeinsamen Zubereiten mit Mörser und frischen Kräutern"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-schneiden.jpg" data-alt="Kochkurs-Teilnehmer beim Schneiden von Karotten"><img src="img/kochkurs-schneiden.jpg" alt="Kochkurs-Teilnehmer beim Schneiden von Karotten"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-dumplings.jpg" data-alt="Gemeinsam gefaltete Dumplings beim Kochkurs"><img src="img/kochkurs-dumplings.jpg" alt="Gemeinsam gefaltete Dumplings beim Kochkurs"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-zutaten.jpg" data-alt="Frische Zutaten für den Kochkurs liebevoll angerichtet"><img src="img/kochkurs-zutaten.jpg" alt="Frische Zutaten für den Kochkurs liebevoll angerichtet"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-nudelmaschine.jpg" data-alt="Frische Nudeln werden mit der Nudelmaschine hergestellt"><img src="img/kochkurs-nudelmaschine.jpg" alt="Frische Nudeln werden mit der Nudelmaschine hergestellt"></button>
-      <button type="button" class="gallery-trigger" data-img="img/kochkurs-flambieren.jpg" data-alt="Dessert wird zum Abschluss des Kochkurses flambiert"><img src="img/kochkurs-flambieren.jpg" alt="Dessert wird zum Abschluss des Kochkurses flambiert"></button>
-      <button type="button" class="gallery-trigger" data-img="img/larb-cups.jpg" data-alt="Im Kochkurs zubereitete Larb-Cups"><img src="img/larb-cups.jpg" alt="Im Kochkurs zubereitete Larb-Cups"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-gruppe.jpg" data-alt="Red Lotus Kochkurs: gemeinsam Zutaten vorbereiten"><img src="img/kochkurs-gruppe.jpg" alt="Red Lotus Kochkurs: gemeinsam Zutaten vorbereiten" width="1400" height="2487" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-moerser.jpg" data-alt="Kochkurs-Teilnehmer beim gemeinsamen Zubereiten mit Mörser und frischen Kräutern"><img src="img/kochkurs-moerser.jpg" alt="Kochkurs-Teilnehmer beim gemeinsamen Zubereiten mit Mörser und frischen Kräutern" width="1600" height="901" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-schneiden.jpg" data-alt="Kochkurs-Teilnehmer beim Schneiden von Karotten"><img src="img/kochkurs-schneiden.jpg" alt="Kochkurs-Teilnehmer beim Schneiden von Karotten" width="1600" height="901" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-dumplings.jpg" data-alt="Gemeinsam gefaltete Dumplings beim Kochkurs"><img src="img/kochkurs-dumplings.jpg" alt="Gemeinsam gefaltete Dumplings beim Kochkurs" width="1600" height="900" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-zutaten.jpg" data-alt="Frische Zutaten für den Kochkurs liebevoll angerichtet"><img src="img/kochkurs-zutaten.jpg" alt="Frische Zutaten für den Kochkurs liebevoll angerichtet" width="1600" height="901" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-nudelmaschine.jpg" data-alt="Frische Nudeln werden mit der Nudelmaschine hergestellt"><img src="img/kochkurs-nudelmaschine.jpg" alt="Frische Nudeln werden mit der Nudelmaschine hergestellt" width="1600" height="1200" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/kochkurs-flambieren.jpg" data-alt="Dessert wird zum Abschluss des Kochkurses flambiert"><img src="img/kochkurs-flambieren.jpg" alt="Dessert wird zum Abschluss des Kochkurses flambiert" width="1600" height="1200" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/larb-cups.jpg" data-alt="Im Kochkurs zubereitete Larb-Cups"><img src="img/larb-cups.jpg" alt="Im Kochkurs zubereitete Larb-Cups" width="1200" height="2133" loading="lazy"></button>
     </div>
   </div>
 </section>
@@ -276,18 +293,18 @@
       <h2>Frisch aus der Pfanne, direkt vom Truck</h2>
     </div>
     <div class="gallery-grid">
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-tag.jpg" data-alt="Unser Foodtruck bei Tageslicht"><img src="img/foodtruck-tag.jpg" alt="Unser Foodtruck bei Tageslicht"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-gross.jpg" data-alt="Unser großer Foodtruck im Einsatz auf einem Sportplatz"><img src="img/foodtruck-gross.jpg" alt="Unser großer Foodtruck im Einsatz auf einem Sportplatz"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtrucklein.jpg" data-alt="Unser kleiner Foodtruck, kompakt im Einsatz"><img src="img/foodtrucklein.jpg" alt="Unser kleiner Foodtruck, kompakt im Einsatz"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-paew.jpg" data-alt="Pearl im Foodtruck-Fenster bei der Zubereitung von Grünem Thai Curry"><img src="img/foodtruck-paew.jpg" alt="Pearl im Foodtruck-Fenster bei der Zubereitung von Grünem Thai Curry"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-paew-teller.jpg" data-alt="Pearl mit einem frisch angerichteten Teller Nudeln"><img src="img/foodtruck-paew-teller.jpg" alt="Pearl mit einem frisch angerichteten Teller Nudeln"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-abendmarkt.jpg" data-alt="Foodtruck-Team beim Servieren am Abendmarkt"><img src="img/foodtruck-abendmarkt.jpg" alt="Foodtruck-Team beim Servieren am Abendmarkt"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-pad-thai-plate.jpg" data-alt="Pad Thai mit Hähnchen, Erdnüssen und Limette"><img src="img/foodtruck-pad-thai-plate.jpg" alt="Pad Thai mit Hähnchen, Erdnüssen und Limette"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-noodles-bowl.jpg" data-alt="Asiatische Nudelpfanne mit Hähnchen, Brokkoli und Paprika"><img src="img/foodtruck-noodles-bowl.jpg" alt="Asiatische Nudelpfanne mit Hähnchen, Brokkoli und Paprika"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-curry-reis.jpg" data-alt="Thai Curry mit Reis, frisch verpackt zum Mitnehmen am Truck"><img src="img/foodtruck-curry-reis.jpg" alt="Thai Curry mit Reis, frisch verpackt zum Mitnehmen am Truck"></button>
-      <button type="button" class="gallery-trigger" data-img="img/pad-thai-live-cooking.jpg" data-alt="Live-Cooking: frisch zubereitetes Pad Thai wird serviert"><img src="img/pad-thai-live-cooking.jpg" alt="Live-Cooking: frisch zubereitetes Pad Thai wird serviert"></button>
-      <button type="button" class="gallery-trigger" data-img="img/catering-buffet-pearl.jpg" data-alt="Pearl vor einem fertig aufgebauten Catering-Buffet mit Fingerfood, Frühlingsrollen und Obstplatte"><img src="img/catering-buffet-pearl.jpg" alt="Pearl vor einem fertig aufgebauten Catering-Buffet mit Fingerfood, Frühlingsrollen und Obstplatte"></button>
-      <button type="button" class="gallery-trigger" data-img="img/foodtruck-beef-noodles.jpg" data-alt="Nudelpfanne mit Rindfleisch, Brokkoli und Paprika"><img src="img/foodtruck-beef-noodles.jpg" alt="Nudelpfanne mit Rindfleisch, Brokkoli und Paprika"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-tag.jpg" data-alt="Unser Foodtruck bei Tageslicht"><img src="img/foodtruck-tag.jpg" alt="Unser Foodtruck bei Tageslicht" width="1600" height="2134" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-gross.jpg" data-alt="Unser großer Foodtruck im Einsatz auf einem Sportplatz"><img src="img/foodtruck-gross.jpg" alt="Unser großer Foodtruck im Einsatz auf einem Sportplatz" width="1600" height="900" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtrucklein.jpg" data-alt="Unser kleiner Foodtruck, kompakt im Einsatz"><img src="img/foodtrucklein.jpg" alt="Unser kleiner Foodtruck, kompakt im Einsatz" width="1600" height="2844" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-paew.jpg" data-alt="Pearl im Foodtruck-Fenster bei der Zubereitung von Grünem Thai Curry"><img src="img/foodtruck-paew.jpg" alt="Pearl im Foodtruck-Fenster bei der Zubereitung von Grünem Thai Curry" width="1600" height="1200" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-paew-teller.jpg" data-alt="Pearl mit einem frisch angerichteten Teller Nudeln"><img src="img/foodtruck-paew-teller.jpg" alt="Pearl mit einem frisch angerichteten Teller Nudeln" width="1600" height="2844" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-abendmarkt.jpg" data-alt="Foodtruck-Team beim Servieren am Abendmarkt"><img src="img/foodtruck-abendmarkt.jpg" alt="Foodtruck-Team beim Servieren am Abendmarkt" width="1600" height="2136" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-pad-thai-plate.jpg" data-alt="Pad Thai mit Hähnchen, Erdnüssen und Limette"><img src="img/foodtruck-pad-thai-plate.jpg" alt="Pad Thai mit Hähnchen, Erdnüssen und Limette" width="1600" height="2133" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-noodles-bowl.jpg" data-alt="Asiatische Nudelpfanne mit Hähnchen, Brokkoli und Paprika"><img src="img/foodtruck-noodles-bowl.jpg" alt="Asiatische Nudelpfanne mit Hähnchen, Brokkoli und Paprika" width="1600" height="2133" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-curry-reis.jpg" data-alt="Thai Curry mit Reis, frisch verpackt zum Mitnehmen am Truck"><img src="img/foodtruck-curry-reis.jpg" alt="Thai Curry mit Reis, frisch verpackt zum Mitnehmen am Truck" width="1600" height="1200" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/pad-thai-live-cooking.jpg" data-alt="Live-Cooking: frisch zubereitetes Pad Thai wird serviert"><img src="img/pad-thai-live-cooking.jpg" alt="Live-Cooking: frisch zubereitetes Pad Thai wird serviert" width="1600" height="1720" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/catering-buffet-pearl.jpg" data-alt="Pearl vor einem fertig aufgebauten Catering-Buffet mit Fingerfood, Frühlingsrollen und Obstplatte"><img src="img/catering-buffet-pearl.jpg" alt="Pearl vor einem fertig aufgebauten Catering-Buffet mit Fingerfood, Frühlingsrollen und Obstplatte" width="1600" height="936" loading="lazy"></button>
+      <button type="button" class="gallery-trigger" data-img="img/foodtruck-beef-noodles.jpg" data-alt="Nudelpfanne mit Rindfleisch, Brokkoli und Paprika"><img src="img/foodtruck-beef-noodles.jpg" alt="Nudelpfanne mit Rindfleisch, Brokkoli und Paprika" width="1600" height="2133" loading="lazy"></button>
     </div>
   </div>
 </section>
@@ -307,7 +324,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food"></a>
+        <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
         <p>Asiatisches Catering, Foodtruck und Kochkurse in Biberach, Ulm und ganz Baden-Württemberg.</p>
         <div class="footer-social">
           <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>
