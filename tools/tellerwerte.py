@@ -26,7 +26,11 @@ TELLER = {
  "java-curry":                    (0.51, 0.53, 0.49),
  "kimchi-bacon-udon":             (0.47, 0.52, 0.70),
  "mango-sticky-rice":             (0.57, 0.55, 0.70),   # Mitnahmebox statt Teller
+ # Schale leicht schraeg aufgenommen (21.08.2026)
+ "ma-yi-shang-shu":               (0.48, 0.555, 0.71),
  "massaman-thai-curry":           (0.52, 0.50, 0.65),
+ # rechteckige Platte: d ist hier die Plattenbreite, nicht ein Durchmesser
+ "sommerrollen":                  (0.535, 0.435, 0.79),
  "nepalesisches-pilzcurry":       (0.51, 0.50, 0.73),
  "orange-chicken":                (0.50, 0.48, 0.84),
  "pad-thai":                      (0.53, 0.52, 0.83),
