@@ -25,6 +25,18 @@ RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 
 # ---------------------------------------------------------------------------
+# 1b. /index.html aus der Adresszeile fernhalten (22.08.2026)
+# ---------------------------------------------------------------------------
+# Die Startseite ist unter / und /index.html identisch erreichbar; canonical
+# und sitemap zeigen auf /. Wer index.html direkt aufruft (alte Lesezeichen,
+# frühere interne Links), landet per 301 auf der sauberen Adresse.
+# THE_REQUEST greift nur bei der tatsächlich angefragten URL — nicht beim
+# internen Auflösen von / auf index.html, sonst entstünde eine Schleife.
+
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# ---------------------------------------------------------------------------
 # 2. Weiterleitungen der alten Wix-Adressen
 # ---------------------------------------------------------------------------
 # Die alte Seite nutzte URLs ohne Dateiendung. Jede Regel akzeptiert die
