@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#1c1a17">
+<meta name="theme-color" content="#131110">
 <title>Veganes Catering Biberach &amp; Ulm – Red Lotus Asian Food</title>
 <meta name="description" content="Veganes Catering in Biberach, Ulm und Umgebung: 14 unserer 22 Gerichte gibt es vegan – Thai Currys mit Kokosmilch, Wokgerichte und Salate. Komplett veganes Buffet möglich, frisch vor Ort gekocht.">
 <link rel="canonical" href="https://redlotus-asianfood.com/veganes-catering.html">
@@ -144,15 +144,20 @@
   }
 
   :root{
-    --bg:#1c1a17;
-    --bg-2:#232019;
+    --bg:#131110;
+    --bg-2:#1e1a16;
+    --bg-3:#242019;
     --red:#c8382b;
     --red-bright:#e0473a;
     --gold:#d3b78c;
     --gold-soft:#bfa274;
     --cream:#f5f0e6;
-    --cream-dim:#cdc6b8;
-    --line:rgba(211,183,140,0.22);
+    --cream-dim:#c9c2b4;
+    --line:rgba(211,183,140,0.16);
+    --glass:rgba(245,240,230,0.07);
+    --glass-line:rgba(245,240,230,0.16);
+    --r-card:10px;
+    --r-img:10px;
     --serif:'Cormorant Garamond', Georgia, serif;
     --sans:'Bricolage Grotesque', sans-serif;
   }
@@ -246,9 +251,9 @@
   .section-head p{color:var(--cream-dim);margin-top:18px;font-size:1rem;}
 
   /* Anlass-Karten */
-  .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   .path-card{background:var(--bg-2);padding:54px 40px;position:relative;transition:background .25s ease;}
-  .path-card:hover{background:#26221c;}
+  .path-card:hover{background:#242019;}
   .path-card .eyebrow{display:block;margin-bottom:14px;}
   .path-card h3{font-size:1.5rem;margin-bottom:16px;}
   .path-card p{color:var(--cream-dim);font-size:0.9rem;margin-bottom:28px;min-height:88px;}
@@ -275,7 +280,7 @@
   }
 
   /* Ablauf */
-  .process{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .process{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
   .process-step{background:var(--bg);padding:40px 30px;}
   .process-step .num{font-family:var(--serif);font-size:2rem;color:var(--red);margin-bottom:14px;}
   .process-step h3{font-size:1.05rem;margin-bottom:10px;}
@@ -291,7 +296,7 @@
   .split-text p{color:var(--cream-dim);margin-bottom:12px;}
   .split-text ul{list-style:none;margin-top:20px;}
   .split-text li{padding-left:26px;position:relative;color:var(--cream-dim);font-size:0.92rem;margin-bottom:10px;}
-  .split-text li::before{content:'❊';position:absolute;left:0;color:var(--red);}
+  .split-text li::before{content:'';position:absolute;left:0;top:5px;width:16px;height:16px;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23d3b78c' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'><path d='M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z'/><path d='M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z'/><path d='M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z'/><path d='M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z'/><path d='M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z'/></svg>") center/contain no-repeat;}
   .city-list{margin-top:22px;font-size:0.86rem;color:var(--gold-soft);letter-spacing:0.04em;}
 
   /* CTA band */
@@ -322,22 +327,22 @@
   @media(max-width:960px){
     nav{display:none;}
     .nav-toggle{display:flex;width:38px;height:38px;font-size:0.95rem;}
-    header{background-color:#1c1a17;background-image:none;padding:14px 0;}
+    header{background-color:#131110;background-image:none;padding:14px 0;}
     .logo img{height:32px;}
     .header-icons{gap:10px;}
     .header-icons a{width:30px;height:30px;font-size:0.8rem;}
     .mobile-nav{
       display:block;
       position:absolute;top:100%;left:0;right:0;
-      background-color:#1c1a17;
+      background-color:#131110;
       opacity:0;visibility:hidden;transform:translateY(-6px);
       transition:opacity .2s ease, transform .2s ease, visibility .2s;
       max-height:80vh;overflow-y:auto;
       box-shadow:0 12px 24px rgba(0,0,0,0.4);
     }
     .mobile-nav.open{opacity:1;visibility:visible;transform:translateY(0);}
-    .mobile-nav-inner{display:flex;flex-direction:column;background-color:#1c1a17;}
-    .mobile-nav a{padding:12px 28px;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);border-top:1px solid var(--line);background-color:#1c1a17;}
+    .mobile-nav-inner{display:flex;flex-direction:column;background-color:#131110;}
+    .mobile-nav a{padding:12px 28px;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);border-top:1px solid var(--line);background-color:#131110;}
     .mobile-nav a:hover{color:var(--gold);}
     .page-hero-simple{padding:120px 0 50px;}
     section{padding:80px 0;}
@@ -368,7 +373,7 @@
   /* Nur diese Seite: Antwortkasten, Gerichteraster, FAQ */
   .answer{max-width:820px;margin:0 auto;border:1px solid var(--line);background:var(--bg-2);padding:28px 32px;}
   .answer p{color:var(--cream-dim);font-size:0.95rem;margin:0;}
-  .vegan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .vegan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   .vegan-grid .dish-cell{background:var(--bg);padding:26px 24px;}
   .vegan-grid h3{font-size:1.15rem;margin-bottom:6px;}
   .vegan-grid p{color:var(--cream-dim);font-size:0.85rem;margin:0;}
@@ -402,6 +407,125 @@
     html{scroll-behavior:auto;}
     *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;}
   }
+
+  /* ============================================================
+     REDESIGN 22.08.2026 — "Der private Vorführraum" (Basis-Override)
+     Überschreibt das alte System (2px-Kanten, Hairline-Grid, nackte
+     Eyebrows) am Ende der Kaskade. Referenz: DESIGN.md.
+     ============================================================ */
+  h1,h2,h3{font-weight:400;}
+  h1 em,h2 em{font-style:italic;font-weight:500;color:var(--red-bright);}
+  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px;}
+  ::selection{background:var(--gold);color:#131110;}
+  @supports (scrollbar-width: thin){
+    html{scrollbar-width:thin;scrollbar-color:#3a322a var(--bg);}
+  }
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:#3a322a;border-radius:5px;}
+  /* Eyebrow wird zum Glass-Chip (doppelte Klasse = gleiche Spezifität wie
+     .section-head .eyebrow, spätere Position gewinnt) */
+  .eyebrow.eyebrow,.section-head .eyebrow,.page-hero .eyebrow,.page-hero-simple .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--glass);
+    border:1px solid var(--glass-line);
+    box-shadow:inset 0 1px 0 rgba(245,240,230,0.08);
+    backdrop-filter:blur(14px) saturate(1.3);
+    -webkit-backdrop-filter:blur(14px) saturate(1.3);
+    border-radius:999px;
+    padding:8px 18px;
+    font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;
+    font-weight:600;color:var(--gold);
+    margin-bottom:20px;
+  }
+  .btn{padding:16px 32px;font-size:0.76rem;letter-spacing:0.12em;border-radius:999px;}
+  .btn-primary{box-shadow:0 4px 20px rgba(0,0,0,0.35);}
+  .btn-outline{border-color:rgba(245,240,230,0.35);}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold);background:transparent;}
+  .btn-ghost{border-bottom:none;padding-bottom:0;display:inline-flex;align-items:center;gap:8px;}
+  .btn-ghost:hover{color:var(--cream);}
+  .skip-link{border-radius:999px;}
+  header{background:none;padding:20px 0;transition:background-color .35s ease,padding .35s ease,box-shadow .35s ease;}
+  header.scrolled{
+    background:rgba(19,17,16,0.82);
+    backdrop-filter:blur(18px) saturate(1.2);
+    -webkit-backdrop-filter:blur(18px) saturate(1.2);
+    box-shadow:0 1px 0 var(--line);
+    padding:12px 0;
+  }
+  .logo img{height:54px;transition:height .35s ease;}
+  header.scrolled .logo img{height:42px;}
+  .dropdown-menu{
+    background:rgba(30,26,22,0.92);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--glass-line);border-radius:14px;
+    box-shadow:0 18px 40px rgba(0,0,0,0.45);
+    overflow:hidden;
+  }
+  .header-icons{gap:12px;}
+  .header-icons a,.nav-toggle{
+    width:36px;height:36px;border:1px solid var(--glass-line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--gold);
+    background:var(--glass);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .header-icons svg{width:15px;height:15px;}
+  .footer-col a{transition:color .2s ease;}
+  .footer-social a{border:1px solid var(--glass-line);background:var(--glass);transition:border-color .2s ease;}
+  .footer-social svg{width:16px;height:16px;}
+  /* Scroll-Reveal (nur aktiv, wo .reveal im Markup steht) */
+  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,.84,.28,1),transform .7s cubic-bezier(.16,.84,.28,1);transition-delay:var(--d,0s);}
+  .js .reveal.in-view{opacity:1;transform:none;}
+  @media(max-width:960px){
+    header,header.scrolled{background:rgba(19,17,16,0.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line);padding:12px 0;}
+    .logo img,header.scrolled .logo img{height:34px;}
+    .header-icons{gap:8px;}
+    .header-icons a,.nav-toggle{width:32px;height:32px;}
+    .header-icons svg{width:13px;height:13px;}
+    .mobile-nav,.mobile-nav-inner,.mobile-nav a{background:none;}
+    .mobile-nav{background:rgba(19,17,16,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .js .reveal{opacity:1;transform:none;}
+  }
+
+  /* Redesign-Feinheiten veganes-catering */
+  .path-card{border-radius:var(--r-card);transition:background-color .3s ease,transform .3s ease;}
+  .path-card:hover{transform:translateY(-3px);}
+  .split{border-radius:var(--r-card);overflow:hidden;}
+  .answer{border-radius:var(--r-card);}
+  .vegan-grid .dish-cell{border-radius:var(--r-card);}
+  .vegan-grid .mark{display:inline-flex;vertical-align:-1px;}
+
+  /* Ablauf als Timeline (21st-Muster C): Schritte untereinander, die Linie
+     wächst mit dem Scrollen (per .in-view), Nummern werden Glas-Knoten. */
+  .process{display:flex;flex-direction:column;max-width:720px;margin:0 auto;gap:0;}
+  .process-step{background:none;padding:0 0 48px 72px;position:relative;}
+  .process-step:last-child{padding-bottom:0;}
+  .process-step .num{
+    position:absolute;left:0;top:-4px;width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.05rem;margin-bottom:0;
+    background:var(--glass);border:1px solid var(--glass-line);
+    box-shadow:inset 0 1px 0 rgba(245,240,230,0.08);
+    color:var(--red-bright);
+  }
+  .process-step::before{
+    content:'';position:absolute;left:23px;top:46px;bottom:6px;width:1px;
+    background:var(--line);
+    transform:scaleY(0);transform-origin:top;
+    transition:transform .8s cubic-bezier(.16,.84,.28,1) .25s;
+  }
+  .process-step:last-child::before{display:none;}
+  html:not(.js) .process-step::before,.process-step.in-view::before{transform:scaleY(1);}
+  .process-step h3{font-size:1.2rem;margin-bottom:8px;}
+  .process-step p{font-size:0.9rem;max-width:56ch;}
+  @media (prefers-reduced-motion: reduce){
+    .process-step::before{transform:scaleY(1);}
+  }
 </style>
 </head>
 <body>
@@ -434,9 +558,9 @@
       <a href="kontakt.html">Kontakt</a>
     </nav>
     <div class="header-icons">
-      <a href="https://wa.me/4915155460254" aria-label="WhatsApp" title="WhatsApp">✆</a>
-      <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram" title="Instagram">◎</a>
-      <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail" title="E-Mail">✉</a>
+      <a href="https://wa.me/4915155460254" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.6 8.6 0 0 1-3.8-.9L3 21l2.1-5.6a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12.6 3 8.4 8.4 0 0 1 21 11.5Z"/><path d="M9.2 8.6c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3 0 .6a7 7 0 0 0 3 2.6c.3.1.4.1.6-.1l.7-.8c.2-.2.3-.3.6-.2l1.8.9c.3.1.4.2.4.4 0 .3 0 1-.5 1.4-.4.4-1.6 1-3.6.2a10 10 0 0 1-4.8-4.3c-.8-1.4-.7-2.7-.2-3.7Z" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
+      <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail" title="E-Mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></a>
       <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
     </div>
   </div>
@@ -502,20 +626,20 @@
       <h2>Vierzehn Gerichte, komplett vegan</h2>
     </div>
     <div class="vegan-grid">
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Vietnamesische Sommerrollen</h3><p>Frisches Gemüse in Reispapier mit selbstgemachtem Hoisin-Erdnussdip</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Grünes Thai Curry</h3><p>Feurig, mit Süßkartoffeln, grünen Bohnen und Zucchini</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Gelbes Thai Curry</h3><p>Mild und südthailändisch, mit Kartoffeln und Karotten</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Panang Thai Curry</h3><p>Pikant, mit Brokkoli und Kaffirlimettenblättern</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Massaman Thai Curry</h3><p>Würzig-samtig auf Kokosmilchbasis</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Nepalesisches Pilzcurry</h3><p>Mild, mit Champignons, Erbsen und Tomaten</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Java Curry</h3><p>Kichererbsen, Limette, Koriander – von Haus aus vegan</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Yakisoba</h3><p>Gebratene Nudeln mit Spitzkohl, Ingwer und Knoblauch</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Hoisin aus dem Wok</h3><p>Knackiges Wokgemüse mit gerösteten Cashewnüssen</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Thailändischer Glasnudelsalat</h3><p>Mit Rotkohl, Minze und frischem Koriander</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Soba Nudelsalat</h3><p>Buchweizennudeln mit Edamame und viel Knoblauch</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Bun Bun Salat</h3><p>Reisnudeln mit Babyspinat und Minze – auf Wunsch mit veganem Hack</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Ma Yi Shang Shu</h3><p>Gebratene Glasnudeln in Doubanjiang mit veganem Hack und Paprika</p></div>
-      <div class="dish-cell"><h3><span class="mark" aria-hidden="true">❊</span>Mango Sticky Rice</h3><p>Klebreis mit Kokossoße und Flugmango – von Haus aus vegan</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Vietnamesische Sommerrollen</h3><p>Frisches Gemüse in Reispapier mit selbstgemachtem Hoisin-Erdnussdip</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Grünes Thai Curry</h3><p>Feurig, mit Süßkartoffeln, grünen Bohnen und Zucchini</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Gelbes Thai Curry</h3><p>Mild und südthailändisch, mit Kartoffeln und Karotten</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Panang Thai Curry</h3><p>Pikant, mit Brokkoli und Kaffirlimettenblättern</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Massaman Thai Curry</h3><p>Würzig-samtig auf Kokosmilchbasis</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Nepalesisches Pilzcurry</h3><p>Mild, mit Champignons, Erbsen und Tomaten</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Java Curry</h3><p>Kichererbsen, Limette, Koriander – von Haus aus vegan</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Yakisoba</h3><p>Gebratene Nudeln mit Spitzkohl, Ingwer und Knoblauch</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Hoisin aus dem Wok</h3><p>Knackiges Wokgemüse mit gerösteten Cashewnüssen</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Thailändischer Glasnudelsalat</h3><p>Mit Rotkohl, Minze und frischem Koriander</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Soba Nudelsalat</h3><p>Buchweizennudeln mit Edamame und viel Knoblauch</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Bun Bun Salat</h3><p>Reisnudeln mit Babyspinat und Minze – auf Wunsch mit veganem Hack</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Ma Yi Shang Shu</h3><p>Gebratene Glasnudeln in Doubanjiang mit veganem Hack und Paprika</p></div>
+      <div class="dish-cell"><h3><span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#e0473a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg></span>Mango Sticky Rice</h3><p>Klebreis mit Kokossoße und Flugmango – von Haus aus vegan</p></div>
     </div>
     <p style="text-align:center;color:var(--cream-dim);font-size:0.92rem;margin-top:28px;">Sechs weitere Gerichte gibt es vegetarisch – darunter Pad&nbsp;Thai und Orange&nbsp;Chicken. Alle Details und Preise stehen auf der <a href="speisekarte.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Speisekarte</a>.</p>
   </div>
@@ -574,10 +698,10 @@
         <a href="index.html" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
         <p>Asiatisches Catering, Foodtruck und Kochkurse in Biberach, Ulm und ganz Baden-Württemberg.</p>
         <div class="footer-social">
-          <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>
-          <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram">◎</a>
-          <a href="https://www.facebook.com/profile.php?id=100082880545078" aria-label="Facebook">ⓕ</a>
-          <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail">✉</a>
+          <a href="https://wa.me/4915155460254" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.6 8.6 0 0 1-3.8-.9L3 21l2.1-5.6a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12.6 3 8.4 8.4 0 0 1 21 11.5Z"/><path d="M9.2 8.6c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3 0 .6a7 7 0 0 0 3 2.6c.3.1.4.1.6-.1l.7-.8c.2-.2.3-.3.6-.2l1.8.9c.3.1.4.2.4.4 0 .3 0 1-.5 1.4-.4.4-1.6 1-3.6.2a10 10 0 0 1-4.8-4.3c-.8-1.4-.7-2.7-.2-3.7Z" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=100082880545078" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 8.5V7c0-.8.7-1.5 1.5-1.5h1.5V2.8h-2.3A3.7 3.7 0 0 0 11.5 6.5v2h-2v2.8h2v9h3v-9h2.3l.5-2.8h-2.8Z"/></svg></a>
+          <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></a>
         </div>
         <p class="footer-insta-teaser">Folgt uns auf <a href="https://www.instagram.com/red_lotus_asianfood/">Instagram</a> für exklusive Einblicke hinter die Kulissen.</p>
       </div>
@@ -617,6 +741,8 @@
 </footer>
 
 <script>
+  document.documentElement.classList.add('js');
+
   const navToggle = document.getElementById('navToggle');
   const mobileNav = document.getElementById('mobileNav');
   navToggle.addEventListener('click', () => {
@@ -624,6 +750,28 @@
     navToggle.setAttribute('aria-expanded', isOpen);
     navToggle.textContent = isOpen ? '✕' : '☰';
   });
+
+  // Kopfzeile: transparent oben, Milchglas sobald gescrollt wird.
+  const headerEl = document.querySelector('header');
+  const onScroll = () => headerEl.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll-Reveal: blendet .reveal-Elemente einmalig ein (falls vorhanden).
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealTargets = document.querySelectorAll('.reveal');
+  if (revealTargets.length) {
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      revealTargets.forEach((t) => io.observe(t));
+    } else {
+      revealTargets.forEach((t) => t.classList.add('in-view'));
+    }
+  }
 </script>
 </body>
 </html>

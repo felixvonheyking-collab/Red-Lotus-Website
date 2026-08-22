@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#1c1a17">
+<meta name="theme-color" content="#131110">
 <title>Asiatisches Catering Biberach &amp; Ulm – Red Lotus Asian Food</title>
 <meta name="description" content="Asiatisches Catering für Firmenevents, Hochzeiten und private Feiern in Biberach, Ulm und Umgebung. Frisch gekocht, mit Charakter.">
 <link rel="canonical" href="https://redlotus-asianfood.com/">
@@ -122,13 +122,14 @@
 <link rel="preload" href="fonts/bricolage-grotesque-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/cormorant-garamond-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  /* Schriften liegen auf dem eigenen Server, nicht bei Google.
-     Zwei Gründe: Beim Nachladen von fonts.googleapis.com ging die IP-Adresse
-     jedes Besuchers an Google, bevor er irgendetwas zustimmen konnte. Und es
-     kostete zwei zusätzliche Namensauflösungen samt Verbindungsaufbau, bevor
-     der erste Text in der richtigen Schrift erscheinen konnte.
-     Zeichensatz auf Latein begrenzt (wie zuvor bei Google), bei Bricolage
-     zusätzlich die Breitenachse fest auf 100 — schmale Schnitte nutzen wir nicht. */
+  /* ============================================================
+     Design-System "Der private Vorführraum" (Redesign 22.08.2026,
+     Richtung: Sequel "Private screening after dark", adaptiert).
+     Kern: das Foto trägt die Bühne, Pillen-Buttons, 10px-Karten,
+     Frosted-Glass-Chips, kursives rotes Serif-Akzentwort.
+     Schriften liegen weiterhin auf dem eigenen Server (DSGVO +
+     Ladezeit, siehe Wiki), Zeichensatz auf Latein begrenzt.
+     ============================================================ */
   @font-face{
     font-family:'Bricolage Grotesque';
     src:url('fonts/bricolage-grotesque-latin-var.woff2') format('woff2');
@@ -146,22 +147,25 @@
   }
 
   :root{
-    --bg:#1c1a17;
-    --bg-2:#232019;
+    --bg:#131110;
+    --bg-2:#1e1a16;
+    --bg-3:#242019;
     --red:#c8382b;
     --red-bright:#e0473a;
     --gold:#d3b78c;
     --gold-soft:#bfa274;
     --cream:#f5f0e6;
-    --cream-dim:#cdc6b8;
-    --line:rgba(211,183,140,0.22);
+    --cream-dim:#c9c2b4;
+    --line:rgba(211,183,140,0.16);
+    --glass:rgba(245,240,230,0.07);
+    --glass-line:rgba(245,240,230,0.16);
     --serif:'Cormorant Garamond', Georgia, serif;
-    --sans:'Bricolage Grotesque', sans-serif;
+    --sans:'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+    --r-card:10px;
+    --r-img:10px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  /* Die Kopfzeile ist fixiert (ca. 102 px, mobil ca. 60 px). Ohne diesen Versatz
-     springt ein Anker-Link so, dass die Überschrift knapp darunter verschwindet. */
-  html{scroll-behavior:smooth;scroll-padding-top:112px;}
+  html{scroll-behavior:smooth;scroll-padding-top:104px;color-scheme:dark;-webkit-tap-highlight-color:rgba(211,183,140,0.18);}
   body{
     background:var(--bg);
     color:var(--cream);
@@ -172,259 +176,327 @@
   }
   img{max-width:100%;display:block;}
   a{color:inherit;text-decoration:none;}
-  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px;}
-  .eyebrow{
-    font-family:var(--sans);
-    font-size:0.72rem;
-    letter-spacing:0.32em;
-    text-transform:uppercase;
-    color:var(--gold);
-    font-weight:600;
+  a,button,summary,input,select,textarea{touch-action:manipulation;}
+  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px;}
+  [id]{scroll-margin-top:112px;}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--cream);text-wrap:balance;}
+  h1 em,h2 em{font-style:italic;font-weight:500;color:var(--red-bright);}
+  table{font-variant-numeric:tabular-nums;}
+  ::selection{background:var(--gold);color:#131110;}
+  @supports (scrollbar-width: thin){
+    html{scrollbar-width:thin;scrollbar-color:#3a322a var(--bg);}
   }
-  h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--cream);}
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:#3a322a;border-radius:5px;}
+
   .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
   .wrap-wide{max-width:1440px;}
+
+  /* Glass-Chip: kleine Info-Etiketten (ersetzt die frühere Eyebrow-Zeile) */
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--glass);
+    border:1px solid var(--glass-line);
+    box-shadow:inset 0 1px 0 rgba(245,240,230,0.08);
+    backdrop-filter:blur(14px) saturate(1.3);
+    -webkit-backdrop-filter:blur(14px) saturate(1.3);
+    border-radius:999px;
+    padding:8px 18px;
+    font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;
+    font-weight:600;color:var(--gold);
+    white-space:nowrap;
+  }
+
   .btn{
     display:inline-flex;align-items:center;gap:10px;
-    padding:16px 30px;
-    font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
-    border-radius:2px;
-    transition:background-color .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
+    padding:16px 32px;
+    font-family:var(--sans);font-size:0.76rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
+    border-radius:999px;
+    transition:background-color .25s ease,border-color .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
     border:1px solid transparent;
     white-space:nowrap;
     cursor:pointer;
   }
-  .btn-primary{background:var(--red);color:var(--cream);}
+  .btn-primary{background:var(--red);color:var(--cream);box-shadow:0 4px 20px rgba(0,0,0,0.35);}
   .btn-primary:hover{background:var(--red-bright);transform:translateY(-1px);}
-  .btn-outline{border-color:var(--gold-soft);color:var(--cream);}
-  .btn-outline:hover{border-color:var(--gold);background:rgba(211,183,140,0.08);}
-  .btn-ghost{color:var(--gold);font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:2px;}
-  .btn-ghost:hover{border-color:var(--gold);}
+  .btn-outline{border-color:rgba(245,240,230,0.35);color:var(--cream);}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+  .btn-ghost{color:var(--gold);font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;display:inline-flex;align-items:center;gap:8px;}
+  .btn-ghost .arr{transition:transform .25s ease;display:inline-block;}
+  .btn-ghost:hover .arr{transform:translateX(4px);}
+  .btn-ghost:hover{color:var(--cream);}
 
-  /* Header */
+  .skip-link{position:absolute;top:-100px;left:16px;z-index:300;background:var(--bg-2);color:var(--gold);padding:12px 22px;border:1px solid var(--line);border-radius:999px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;}
+  .skip-link:focus{top:16px;}
+
+  /* Header: transparent überm Foto, Glas beim Scrollen */
   header{
     position:fixed;top:0;left:0;right:0;z-index:100;
-    background:linear-gradient(to bottom, rgba(23,20,17,0.92), rgba(23,20,17,0));
-    padding:22px 0;
+    padding:20px 0;
+    transition:background-color .35s ease,padding .35s ease,box-shadow .35s ease;
+  }
+  header.scrolled{
+    background:rgba(19,17,16,0.82);
+    backdrop-filter:blur(18px) saturate(1.2);
+    -webkit-backdrop-filter:blur(18px) saturate(1.2);
+    box-shadow:0 1px 0 var(--line);
+    padding:12px 0;
   }
   header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;}
-  .logo img{height:58px;width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,0.5));}
-  .nav-toggle{display:none;background:none;border:1px solid var(--line);width:44px;height:44px;border-radius:50%;color:var(--cream);font-size:1.1rem;align-items:center;justify-content:center;}
-  nav{display:flex;align-items:baseline;gap:34px;}
-  nav a{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--cream-dim);position:relative;padding:6px 0;white-space:nowrap;}
+  .logo img{height:54px;width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,0.5));transition:height .35s ease;}
+  header.scrolled .logo img{height:42px;}
+  nav{display:flex;align-items:baseline;gap:32px;}
+  nav a{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--cream-dim);position:relative;padding:6px 0;white-space:nowrap;transition:color .2s ease;}
   nav a:hover{color:var(--gold);}
   .nav-dropdown{position:relative;}
   .nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
   .dropdown-menu{
     position:absolute;top:100%;left:50%;transform:translate(-50%,6px);
-    background:var(--bg-2);border:1px solid var(--line);
-    min-width:230px;padding:10px 0;margin-top:8px;
+    background:rgba(30,26,22,0.92);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--glass-line);border-radius:14px;
+    min-width:240px;padding:10px 0;margin-top:10px;
     opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease,transform .2s ease;
+    box-shadow:0 18px 40px rgba(0,0,0,0.45);
+    overflow:hidden;
   }
   .dropdown-menu a{display:block;padding:12px 22px;font-size:0.7rem;letter-spacing:0.08em;color:var(--cream-dim);}
   .dropdown-menu a:hover{color:var(--gold);background:rgba(211,183,140,0.06);}
-  .header-icons{display:flex;gap:16px;align-items:center;}
-  .header-icons a{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:0.9rem;}
+  .header-icons{display:flex;gap:12px;align-items:center;}
+  .header-icons a,.nav-toggle{
+    width:36px;height:36px;border:1px solid var(--glass-line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--gold);
+    background:var(--glass);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    transition:border-color .2s ease,color .2s ease;
+  }
   .header-icons a:hover{border-color:var(--gold);}
+  .header-icons svg{width:15px;height:15px;}
+  .nav-toggle{display:none;font-size:1rem;cursor:pointer;}
 
-  /* Hero */
+  .mobile-nav{display:none;}
+
+  /* Hero: das Foto ist die Bühne */
   .hero{
-    position:relative;min-height:100vh;display:flex;align-items:center;
-    background:
-      linear-gradient(180deg, rgba(20,17,14,0.6) 0%, rgba(20,17,14,0.75) 55%, rgba(20,17,14,0.96) 100%),
-      url('img/hero-buffet.jpg') center 38%/cover no-repeat;
+    position:relative;min-height:100vh;min-height:100svh;
+    display:flex;align-items:flex-end;
   }
-  .hero-content{max-width:660px;padding-top:120px;}
-  .hero .eyebrow{margin-bottom:22px;display:block;}
-  .hero h1{font-size:clamp(2.6rem,5.4vw,4.4rem);line-height:1.08;margin-bottom:24px;}
-  .hero h1 em{font-style:italic;color:var(--red-bright);}
-  .hero p.lead{font-size:1.08rem;color:var(--cream-dim);max-width:480px;margin-bottom:38px;font-weight:400;}
-  .hero-ctas{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:26px;}
-  .hero-tertiary{font-size:0.75rem;color:var(--cream-dim);}
-  .hero-tertiary a{color:var(--gold);border-bottom:1px solid var(--line);}
+  .hero-bg{position:absolute;inset:0;overflow:hidden;}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 38%;}
+  /* Ken-Burns: ein einziger, sehr langsamer Zoom wie auf einem Filmstill */
+  .js .hero-bg img{transform:scale(1.07);animation:kenburns 12s cubic-bezier(.19,.6,.22,1) forwards;will-change:transform;}
+  @keyframes kenburns{to{transform:scale(1);}}
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(19,17,16,0.42) 0%, rgba(19,17,16,0.08) 34%, rgba(19,17,16,0.28) 62%, rgba(19,17,16,0.94) 100%);
+  }
+  .hero .wrap{position:relative;z-index:2;width:100%;padding-bottom:96px;}
+  .hero-content{max-width:720px;}
+  .hero-content .chip{margin-bottom:26px;}
+  .hero h1{
+    font-size:clamp(2.9rem,6.4vw,5.6rem);
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    margin-bottom:26px;
+  }
+  .hero p.lead{font-size:1.06rem;color:var(--cream-dim);max-width:500px;margin-bottom:38px;}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;}
+  .js .hero-rise{opacity:0;transform:translateY(26px);animation:rise .9s cubic-bezier(.16,.84,.28,1) forwards;}
+  .js .hero-rise:nth-child(2){animation-delay:.12s;}
+  .js .hero-rise:nth-child(3){animation-delay:.24s;}
+  .js .hero-rise:nth-child(4){animation-delay:.36s;}
+  @keyframes rise{to{opacity:1;transform:none;}}
 
-  /* Market strip */
+  /* Markt-Zeile */
   .market-strip{
-    background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:20px 0;
+    background:var(--bg-2);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:18px 0;
   }
-  .market-strip .wrap{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center;}
-  .market-strip .label{color:var(--gold);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;}
+  .market-strip .wrap{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;text-align:center;}
+  .market-strip .label{color:var(--gold);font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;}
   .market-strip .days{display:flex;gap:28px;flex-wrap:wrap;font-size:0.85rem;color:var(--cream-dim);}
   .market-strip .days b{color:var(--cream);font-weight:600;}
 
-  /* Section generic */
   section{padding:120px 0;}
-  .section-head{max-width:640px;margin:0 auto 60px;text-align:center;}
-  .section-head .eyebrow{display:block;margin-bottom:16px;}
-  .section-head h2{font-size:clamp(2rem,3.6vw,2.8rem);}
+  .section-head{max-width:660px;margin:0 auto 64px;text-align:center;}
+  .section-head .chip{margin-bottom:22px;}
+  .section-head h2{font-size:clamp(2.1rem,3.9vw,3rem);line-height:1.1;}
   .section-head p{color:var(--cream-dim);margin-top:18px;font-size:1rem;}
 
-  /* Value props */
-  .values{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .value-card{background:var(--bg);padding:44px 32px;text-align:center;}
-  .value-card .num{font-size:1.4rem;color:var(--red);margin-bottom:18px;}
-  .value-card h3{font-size:1.15rem;margin-bottom:12px;}
+  /* Scroll-Reveal: sanft, gestaffelt, abschaltbar */
+  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,.84,.28,1),transform .7s cubic-bezier(.16,.84,.28,1);transition-delay:var(--d,0s);}
+  .js .reveal.in-view{opacity:1;transform:none;}
+
+  /* Wochenkarte */
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;}
+  .plan-card{background:var(--bg-2);border-radius:var(--r-card);padding:36px 32px 30px;display:flex;flex-direction:column;position:relative;overflow:hidden;}
+  .plan-head{padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid var(--line);}
+  .plan-card .day{font-family:var(--serif);font-size:1.7rem;color:var(--cream);display:block;line-height:1.15;}
+  .plan-card .place{font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-soft);margin-top:8px;display:block;}
+  .plan-card.is-today::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);}
+  .plan-card.is-today{background:linear-gradient(to bottom, rgba(200,56,43,0.09), var(--bg-2) 220px);}
+  .plan-card.is-today .day{color:var(--red-bright);}
+  .today-tag{display:inline-block;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red-bright);border:1px solid rgba(224,71,58,0.55);border-radius:999px;padding:3px 12px;margin-bottom:12px;}
+  .plan-body{display:flex;flex-direction:column;gap:14px;flex:1;}
+  .plan-dish + .plan-dish{padding-top:14px;border-top:1px solid rgba(211,183,140,0.10);}
+  .plan-card .dish{font-family:var(--serif);font-size:1.2rem;color:var(--cream);line-height:1.3;}
+  .plan-card .dish-desc{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-soft);margin-top:5px;}
+  .plan-empty{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream-dim);opacity:0.75;}
+  .plan-stand{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);opacity:0.6;font-variant-numeric:tabular-nums;}
+
+  /* Werte: vier stille Flächen */
+  .values{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .value-card{background:var(--bg-2);border-radius:var(--r-card);padding:42px 32px;transition:background-color .3s ease,transform .3s ease;}
+  .value-card:hover{background:var(--bg-3);transform:translateY(-3px);}
+  .value-card h3{font-size:1.35rem;margin-bottom:12px;}
   .value-card p{font-size:0.88rem;color:var(--cream-dim);}
 
-  /* Event proof */
-  .proof{padding:0;}
-  .proof-grid{display:grid;grid-template-columns:0.9fr 1.3fr;min-height:620px;}
-  .proof-img{position:relative;overflow:hidden;}
-  .proof-img img{width:100%;height:100%;object-fit:cover;display:block;}
-  .proof-text{background:var(--bg-2);display:flex;align-items:center;padding:70px 64px;}
-  .proof-text .eyebrow{display:block;margin-bottom:18px;}
-  .proof-text h2{font-size:clamp(1.8rem,2.6vw,2.4rem);margin-bottom:20px;}
-  .proof-text p{color:var(--cream-dim);margin-bottom:12px;}
-  .proof-cities{margin-top:24px;font-size:0.8rem;color:var(--gold-soft);letter-spacing:0.04em;line-height:1.9;}
+  /* Referenz-Band: Vollbild-Kinobild mit Text im Bild */
+  .proof{padding:0;position:relative;min-height:640px;display:flex;align-items:flex-end;}
+  .proof-bg{position:absolute;inset:0;overflow:hidden;}
+  .proof-bg img{width:100%;height:100%;object-fit:cover;}
+  .proof-bg::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(19,17,16,0.55) 0%, rgba(19,17,16,0.06) 38%, rgba(19,17,16,0.35) 68%, rgba(19,17,16,0.92) 100%);
+  }
+  .proof .wrap{position:relative;z-index:2;width:100%;padding-top:120px;padding-bottom:76px;}
+  .proof-text{max-width:620px;}
+  .proof-text .chip{margin-bottom:22px;}
+  .proof-text h2{font-size:clamp(2rem,3.4vw,2.8rem);margin-bottom:18px;line-height:1.08;}
+  .proof-text p{color:var(--cream-dim);margin-bottom:12px;max-width:520px;}
+  .proof-cities{margin-top:22px;font-size:0.78rem;color:var(--gold);letter-spacing:0.06em;line-height:2;}
 
-  /* Reviews */
-  .reviews{background:var(--bg-2);}
-  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .review-card{background:var(--bg);padding:44px 38px;display:flex;flex-direction:column;}
-  .review-stars{color:var(--gold);font-size:0.95rem;letter-spacing:0.14em;margin-bottom:20px;}
-  .review-card blockquote{font-family:var(--serif);font-style:italic;font-size:1.15rem;line-height:1.5;color:var(--cream);margin-bottom:24px;flex-grow:1;}
-  .review-meta{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:18px;}
+  /* Bewertungen: gestaffeltes Karten-Grid */
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;}
+  .review-card{background:var(--bg-2);border-radius:var(--r-card);padding:44px 38px;display:flex;flex-direction:column;}
+  .review-card:nth-child(2){margin-top:48px;}
+  .review-stars{color:var(--gold);font-size:0.9rem;letter-spacing:0.16em;margin-bottom:20px;}
+  .js .review-stars{clip-path:inset(0 100% 0 0);}
+  .js .review-card.in-view .review-stars{animation:starsweep .9s .25s cubic-bezier(.16,.84,.28,1) forwards;}
+  @keyframes starsweep{to{clip-path:inset(0 0 0 0);}}
+  .review-card blockquote{font-family:var(--serif);font-style:italic;font-size:1.18rem;line-height:1.5;color:var(--cream);margin-bottom:24px;flex-grow:1;}
+  .review-meta{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:18px;gap:10px;}
   .review-name{font-size:0.85rem;font-weight:600;color:var(--cream);}
-  .review-source{display:flex;align-items:center;gap:6px;font-size:0.7rem;color:var(--cream-dim);}
-  .review-source .g-badge{width:16px;height:16px;border-radius:50%;background:transparent;border:1px solid var(--gold-soft);color:var(--gold);font-family:var(--sans);font-weight:700;font-size:0.6rem;display:flex;align-items:center;justify-content:center;}
-  .reviews-cta{text-align:center;margin-top:44px;}
+  .review-source{display:flex;align-items:center;gap:7px;font-size:0.7rem;color:var(--cream-dim);white-space:nowrap;}
+  .review-source .g-badge{width:18px;height:18px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-line);color:var(--gold);font-family:var(--sans);font-weight:700;font-size:0.6rem;display:flex;align-items:center;justify-content:center;}
+  .reviews-cta{text-align:center;margin-top:52px;}
 
-  /* Gallery */
-  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,320px);gap:20px;}
-  .gallery-grid a{position:relative;overflow:hidden;}
-  .gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
-  .gallery-grid a:hover img{transform:scale(1.06);}
-  .gallery-grid a::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--line);}
+  /* Galerie: gleitet beim Scrollen ins Bild, Parallax-Drift */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,330px);gap:18px;}
+  .gallery-grid a{position:relative;overflow:hidden;border-radius:var(--r-img);}
+  .gallery-grid img{width:100%;height:100%;object-fit:cover;transition:filter .4s ease;}
+  .gallery-grid a:hover img{filter:brightness(1.08);}
+  .gallery-grid a::after{content:'';position:absolute;inset:0;border-radius:var(--r-img);box-shadow:inset 0 0 0 1px rgba(245,240,230,0.08);}
+  .parallax-on .gallery-grid img{transform:translateY(var(--py,0)) scale(1.14);will-change:transform;}
+  .parallax-on .proof-bg img{transform:translateY(var(--py,0)) scale(1.12);will-change:transform;}
 
-  /* Catering paths */
-  .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .path-card{background:var(--bg-2);padding:54px 40px;position:relative;transition:background .25s ease;}
-  .path-card:hover{background:#26221c;}
-  .path-card .eyebrow{display:block;margin-bottom:14px;}
-  .path-card h3{font-size:1.5rem;margin-bottom:16px;}
-  .path-card p{color:var(--cream-dim);font-size:0.9rem;margin-bottom:28px;min-height:66px;}
+  /* Catering-Wege */
+  .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .path-card{background:var(--bg-2);border-radius:var(--r-card);padding:48px 40px;position:relative;transition:background-color .3s ease,transform .3s ease;display:flex;flex-direction:column;align-items:flex-start;}
+  .path-card:hover{background:var(--bg-3);transform:translateY(-4px);}
+  .path-card .chip{margin-bottom:20px;font-size:0.6rem;padding:6px 14px;}
+  .path-card h3{font-size:1.7rem;margin-bottom:14px;}
+  .path-card p{color:var(--cream-dim);font-size:0.9rem;margin-bottom:28px;flex-grow:1;}
 
-  /* Kochkurs teaser */
+  /* Kochkurs */
   .kochkurs{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
-  .kochkurs img{width:100%;height:460px;object-fit:cover;}
-  .kochkurs .eyebrow{display:block;margin-bottom:18px;}
-  .kochkurs h2{font-size:clamp(1.9rem,3vw,2.5rem);margin-bottom:22px;}
+  .kochkurs img{width:100%;height:480px;object-fit:cover;border-radius:var(--r-img);}
+  .kochkurs .chip{margin-bottom:20px;}
+  .kochkurs h2{font-size:clamp(1.9rem,3.1vw,2.6rem);margin-bottom:22px;line-height:1.1;}
   .kochkurs p{color:var(--cream-dim);margin-bottom:16px;}
-  .kochkurs ul{margin:24px 0 32px;padding:0;list-style:none;}
-  .kochkurs li{padding-left:26px;position:relative;color:var(--cream-dim);font-size:0.92rem;margin-bottom:10px;}
-  .kochkurs li::before{content:'❊';position:absolute;left:0;color:var(--red);}
+  .kochkurs ul{margin:24px 0 34px;padding:0;list-style:none;}
+  .kochkurs li{padding-left:30px;position:relative;color:var(--cream-dim);font-size:0.92rem;margin-bottom:12px;}
+  .kochkurs li svg{position:absolute;left:0;top:3px;width:16px;height:16px;}
 
   /* Footer */
   footer{background:var(--bg-2);border-top:1px solid var(--line);padding:80px 0 40px;}
   .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px;}
-  .footer-logo img{height:70px;width:auto;margin-bottom:20px;}
-  .footer-grid p{color:var(--cream-dim);font-size:0.88rem;max-width:280px;}
-  .footer-col h3{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
-  .footer-col a{display:block;font-size:0.85rem;color:var(--cream-dim);margin-bottom:12px;}
+  .footer-grid > *{min-width:0;}
+  .footer-logo img{height:66px;width:auto;margin-bottom:20px;}
+  .footer-grid p{color:var(--cream-dim);font-size:0.88rem;max-width:280px;overflow-wrap:anywhere;}
+  .footer-col h3{font-family:var(--sans);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:600;}
+  .footer-col a{display:block;font-size:0.85rem;color:var(--cream-dim);margin-bottom:12px;overflow-wrap:anywhere;transition:color .2s ease;}
   .footer-col a:hover{color:var(--gold);}
-  .footer-social{display:flex;gap:14px;margin-top:20px;}
-  .footer-social a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);}
+  .footer-social{display:flex;gap:12px;margin-top:20px;}
+  .footer-social a{width:38px;height:38px;border:1px solid var(--glass-line);background:var(--glass);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .2s ease;}
+  .footer-social a:hover{border-color:var(--gold);}
+  .footer-social svg{width:16px;height:16px;}
   .footer-insta-teaser{font-size:0.8rem;color:var(--cream-dim);margin-top:16px;}
   .footer-insta-teaser a{color:var(--gold);border-bottom:1px solid var(--line);}
   .footer-bottom{border-top:1px solid var(--line);padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:0.75rem;color:var(--cream-dim);}
   .footer-bottom a{margin-left:18px;}
 
-  .mobile-nav{display:none;}
-  /* Wochenkarte (gleiche Gestaltung wie auf aktuelles.html) */
-  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .plan-card{background:var(--bg-2);padding:36px 30px 32px;display:flex;flex-direction:column;position:relative;}
-  /* Kopf der Karte: Wochentag und Ort gehören zusammen und werden durch eine
-     Haarlinie vom Gerichte-Teil getrennt — das war vorher eine durchgehende
-     Textwand ohne erkennbare Gliederung. */
-  .plan-head{padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid var(--line);}
-  .plan-card .day{font-family:var(--serif);font-size:1.6rem;color:var(--cream);display:block;line-height:1.15;}
-  .plan-card .place{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-soft);margin-top:8px;display:block;}
-  /* Rot ist jetzt dem heutigen Tag vorbehalten statt jede Karte gleich laut
-     zu machen. Kennzeichnung setzt das Skript unten. */
-  .plan-card.is-today{background:linear-gradient(to bottom, rgba(200,56,43,0.07), transparent 220px);}
-  .plan-card.is-today::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);}
-  .plan-card.is-today .day{color:var(--red);}
-  .today-tag{display:inline-block;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);border:1px solid var(--red);border-radius:2px;padding:2px 8px;margin-bottom:12px;}
-  .plan-body{display:flex;flex-direction:column;gap:14px;flex:1;}
-  /* Jedes Gericht als eigener Block mit Trennlinie — vorher standen Name und
-     Varianten mehrerer Gerichte ohne Abgrenzung untereinander. */
-  .plan-dish + .plan-dish{padding-top:14px;border-top:1px solid rgba(211,183,140,0.10);}
-  .plan-card .dish{font-family:var(--serif);font-size:1.15rem;color:var(--cream);line-height:1.3;}
-  .plan-card .dish-desc{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-soft);margin-top:5px;}
-  .plan-empty{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream-dim);opacity:0.75;}
-  .plan-stand{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);opacity:0.6;}
+  .skip-link:focus{top:16px;}
 
   @media(max-width:1080px){
     nav{gap:18px;}
   }
   @media(max-width:960px){
-    .plan-grid{grid-template-columns:1fr;}
     nav{display:none;}
-    .nav-toggle{display:flex;width:38px;height:38px;font-size:0.95rem;}
-    header{background-color:#1c1a17;background-image:none;padding:14px 0;}
-    .logo img{height:32px;}
-    .header-icons{gap:10px;}
-    .header-icons a{width:30px;height:30px;font-size:0.8rem;}
+    .nav-toggle{display:flex;}
+    header{padding:12px 0;}
+    header,header.scrolled{background:rgba(19,17,16,0.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line);}
+    .logo img,header.scrolled .logo img{height:34px;}
+    .header-icons{gap:8px;}
+    .header-icons a,.nav-toggle{width:32px;height:32px;}
+    .header-icons svg{width:13px;height:13px;}
     .mobile-nav{
       display:block;
-      position:absolute;top:100%;left:0;right:0;
-      background-color:#1c1a17;
+      position:fixed;top:58px;left:0;right:0;z-index:99;
+      background:rgba(19,17,16,0.96);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
       opacity:0;visibility:hidden;transform:translateY(-6px);
       transition:opacity .2s ease, transform .2s ease, visibility .2s;
-      max-height:80vh;overflow-y:auto;
+      max-height:calc(100vh - 58px);overflow-y:auto;
       box-shadow:0 12px 24px rgba(0,0,0,0.4);
+      overscroll-behavior:contain;
     }
     .mobile-nav.open{opacity:1;visibility:visible;transform:translateY(0);}
-    .mobile-nav-inner{display:flex;flex-direction:column;background-color:#1c1a17;}
-    .mobile-nav a{padding:12px 28px;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);border-top:1px solid var(--line);background-color:#1c1a17;}
+    .mobile-nav-inner{display:flex;flex-direction:column;padding:6px 0 14px;}
+    .mobile-nav a{padding:13px 28px;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);border-top:1px solid rgba(211,183,140,0.08);}
+    .mobile-nav a:first-child{border-top:none;}
     .mobile-nav a:hover{color:var(--gold);}
-    .hero-content{padding-top:84px;}
-    .values{grid-template-columns:1fr;}
-    .value-card{padding:36px 32px;}
+    section{padding:80px 0;}
+    html{scroll-padding-top:76px;}
+    [id]{scroll-margin-top:80px;}
+    .hero .wrap{padding-bottom:64px;}
+    .hero h1{font-size:clamp(2.5rem,10vw,3.6rem);}
+    .plan-grid{grid-template-columns:1fr;}
+    .values{grid-template-columns:1fr 1fr;gap:14px;}
+    .value-card{padding:32px 26px;}
     .paths{grid-template-columns:1fr;}
     .reviews-grid{grid-template-columns:1fr;}
+    .review-card:nth-child(2){margin-top:0;}
     .review-card{padding:36px 28px;}
-    .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,180px);gap:12px;}
-    .proof-grid{grid-template-columns:1fr;min-height:0;}
-    .proof-text{padding:56px 28px;}
-    .proof-img{height:340px;}
+    .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,190px);gap:12px;}
+    .proof{min-height:0;}
+    .proof .wrap{padding-top:280px;}
     .kochkurs{grid-template-columns:1fr;gap:36px;}
     .kochkurs img{height:320px;}
     .footer-grid{grid-template-columns:1fr 1fr;}
-    section{padding:80px 0;}
-    html{scroll-padding-top:72px;}
   }
-
-  /* Querschnitt nach den Web Interface Guidelines (21.08.2026) */
-  html{color-scheme:dark;-webkit-tap-highlight-color:rgba(211,183,140,0.18);}
-  a,button,summary,input,select,textarea{touch-action:manipulation;}
-  /* Sprungziele nicht unter der fixierten Kopfzeile verschwinden lassen */
-  [id]{scroll-margin-top:120px;}
-  h1,h2,h3{text-wrap:balance;}
-  table{font-variant-numeric:tabular-nums;}
-  #lightbox{overscroll-behavior:contain;}
-  .skip-link{position:absolute;top:-100px;left:16px;z-index:300;background:var(--bg-2);color:var(--gold);padding:12px 20px;border:1px solid var(--line);border-radius:2px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;}
-  .skip-link:focus{top:16px;}
-  /* Rasterspalten duerfen schmaler werden als ihr laengster Inhalt, und
-     unteilbare Zeichenketten (@red_lotus_asianfood, E-Mail-Adressen)
-     brechen notfalls um, statt das Raster ueber den Rand zu druecken. */
-  .footer-grid > *{min-width:0;}
-  .footer-col a,.footer-grid p{overflow-wrap:anywhere;}
-  /* Unter 640px reicht die Breite fuer zwei Footer-Spalten nicht mehr. */
-  @media (max-width:640px){
+  @media(max-width:640px){
+    .values{grid-template-columns:1fr;}
     .footer-grid{grid-template-columns:1fr;gap:40px;}
+    .chip{white-space:normal;text-align:center;line-height:1.9;}
   }
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
-    *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;}
+    *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-delay:0s !important;}
+    .js .hero-rise{opacity:1;transform:none;animation:none;}
+    .js .reveal{opacity:1;transform:none;}
   }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#top">Zum Inhalt springen</a>
 
-<header>
+<header id="siteHeader">
   <div class="wrap">
     <a href="#top" class="logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
     <nav>
@@ -451,9 +523,15 @@
       <a href="kontakt.html">Kontakt</a>
     </nav>
     <div class="header-icons">
-      <a href="https://wa.me/4915155460254" aria-label="WhatsApp" title="WhatsApp">✆</a>
-      <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram" title="Instagram">◎</a>
-      <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail" title="E-Mail">✉</a>
+      <a href="https://wa.me/4915155460254" aria-label="WhatsApp" title="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.6 8.6 0 0 1-3.8-.9L3 21l2.1-5.6a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12.6 3 8.4 8.4 0 0 1 21 11.5Z"/><path d="M9.2 8.6c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3 0 .6a7 7 0 0 0 3 2.6c.3.1.4.1.6-.1l.7-.8c.2-.2.3-.3.6-.2l1.8.9c.3.1.4.2.4.4 0 .3 0 1-.5 1.4-.4.4-1.6 1-3.6.2a10 10 0 0 1-4.8-4.3c-.8-1.4-.7-2.7-.2-3.7Z" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail" title="E-Mail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
+      </a>
       <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
     </div>
   </div>
@@ -476,17 +554,20 @@
 </header>
 
 <section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="img/hero-buffet.jpg" alt="Festlich angerichtetes asiatisches Catering-Buffet von Red Lotus im warmen Kerzenlicht" width="1800" height="1200" fetchpriority="high">
+  </div>
   <div class="wrap">
     <div class="hero-content">
-      <span class="eyebrow">Red Lotus Asian Food · Biberach &amp; Ulm</span>
-      <h1>Asiatisches Catering <br>für <em>besondere</em> Momente.</h1>
-      <p class="lead">Firmenevents, Hochzeiten und private Feiern – frisch gekocht, individuell geplant, mit Liebe zum Detail serviert. Für Anlässe, die in Erinnerung bleiben sollen.</p>
+      <span class="chip hero-rise">Red Lotus Asian Food · Biberach &amp; Ulm</span>
+      <h1 class="hero-rise">Asiatisches Catering <br>für <em>besondere</em> Momente.</h1>
+      <p class="lead hero-rise">Firmenevents, Hochzeiten und private Feiern – frisch gekocht, individuell geplant, mit Liebe zum Detail serviert. Für Anlässe, die in Erinnerung bleiben sollen.</p>
       <!-- Zwei Wege statt einem: Der Hero-Text nennt Firmenevents, Hochzeiten und
            private Feiern — ein Knopf, der direkt zu Firmenevents führte, schickte
-           Hochzeitspaare in die falsche Richtung. "Catering anfragen" führt jetzt
-           zur Auswahl weiter unten, der zweite Knopf bildet die andere Hälfte des
-           Geschäfts ab (Wochenmarkt/Foodtruck), die oben bisher gar nicht vorkam. -->
-      <div class="hero-ctas">
+           Hochzeitspaare in die falsche Richtung. "Catering anfragen" führt zum
+           Catering-Hub, der zweite Knopf bildet die andere Hälfte des
+           Geschäfts ab (Wochenmarkt/Foodtruck). -->
+      <div class="hero-ctas hero-rise">
         <a href="catering.html" class="btn btn-primary">Catering anfragen</a>
         <a href="foodtruck.html" class="btn btn-outline">Foodtruck &amp; Wochenmarkt</a>
       </div>
@@ -506,17 +587,16 @@
 </div>
 
 <!-- Wochenkarte direkt auf der Startseite: Viele Marktkunden wollen schlicht
-     wissen, was es diese Woche gibt. Vorher war das nur über einen Klick auf
-     "Aktuelles" erreichbar. Gleiche Firestore-Quelle, gleiche Gestaltung. -->
-<section id="wochenkarte" style="background:var(--bg-2);">
+     wissen, was es diese Woche gibt. Gleiche Firestore-Quelle wie aktuelles.html. -->
+<section id="wochenkarte">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Diese Woche auf dem Markt</span>
+      <span class="chip">Diese Woche auf dem Markt</span>
       <h2>Was gibt es zu essen?</h2>
       <p>Frisch am Truck gekocht — immer mit mindestens einem veganen und einem glutenfreien Gericht.</p>
     </div>
     <div class="plan-grid">
-      <div class="plan-card" data-plan-doc="speiseplan_biberach" data-weekday="3">
+      <div class="plan-card reveal" data-plan-doc="speiseplan_biberach" data-weekday="3">
         <div class="plan-head">
           <span class="day">Mittwoch</span>
           <span class="place">Wochenmarkt Biberach</span>
@@ -539,7 +619,7 @@
         </div>
         <!--stand:speiseplan_biberach--><div class="plan-stand">Stand: 19.08.2026</div><!--/stand:speiseplan_biberach-->
       </div>
-      <div class="plan-card" data-plan-doc="speiseplan_laupheim" data-weekday="4">
+      <div class="plan-card reveal" data-plan-doc="speiseplan_laupheim" data-weekday="4" style="--d:.1s">
         <div class="plan-head">
           <span class="day">Donnerstag</span>
           <span class="place">Wochenmarkt Laupheim</span>
@@ -562,7 +642,7 @@
         </div>
         <!--stand:speiseplan_laupheim--><div class="plan-stand">Stand: 20.08.2026</div><!--/stand:speiseplan_laupheim-->
       </div>
-      <div class="plan-card" data-plan-doc="speiseplan_warthausen" data-weekday="5">
+      <div class="plan-card reveal" data-plan-doc="speiseplan_warthausen" data-weekday="5" style="--d:.2s">
         <div class="plan-head">
           <span class="day">Freitag</span>
           <span class="place">Wochenmarkt Warthausen</span>
@@ -575,7 +655,7 @@
         <!--stand:speiseplan_warthausen--><!--/stand:speiseplan_warthausen-->
       </div>
     </div>
-    <div style="text-align:center;margin-top:40px;">
+    <div style="text-align:center;margin-top:44px;">
       <a href="aktuelles.html" class="btn btn-outline">Alle Termine &amp; Neuigkeiten</a>
     </div>
   </div>
@@ -584,28 +664,24 @@
 <section id="werte">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Warum Red Lotus</span>
-      <h2>Handwerk statt Beliebigkeit</h2>
+      <span class="chip">Warum Red Lotus</span>
+      <h2>Handwerk statt <em>Beliebigkeit</em></h2>
       <p>Seit Sommer 2022 bringen wir unsere asiatische Küche zu Firmenfeiern, Hochzeiten und privaten Anlässen in ganz Baden-Württemberg.</p>
     </div>
     <div class="values">
-      <div class="value-card">
-        <div class="num" aria-hidden="true">❊</div>
+      <div class="value-card reveal">
         <h3>Frisch &amp; von Hand</h3>
         <p>Kein Convenience-Food, keine künstlichen Geschmacksverstärker – von Hand zubereitet, vegan &amp; glutenfrei möglich.</p>
       </div>
-      <div class="value-card">
-        <div class="num" aria-hidden="true">❊</div>
+      <div class="value-card reveal" style="--d:.08s">
         <h3>Individuell geplant</h3>
         <p>Von der ersten Anfrage bis zum Abbau begleiten wir jeden Anlass persönlich und passen uns eurer Gästezahl an.</p>
       </div>
-      <div class="value-card">
-        <div class="num" aria-hidden="true">❊</div>
+      <div class="value-card reveal" style="--d:.16s">
         <h3>Erprobtes Team</h3>
         <p>Firmenfeiern, Hochzeiten, Festivals und private Feste im Umkreis von 150&nbsp;km um Biberach – zuverlässig begleitet.</p>
       </div>
-      <div class="value-card">
-        <div class="num" aria-hidden="true">❊</div>
+      <div class="value-card reveal" style="--d:.24s">
         <h3>Erlebnis-Faktor</h3>
         <p>Vom Live-Cooking-Truck bis zum stillen Buffet: modernes Asian Catering mit besonderer Präsentation.</p>
       </div>
@@ -614,47 +690,45 @@
 </section>
 
 <section class="proof">
-  <div class="proof-grid">
+  <div class="proof-bg">
+    <img src="img/night-event.jpg" alt="Red Lotus Foodtruck bei einem Abendevent mit Gästen" width="1800" height="1350" loading="lazy">
+  </div>
+  <div class="wrap">
     <div class="proof-text">
-      <div>
-        <span class="eyebrow">Erprobt bei echten Events</span>
-        <h2>Von der Firmenfeier bis zum großen Fest.</h2>
-        <p>Wir haben bereits zahlreiche Firmenfeiern, Hochzeiten, Festivals und private Feste in der Region begleitet – mit Live-Cooking-Truck, Buffet oder exklusivem Menü.</p>
-        <div class="proof-cities">Biberach · Ulm · Neu-Ulm · Augsburg<br>Laupheim · Memmingen · Ravensburg<br>Friedrichshafen · Stuttgart</div>
-      </div>
-    </div>
-    <div class="proof-img">
-      <img src="img/night-event.jpg" alt="Red Lotus Foodtruck bei einem Abendevent mit Gästen" width="1800" height="1350">
+      <span class="chip">Erprobt bei echten Events</span>
+      <h2>Von der Firmenfeier bis zum <em>großen</em> Fest.</h2>
+      <p>Wir haben bereits zahlreiche Firmenfeiern, Hochzeiten, Festivals und private Feste in der Region begleitet – mit Live-Cooking-Truck, Buffet oder exklusivem Menü.</p>
+      <div class="proof-cities">Biberach · Ulm · Neu-Ulm · Augsburg · Laupheim · Memmingen · Ravensburg · Friedrichshafen · Stuttgart</div>
     </div>
   </div>
 </section>
 
-<section class="reviews" id="bewertungen">
+<section id="bewertungen">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">25 Bewertungen · 5,0&nbsp;★ im Schnitt</span>
+      <span class="chip"><span data-countup="25">25</span>&nbsp;Bewertungen · <span data-countup="5,0">5,0</span>&nbsp;★ im Schnitt</span>
       <h2>Was unsere Gäste sagen</h2>
       <p>Echte Rückmeldungen von Google – vom Wochenmarkt bis zum Catering.</p>
     </div>
     <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
+      <div class="review-card reveal">
+        <div class="review-stars" aria-label="5 von 5 Sternen">★★★★★</div>
         <blockquote>„Wir haben das super leckere Essen auf dem Markt in Biberach heute entdeckt. Für jedes Gericht gibt es eine vegane Variante, die Portion war wirklich gross und es hat super lecker geschmeckt. Wir kommen auf jeden Fall wieder.“</blockquote>
         <div class="review-meta">
           <span class="review-name">Suzanne Gergely</span>
           <span class="review-source"><span class="g-badge">G</span> Juli 2026</span>
         </div>
       </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
+      <div class="review-card reveal" style="--d:.12s">
+        <div class="review-stars" aria-label="5 von 5 Sternen">★★★★★</div>
         <blockquote>„Wir hatten Pearl und Felix mit ihrem kleinen Foodtruck für eine Geburtstagsfeier gebucht. Es hat alles hervorragend geklappt von der Kommunikation, zum Service bis zum Essen. Wir hatten von Anfang an ein sehr gutes Verhältnis und einen wirklich tollen Tag!“</blockquote>
         <div class="review-meta">
           <span class="review-name">Tobias Hermann</span>
           <span class="review-source"><span class="g-badge">G</span> Sommer 2025</span>
         </div>
       </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
+      <div class="review-card reveal" style="--d:.24s">
+        <div class="review-stars" aria-label="5 von 5 Sternen">★★★★★</div>
         <blockquote>„Sehr leckere und optisch ansprechende Gerichte! Felix und Pearl sind auf unsere Wünsche eingegangen und haben uns bei der Party Planung super unterstützt. Ihr beide seid super, macht weiter so!“</blockquote>
         <div class="review-meta">
           <span class="review-name">Frederik Maier</span>
@@ -663,7 +737,7 @@
       </div>
     </div>
     <div class="reviews-cta">
-      <a href="https://g.page/r/CTXequVHKjvwEBM/review" target="_blank" rel="noopener" class="btn-ghost">Bewertung auf Google hinterlassen →</a>
+      <a href="https://g.page/r/CTXequVHKjvwEBM/review" target="_blank" rel="noopener" class="btn-ghost">Bewertung auf Google hinterlassen <span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -671,45 +745,45 @@
 <section id="galerie">
   <div class="wrap wrap-wide">
     <div class="section-head">
-      <span class="eyebrow">Referenzen</span>
+      <span class="chip">Referenzen</span>
       <h2>Einige unserer Caterings</h2>
       <p>Ein Ausschnitt aus vier Jahren Firmenevents, Hochzeiten und Festivals – von der Live-Cooking-Station bis zum stillen Buffet.</p>
     </div>
     <div class="gallery-grid">
-      <a href="galerie.html"><img src="img/jar-salad-spread.jpg" alt="Glasnudelsalat-Büfett mit Kerzenlaternen" width="1200" height="676"></a>
-      <a href="galerie.html"><img src="img/skewer-fruit-spread.jpg" alt="Fingerfood-Spieße und Obstplatte auf einem Catering-Büfett" width="1200" height="900"></a>
-      <a href="galerie.html"><img src="img/bao-fine-dining.jpg" alt="Fein angerichtete Bao mit drei Saucen" width="1200" height="903"></a>
-      <a href="galerie.html"><img src="img/summer-rolls-lantern.jpg" alt="Sommerrollen-Büfett mit Kerzenlaternen vor roter Wand" width="1200" height="1600"></a>
-      <a href="galerie.html"><img src="img/pad-thai-tray.jpg" alt="Pad Thai mit Garnelen im Catering-Tablett" width="1200" height="676"></a>
-      <a href="galerie.html"><img src="img/springroll-tray.jpg" alt="Frische Frühlingsrollen mit Chili-Dip" width="1800" height="1013"></a>
+      <a href="galerie.html" class="reveal"><img src="img/jar-salad-spread.jpg" alt="Glasnudelsalat-Büfett mit Kerzenlaternen" width="1200" height="676" loading="lazy"></a>
+      <a href="galerie.html" class="reveal" style="--d:.08s"><img src="img/skewer-fruit-spread.jpg" alt="Fingerfood-Spieße und Obstplatte auf einem Catering-Büfett" width="1200" height="900" loading="lazy"></a>
+      <a href="galerie.html" class="reveal" style="--d:.16s"><img src="img/bao-fine-dining.jpg" alt="Fein angerichtete Bao mit drei Saucen" width="1200" height="903" loading="lazy"></a>
+      <a href="galerie.html" class="reveal" style="--d:.06s"><img src="img/summer-rolls-lantern.jpg" alt="Sommerrollen-Büfett mit Kerzenlaternen vor roter Wand" width="1200" height="1600" loading="lazy"></a>
+      <a href="galerie.html" class="reveal" style="--d:.14s"><img src="img/pad-thai-tray.jpg" alt="Pad Thai mit Garnelen im Catering-Tablett" width="1200" height="676" loading="lazy"></a>
+      <a href="galerie.html" class="reveal" style="--d:.22s"><img src="img/springroll-tray.jpg" alt="Frische Frühlingsrollen mit Chili-Dip" width="1800" height="1013" loading="lazy"></a>
     </div>
   </div>
 </section>
 
-<section id="catering" style="background:var(--bg-2);">
+<section id="catering">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Für jeden Anlass</span>
-      <h2>Welches Catering passt zu euch?</h2>
+      <span class="chip">Für jeden Anlass</span>
+      <h2>Welches Catering passt zu <em>euch</em>?</h2>
     </div>
     <div class="paths">
-      <div class="path-card">
-        <span class="eyebrow">Für Unternehmen</span>
+      <div class="path-card reveal">
+        <span class="chip">Für Unternehmen</span>
         <h3>Firmenevents</h3>
         <p>Weihnachtsfeiern, Teamevents, Meetings mit Verpflegung – oder unser Foodtruck live bei eurem Sommerfest. Professionell geplant und unkompliziert abgerechnet.</p>
-        <a href="catering-firmenevents.html" class="btn-ghost">Firmencatering entdecken →</a>
+        <a href="catering-firmenevents.html" class="btn-ghost">Firmencatering entdecken <span class="arr">→</span></a>
       </div>
-      <div class="path-card">
-        <span class="eyebrow">Für Brautpaare</span>
+      <div class="path-card reveal" style="--d:.1s">
+        <span class="chip">Für Brautpaare</span>
         <h3>Hochzeiten</h3>
         <p>Individuelle Menüs, stimmungsvolles Ambiente und ein Team, das den wichtigsten Tag mit euch plant.</p>
-        <a href="catering-hochzeiten.html" class="btn-ghost">Hochzeitscatering entdecken →</a>
+        <a href="catering-hochzeiten.html" class="btn-ghost">Hochzeitscatering entdecken <span class="arr">→</span></a>
       </div>
-      <div class="path-card">
-        <span class="eyebrow">Für private Feste</span>
+      <div class="path-card reveal" style="--d:.2s">
+        <span class="chip">Für private Feste</span>
         <h3>Private Feiern</h3>
         <p>Geburtstage, Jubiläen und Feste im kleinen wie großen Kreis – asiatisches Catering, das Gäste zusammenbringt.</p>
-        <a href="catering-private-feiern.html" class="btn-ghost">Private Feiern entdecken →</a>
+        <a href="catering-private-feiern.html" class="btn-ghost">Private Feiern entdecken <span class="arr">→</span></a>
       </div>
     </div>
   </div>
@@ -718,15 +792,15 @@
 <section id="kochkurse">
   <div class="wrap">
     <div class="kochkurs">
-      <img src="img/kochkurs-gruppe.jpg" alt="Red Lotus Kochkurs: gemeinsam Zutaten vorbereiten" width="1400" height="2487">
-      <div>
-        <span class="eyebrow">Neu · Kochkurse</span>
-        <h2>Asiatisch kochen lernen – privat oder als Teamevent.</h2>
+      <img src="img/kochkurs-gruppe.jpg" alt="Red Lotus Kochkurs: gemeinsam Zutaten vorbereiten" width="1400" height="2487" loading="lazy" class="reveal">
+      <div class="reveal" style="--d:.12s">
+        <span class="chip">Neu · Kochkurse</span>
+        <h2>Asiatisch kochen lernen – privat oder als <em>Teamevent</em>.</h2>
         <p>In unseren Kochkursen zeigen wir, wie authentische asiatische Gerichte wirklich entstehen. Ob als Geschenk, Freundeskreis-Erlebnis oder Teambuilding-Format für Firmen.</p>
         <ul>
-          <li>Hands-on: gemeinsam kochen statt nur zuschauen</li>
-          <li>Für Privatgruppen und Firmenteams buchbar</li>
-          <li>Frische Zutaten, authentische Techniken</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="#d3b78c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg>Hands-on: gemeinsam kochen statt nur zuschauen</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="#d3b78c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg>Für Privatgruppen und Firmenteams buchbar</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="#d3b78c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c1.1 1.9 1.1 4.1 0 5.6C6.9 6.1 6.9 3.9 8 2Z"/><path d="M3.5 5.5c2 .6 3.4 2.2 4.1 3.9-2 -.1-3.6-1.7-4.1-3.9Z"/><path d="M12.5 5.5c-2 .6-3.4 2.2-4.1 3.9 2-.1 3.6-1.7 4.1-3.9Z"/><path d="M2 9.5c2.4 0 4.9 1.3 6 3.8-2.7.6-5.4-1.1-6-3.8Z"/><path d="M14 9.5c-2.4 0-4.9 1.3-6 3.8 2.7.6 5.4-1.1 6-3.8Z"/></svg>Frische Zutaten, authentische Techniken</li>
         </ul>
         <a href="kochkurse.html" class="btn btn-primary">Kochkurs anfragen</a>
       </div>
@@ -741,10 +815,18 @@
         <a href="#top" class="footer-logo"><img src="img/logo-wordmark-trans-trim.png" alt="Red Lotus Asian Food" width="742" height="379"></a>
         <p>Asiatisches Catering, Foodtruck und Kochkurse in Biberach, Ulm und ganz Baden-Württemberg.</p>
         <div class="footer-social">
-          <a href="https://wa.me/4915155460254" aria-label="WhatsApp">✆</a>
-          <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram">◎</a>
-          <a href="https://www.facebook.com/profile.php?id=100082880545078" aria-label="Facebook">ⓕ</a>
-          <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail">✉</a>
+          <a href="https://wa.me/4915155460254" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.6 8.6 0 0 1-3.8-.9L3 21l2.1-5.6a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12.6 3 8.4 8.4 0 0 1 21 11.5Z"/><path d="M9.2 8.6c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3 0 .6a7 7 0 0 0 3 2.6c.3.1.4.1.6-.1l.7-.8c.2-.2.3-.3.6-.2l1.8.9c.3.1.4.2.4.4 0 .3 0 1-.5 1.4-.4.4-1.6 1-3.6.2a10 10 0 0 1-4.8-4.3c-.8-1.4-.7-2.7-.2-3.7Z" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.instagram.com/red_lotus_asianfood/" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=100082880545078" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 8.5V7c0-.8.7-1.5 1.5-1.5h1.5V2.8h-2.3A3.7 3.7 0 0 0 11.5 6.5v2h-2v2.8h2v9h3v-9h2.3l.5-2.8h-2.8Z"/></svg>
+          </a>
+          <a href="mailto:info@redlotus-asianfood.com" aria-label="E-Mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
+          </a>
         </div>
         <p class="footer-insta-teaser">Folgt uns auf <a href="https://www.instagram.com/red_lotus_asianfood/">Instagram</a> für exklusive Einblicke hinter die Kulissen.</p>
       </div>
@@ -785,6 +867,9 @@
 </footer>
 
 <script>
+  // Kennzeichnet aktives JS: erst dann werden Elemente fürs Einblenden versteckt.
+  document.documentElement.classList.add('js');
+
   const navToggle = document.getElementById('navToggle');
   const mobileNav = document.getElementById('mobileNav');
   navToggle.addEventListener('click', () => {
@@ -792,6 +877,82 @@
     navToggle.setAttribute('aria-expanded', isOpen);
     navToggle.textContent = isOpen ? '✕' : '☰';
   });
+
+  // Kopfzeile: transparent überm Hero-Foto, Glas sobald gescrollt wird.
+  const headerEl = document.getElementById('siteHeader');
+  const onScroll = () => headerEl.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll-Reveal: einmalig einblenden, dann Beobachtung beenden.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets = document.querySelectorAll('.reveal');
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    targets.forEach((t) => io.observe(t));
+  } else {
+    targets.forEach((t) => t.classList.add('in-view'));
+  }
+
+  // Parallax-Drift für Galerie + Kinoband: Bilder wandern beim Scrollen
+  // minimal langsamer als die Seite (nur transform, nur wenn Bewegung erlaubt).
+  if (!reduceMotion) {
+    const drift = [
+      ...[...document.querySelectorAll('.gallery-grid img')].map((el) => ({ el, f: 0.05 })),
+      ...[...document.querySelectorAll('.proof-bg img')].map((el) => ({ el, f: 0.07 })),
+    ];
+    if (drift.length) {
+      document.documentElement.classList.add('parallax-on');
+      let ticking = false;
+      const update = () => {
+        const mid = window.innerHeight / 2;
+        drift.forEach(({ el, f }) => {
+          const r = el.parentElement.getBoundingClientRect();
+          if (r.bottom < -100 || r.top > window.innerHeight + 100) return;
+          const off = (r.top + r.height / 2 - mid) * f;
+          el.style.setProperty('--py', off.toFixed(1) + 'px');
+        });
+        ticking = false;
+      };
+      const onMove = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+      window.addEventListener('scroll', onMove, { passive: true });
+      window.addEventListener('resize', onMove, { passive: true });
+      update();
+    }
+  }
+
+  // Zahlen im Bewertungs-Chip zählen hoch, sobald er sichtbar wird.
+  // Endstand ist immer exakt der Text aus dem HTML (25 bzw. 5,0).
+  const counters = document.querySelectorAll('[data-countup]');
+  if (counters.length) {
+    const startCount = (el) => {
+      const raw = el.getAttribute('data-countup');
+      const decimal = raw.includes(',');
+      const target = parseFloat(raw.replace(',', '.'));
+      const dur = 1200;
+      const t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = target * eased;
+        el.textContent = decimal ? val.toFixed(1).replace('.', ',') : String(Math.round(val));
+        if (p < 1) requestAnimationFrame(step); else el.textContent = raw;
+      };
+      requestAnimationFrame(step);
+    };
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      const cio = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { startCount(e.target); cio.unobserve(e.target); }
+        });
+      }, { threshold: 0.6 });
+      counters.forEach((c) => cio.observe(c));
+    }
+  }
 </script>
 <!--
   Live-Speiseplan aus dem Red Lotus Eventkalender (Firebase/Firestore).

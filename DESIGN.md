@@ -2,49 +2,61 @@
 name: Red Lotus Asian Food
 description: Premium asiatisches Catering & Kochkurse in Biberach & Ulm
 colors:
-  bg: "#1c1a17"
-  bg-2: "#232019"
+  bg: "#131110"
+  bg-2: "#1e1a16"
+  bg-3: "#242019"
   red: "#c8382b"
   red-bright: "#e0473a"
   gold: "#d3b78c"
   gold-soft: "#bfa274"
   cream: "#f5f0e6"
-  cream-dim: "#cdc6b8"
-  line: "rgba(211,183,140,0.22)"
-  # Halbtransparente Werte. Nicht als Flaechenfarbe gedacht, sondern um Fotos
-  # abzudunkeln (Lesbarkeit heller Schrift) und um Ebenen voneinander abzusetzen.
-  scrim: "rgba(20,17,14,ALPHA)"       # Verlaeufe ueber Hero-Fotos, 0.5–0.98; Lightbox 0.85
-  header-veil: "rgba(23,20,17,0.92)"  # Verlauf hinter der fixierten Kopfzeile, unten auf 0 auslaufend
-  shadow: "rgba(0,0,0,0.4)"           # Schlagschatten Mobile-Menue; Logo nutzt 0.5
+  cream-dim: "#c9c2b4"
+  scrollbar-thumb: "#3a322a"
+  line: "rgba(211,183,140,0.16)"
+  glass: "rgba(245,240,230,0.07)"
+  glass-line: "rgba(245,240,230,0.16)"
+  # Halbtransparente Werte: Scrims verdunkeln Fotos für Textlesbarkeit
+  # (Verläufe 0.06–0.94 über rgba(19,17,16,ALPHA)); Glass-Flächen liegen
+  # mit backdrop-blur über Fotos oder dem Canvas.
 typography:
   display:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(2.6rem, 5.4vw, 4.4rem)"
-    fontWeight: 500
-    lineHeight: 1.08
+    fontSize: "clamp(2.9rem, 6.4vw, 5.6rem)"
+    fontWeight: 400
+    lineHeight: 1.02
   headline:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(2rem, 3.6vw, 2.8rem)"
-    fontWeight: 500
+    fontSize: "clamp(2.1rem, 3.9vw, 3rem)"
+    fontWeight: 400
   title:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "1.15rem–1.5rem"
+    fontSize: "1.2rem–1.7rem"
+    fontWeight: 400
+  em-accent:
+    fontFamily: "Cormorant Garamond, Georgia, serif"
+    fontStyle: italic
     fontWeight: 500
+    color: "{colors.red-bright}"
   label:
     fontFamily: "Bricolage Grotesque, sans-serif"
-    fontSize: "0.7rem–0.78rem"
+    fontSize: "0.6rem–0.78rem"
     fontWeight: 600
-    letterSpacing: "0.32em"
+    letterSpacing: "0.22em"
   body:
     fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "0.88rem–1.08rem"
     fontWeight: 400
     lineHeight: 1.6
 rounded:
-  sm: "2px"
+  focus: "4px"
+  scrollbar: "5px"
+  card: "10px"
+  img: "10px"
+  menu: "14px"
+  pill: "999px"
   full: "50%"
 spacing:
-  sm: "16px"
+  sm: "18px"
   md: "32px"
   lg: "64px"
   xl: "120px"
@@ -52,129 +64,84 @@ components:
   button-primary:
     backgroundColor: "{colors.red}"
     textColor: "{colors.cream}"
-    rounded: "{rounded.sm}"
-    padding: "16px 30px"
+    rounded: "{rounded.pill}"
+    padding: "16px 32px"
+    shadow: "0 4px 20px rgba(0,0,0,0.35)"
   button-primary-hover:
     backgroundColor: "{colors.red-bright}"
   button-outline:
     backgroundColor: "transparent"
+    borderColor: "rgba(245,240,230,0.35)"
     textColor: "{colors.cream}"
-    rounded: "{rounded.sm}"
-    padding: "16px 30px"
+    rounded: "{rounded.pill}"
+    padding: "16px 32px"
+  chip:
+    backgroundColor: "{colors.glass}"
+    borderColor: "{colors.glass-line}"
+    textColor: "{colors.gold}"
+    rounded: "{rounded.pill}"
+    padding: "8px 18px"
+    effect: "backdrop-blur(14px) saturate(1.3), inset 0 1px 0 rgba(245,240,230,0.08)"
 ---
 
 # Design System: Red Lotus Asian Food
 
 ## Overview
 
-**Creative North Star: "The Candlelit Buffet"**
+**Creative North Star: „Der private Vorführraum" (The Private Screening)**
 
-Red Lotus Asian Food reads like walking into a private evening event: near-black anthracite rooms, warm lantern-red and champagne-gold accents, and real photography doing the persuading instead of copy or iconography. The system is deliberately quiet — flat surfaces, hairline dividers, generous dark space — so that food and event photography stay the loudest thing on every screen. It exists to feel like a premium event caterer's own material, not a food-truck flyer: no bright primary colors, no playful iconography, no stock imagery. That louder, younger register belongs to the sibling site (Red Lotus Streetfood) and is an explicit anti-reference here.
-
-Two typefaces carry the whole voice: an italic-capable serif for anything that needs warmth or occasion (headlines, the em-emphasis word in the hero), and a wide-tracked uppercase sans for anything structural (nav, labels, buttons, eyebrows). The pairing does the work that decoration would otherwise do.
+Redesign vom 22.08.2026 (Referenz: Sequel „Private screening after dark", styles.refero.design; von Felix gewählt). Die Seite liest sich wie ein privater Vorführraum nach Einbruch der Dunkelheit: Das Foto ist die Bühne — der Hero füllt den kompletten ersten Bildschirm und wird nur so weit abgedunkelt, wie der Text es braucht. Ein tieferes Warmschwarz als zuvor bildet den Saal, eine einzige ruhige Flächen-Stufe darüber trägt Karten und Panels. Lotus-Rot bleibt der einzige gefüllte Akzent (CTA-Pille, kursives Akzentwort, Heute-Markierung), Champagner-Gold ist die Meta-Ebene (Chips, Labels, Hairlines, Icons). Der frühere „lautere" Anteil — kantige 2px-Buttons, Hairline-Grid-Raster, nackte Eyebrow-Zeilen — ist Pillen, weichen 10px-Karten und Frosted-Glass-Chips gewichen.
 
 **Key Characteristics:**
-- Near-black backgrounds with warm cream text — always dark-mode, never a light section.
-- Lantern-red as a rare, deliberate accent (primary CTAs, numerals, list markers) — not a background color.
-- Full-bleed photography as the primary content, not decoration behind text.
-- Hairline (1px, low-opacity gold) dividers instead of shadows or cards-on-white.
-- Wide-tracked uppercase labels/eyebrows as the system's structural rhythm.
+- Fotografie zuerst: Vollbild-Hero und Vollbild-Referenzband („Kinoband") mit Text **im** Bild, unten links, über einem Verlaufs-Scrim.
+- Ein kursives Serif-Wort in Lotus-Rot-Bright pro wichtiger Headline — die typografische Signatur (`<em>` in h1/h2).
+- Frosted-Glass-Chips (Pille, Blur, Gold-Text) für alle kleinen Info-Etiketten — nie nackte Label-Zeilen über Überschriften.
+- Karten sind stille Flächen: bg-2 auf bg, 10px Radius, kein Rand, kein Schatten; Hover hebt minimal (translateY -3/-4px) und hellt zur bg-3 auf.
+- Orchestrierte, abschaltbare Bewegung: Hero-Auftritt (Zeilen steigen, Ken-Burns-Zoom), Scroll-Reveal gestaffelt, Parallax-Drift auf Galerie-/Kinoband-Fotos, Zähl-Chip und Sternen-Sweep bei den Bewertungen.
 
 ## Colors
 
-A near-monochrome anthracite palette lit by exactly two warm accents; color is spent sparingly and always on purpose.
+- **Lotus Red** (`#c8382b`): einziger gefüllter Akzent — Primär-CTA-Pille, Heute-Linie der Wochenkarte. **Lotus Red Bright** (`#e0473a`): Hover des CTAs und Farbe des kursiven Akzentworts.
+- **Champagne Gold** (`#d3b78c`) / **Gold Soft** (`#bfa274`): Chips, Labels, Icon-Strokes, Footer-Spaltentitel, Sterne, Meta-Angaben.
+- **Anthrazit-Nacht** (`#131110`): Canvas. **Fläche** (`#1e1a16`, `--bg-2`): Karten, Panels, Footer, Markt-Zeile. **Fläche hell** (`#242019`, `--bg-3`): Hover-Zustand von Karten.
+- **Warm Cream** (`#f5f0e6`): Primärtext/Headlines. **Cream Dim** (`#c9c2b4`): Fließtext.
+- **Hairline Gold** (`rgba(211,183,140,0.16)`): einzige Linienfarbe. **Glass** (`rgba(245,240,230,0.07)`) + **Glass Line** (`rgba(245,240,230,0.16)`): Chips, Icon-Buttons, gescrollter Header, Dropdowns.
 
-### Primary
-- **Lotus Red** (`#c8382b`): the CTA and emphasis color — primary buttons, hero em-word, sequence numerals, list bullets (❊). Used sparingly; its rarity is the point.
-  - **Numerals only for true sequences.** Red 01/02/03 markers appear only where order carries information (the request → talk → offer → event process steps). Cards whose order is arbitrary (value props, catering paths) use the ❊ mark or a meaningful label instead — decorative numbering on non-sequences is the fastest way to make the system read as templated.
-- **Lotus Red Bright** (`#e0473a`): hover/active state for Lotus Red, never used at rest.
-
-### Secondary
-- **Champagne Gold** (`#d3b78c`): eyebrows, labels, dropdown/nav hover states, icon strokes, footer headings — the "structural" accent that marks navigation and metadata.
-- **Gold Soft** (`#bfa274`): a muted variant of Champagne Gold used for outline-button borders and the proof section's city list — where gold needs to recede slightly.
-
-### Neutral
-- **Anthracite** (`#1c1a17`): the primary page background (`--bg`).
-- **Anthracite Deep** (`#232019`): the secondary/panel background (`--bg-2`) — used for header dropdowns, the proof-text panel, catering path cards, footer, and mobile nav.
-- **Warm Cream** (`#f5f0e6`): primary text color on dark backgrounds, and headline color.
-- **Cream Dim** (`#cdc6b8`): secondary/body text color — paragraphs, nav links at rest, footer copy.
-- **Hairline Gold** (`rgba(211,183,140,0.22)`): the system's only border/divider color, at low opacity — used for the 1px grid lines between value cards and catering cards, section dividers, and card borders.
-
-### Named Rules
-**The One Accent Rule.** Lotus Red never appears as a background or fill beyond buttons and small marks (numerals, bullets). If red starts covering more than a button or a few characters, it's being overused.
+**The One Accent Rule (unverändert):** Rot nie als Fläche jenseits von Buttons und kleinen Marken. **Neu — The Photo Rule:** Scrims nur so stark, wie Text-Lesbarkeit es verlangt (4.5:1); das Foto bleibt erkennbar Hauptdarsteller.
 
 ## Typography
 
-**Display Font:** Cormorant Garamond (with Georgia, serif fallback)
-**Body Font:** Bricolage Grotesque (with sans-serif fallback)
+**Display:** Cormorant Garamond, Gewicht 400 (leichter als früher: Autorität durch Zurückhaltung), Display bis clamp 5.6rem, line-height 1.02, letter-spacing -0.01em. Ein `<em>` (kursiv, Gewicht 500, Lotus Red Bright) pro zentraler Headline. **Body/UI:** Bricolage Grotesque; Labels uppercase mit 0.22em Tracking leben fast ausschließlich in Chips. **Serif-Only-For-Headlines-Regel gilt weiter.** Beide Schriften selbst gehostet (`fonts/`, Latein-Subset).
 
-**Character:** A restrained, editorial pairing — the serif brings occasion and warmth to headlines (including an italic emphasis treatment), while the grotesque sans stays cool, wide-tracked, and structural everywhere else (navigation, labels, buttons). Neither font is decorative on its own; the contrast between them carries the personality.
+## Layout & Depth
 
-### Hierarchy
-- **Display** (weight 500, `clamp(2.6rem, 5.4vw, 4.4rem)`, line-height 1.08): hero h1 only. Uses an italicized `<em>` span in Lotus Red Bright for the one emphasized word per hero.
-- **Headline** (weight 500, `clamp(2rem, 3.6vw, 2.8rem)`): section h2s (section-head, proof-text, kochkurs).
-- **Title** (weight 500, `1.15–1.5rem`): card-level h3s (value cards, catering path cards).
-- **Body** (weight 400, `0.88–1.08rem`, line-height 1.6): paragraph copy in Cream Dim.
-- **Label** (weight 600, `0.7–0.78rem`, letter-spacing `0.08em–0.32em`, uppercase): eyebrows, nav links, buttons, footer column headings — always uppercase, always wide-tracked.
-
-### Named Rules
-**The Serif-Only-For-Headlines Rule.** Cormorant Garamond never appears in body copy, buttons, or labels — it is reserved entirely for h1/h2/h3. Everything structural or interactive stays in the sans.
-
-## Layout
-
-Content sits in two container widths: a `1180px` reading-width wrap (`.wrap`) for most sections, and a `1440px` wide wrap (`.wrap-wide`) for the gallery, where photography needs more room to breathe. Sections default to `120px` vertical padding on desktop, dropping to `80px` at the `960px` mobile breakpoint — the system's one breakpoint, below which multi-column grids (values, catering paths, gallery, proof, kochkurs, footer) collapse to one or two columns and the header switches from an inline nav to a slide-down mobile panel.
-
-Grid sections (`.values`, `.paths`) use a distinctive "hairline grid" technique: a `1px` gap filled with the Hairline Gold border color, so cards appear to share thin dividers rather than sitting in boxes with margins. The proof section is an asymmetric two-column split (`0.9fr` text / `1.3fr` image) that becomes a stacked single column on mobile. The gallery is a fixed-height `3×2` (desktop) / `2×3` (mobile) photo grid, not a masonry — every tile crops to fill via `object-fit: cover`.
-
-## Elevation & Depth
-
-Flat by default — the system does not use box-shadows for cards, buttons, or panels; depth comes from background-color layering (Anthracite vs. Anthracite Deep) and the hairline grid technique, not from shadows. The two exceptions are functional, not decorative: the logo has a soft `drop-shadow` purely for legibility over photography, and the mobile nav panel gets a `box-shadow: 0 12px 24px rgba(0,0,0,0.4)` because it floats above page content and needs to visually separate from what's beneath it.
-
-### Named Rules
-**The Flat-By-Default Rule.** Surfaces are flat at rest. The only shadows in the system exist to solve a legibility or stacking-order problem (logo-over-photo, floating nav-over-content), never for generic "card" polish.
-
-## Shapes
-
-Almost square throughout — `2px` border-radius on buttons is the only rectangular rounding in the system (`--rounded: sm`). The one recurring circular shape is the icon-button: header social icons, footer social icons, and the mobile nav-toggle button are all perfect circles (`border-radius: 50%`) with a 1px hairline border. No card in the system uses a visible corner radius; cards are defined by background color and hairline dividers, not by rounded containers.
+Container 1180px (`.wrap`) / 1440px (`.wrap-wide`), Sektionen 120px (Desktop) / 80px (Mobil, Breakpoint 960px). Karten-Grids nutzen 18px-Lücken auf dem Canvas — **kein 1px-Hairline-Grid mehr**. Tiefe entsteht durch Flächen-Stufen (bg → bg-2 → bg-3) und Glas (backdrop-blur), nicht durch Schatten; Ausnahmen: CTA-Pille (0 4px 20px), Dropdown/Mobile-Nav (Stapelordnung), Chip-Innenkante (inset 1px Highlight).
 
 ## Components
 
-### Buttons
-- **Shape:** Barely rounded (`2px` radius) — reads as squared-off, not soft.
-- **Primary:** Lotus Red background, Cream text, `16px 30px` padding, uppercase label typography (`0.78rem`, `0.14em` tracking, weight 600).
-- **Hover/Focus:** Primary shifts to Lotus Red Bright and lifts 1px (`translateY(-1px)`), `0.25s ease` transition.
-- **Outline:** Transparent background, Gold Soft border, Cream text; hover brightens the border to full Gold and adds a faint gold background wash (`rgba(211,183,140,0.08)`).
-- **Ghost:** Text-only link in Gold with a hairline bottom border (used for secondary CTAs like "Hier entlang für private Feiern").
+- **Buttons:** Pillen (999px). Primär rot gefüllt, Outline mit Cream-35%-Rand (Hover: Gold), Ghost = Gold-Text mit wanderndem Pfeil (`.arr`).
+- **Chips:** Glas-Pille mit Gold-Text — Standard für alle kleinen Etiketten (Sektionseinleitungen, Kartenzielgruppen, Bewertungs-Kennzahl).
+- **Header:** fixiert, transparent über dem Hero, ab 40px Scroll Milchglas (blur 18px) mit Hairline; Logo schrumpft mit. Mobil immer Milchglas. Dropdowns als Glas-Panels (14px Radius).
+- **Icon-Buttons:** Kreise mit Glas-Füllung und Glass-Line-Rand; Icons sind gezeichnete Stroke-SVGs (WhatsApp, Instagram, Facebook, Mail, Lotus-Listenpunkt) — **nie Unicode-Glyphen**.
+- **Karten** (Werte, Wochenkarte, Bewertungen, Catering-Wege): bg-2, 10px, randlos; Bewertungs-Grid mit versetzter Mittelkarte (Desktop +48px).
+- **Bilder:** 10px Radius in Grids/Splits, Vollbild (0px) für Hero und Kinoband; innen 1px Cream-8%-Ring via ::after.
 
-### Cards / Containers
-- **Corner Style:** None — square edges throughout.
-- **Background:** Value cards and catering path cards sit on Anthracite (`--bg`) or Anthracite Deep (`--bg-2`) depending on section; separated from siblings by the 1px hairline-grid technique rather than individual borders.
-- **Shadow Strategy:** None (see Elevation & Depth — flat by default).
-- **Internal Padding:** Generous — `44px 32px` (value cards) to `54px 40px` (catering path cards).
-- **Hover:** Catering path cards darken slightly on hover (`background: #26221c`) as the only card-level interactive feedback.
+## Motion
 
-### Navigation
-- **Desktop:** Inline uppercase label links (`0.72rem`, `0.14em` tracking) in Cream Dim, turning Gold on hover. The "Catering" item is a hover-triggered dropdown (Anthracite Deep panel, hairline border, no shadow) listing the three catering sub-pages.
-- **Mobile (≤960px):** Desktop nav hides entirely; a circular hamburger toggle button reveals a full-width slide-down panel (`position: absolute`, opacity/transform transition, hardcoded `#1c1a17` background to avoid the header's gradient bleeding through) stacking every nav link full-width with hairline top borders between them.
-- **Header behavior:** Fixed position, dark-to-transparent gradient background on desktop (so it can sit over the hero image), collapsing to a flat solid Anthracite bar on mobile.
-
-### Icon Buttons (Signature Component)
-Circular, 30–44px depending on context (header vs. footer vs. nav-toggle), 1px Hairline Gold border, Gold icon glyph, no fill at rest. Used identically for WhatsApp/Instagram/email in the header and footer, and for the mobile nav-toggle. This is the system's one consistently reused "chrome" component outside of buttons and cards.
+Gated: `html.js` (sonst alles sichtbar) und `prefers-reduced-motion` (alles aus). Muster: Hero-Rise (0.9s, gestaffelt), Ken-Burns (12s, einmalig), Scroll-Reveal (`.reveal` + IntersectionObserver, translateY 26px, Stagger via `--d`), Parallax-Drift (nur transform, rAF, Faktor 0.05/0.07 mit Basis-Scale 1.12–1.14), Count-up (1.2s, Endstand = HTML-Text), Sternen-Sweep (clip-path). Timing-Kurve überall cubic-bezier(.16,.84,.28,1).
 
 ## Do's and Don'ts
 
-### Do:
-- **Do** keep every background dark (Anthracite or Anthracite Deep) — there is no light-mode section anywhere in the system.
-- **Do** spend Lotus Red only on CTAs, numerals, and small marks; let photography and Champagne Gold carry the rest of the warmth.
-- **Do** use the hairline-grid technique (1px gap filled with `--line`) for any new multi-card grid instead of individual card borders or shadows.
-- **Do** keep all structural/interactive text (nav, labels, buttons, eyebrows) in uppercase Bricolage Grotesque with wide letter-spacing.
-- **Do** use real, on-brand event/food photography for any new image slot — never a placeholder that looks like stock art.
+### Do
+- Fotos die Bühne geben: Vollbild-Sektionen mit Text im Bild statt Bild-neben-Text, wo die Seite einen Höhepunkt braucht.
+- Jedes kleine Etikett als Glas-Chip setzen; jede wichtige Headline darf genau ein kursives rotes `<em>`-Wort tragen.
+- Karten flach und randlos auf bg-2 halten; Tiefe über Flächen-Stufen und Glas.
+- Alle Bewegung hinter `.js` + reduced-motion absichern; Inhalte müssen ohne JavaScript vollständig sichtbar sein.
+- Marker-Kommentare (`<!--speiseplan:...-->`) und Klassen der Wochenkarte unangetastet lassen — Werkzeuge und Firestore-Skript hängen daran.
 
-### Don't:
-- **Don't** introduce a light background or a bright, saturated secondary color — that register belongs to the Streetfood sibling site, not this one.
-- **Don't** add box-shadows to cards or buttons for generic "polish" — depth here comes from background layering, not shadows.
-- **Don't** round corners beyond the established `2px` button radius or the circular icon-buttons; square-edged cards are intentional.
-- **Don't** use the serif (Cormorant Garamond) outside headlines — it never appears in body copy, labels, or buttons.
-- **Don't** use stock imagery anywhere on the site (a rejected trait of the previous Wix site) — the food, the people and the trucks must always be genuinely Red Lotus.
-  - **Dish shots** (`img/gerichte/`) are the one permitted exception to untouched photography: the plated food is real, but the studio setting behind it may be retouched or generated. It stays on-register — dark wood, warm low light, black bowls — so it reads as the same kitchen, not as a different brand.
-  - **People, trucks, events and locations** are never generated or composited. Those photos carry the trust; faking them would undo the point of the whole system.
+### Don't
+- Keine 2px-Kanten-Buttons, kein 1px-Hairline-Grid, keine nackten Eyebrow-Zeilen mehr — das war das alte System.
+- Kein Unicode-Zeichen als Icon (✆ ◎ ✉ ⓕ ❊ sind abgelöst); Icons sind Stroke-SVGs in einheitlicher Strichstärke.
+- Rot nicht als Flächenfarbe, Gold nicht als Fließtextfarbe; Body-Text nie unter 4.5:1 Kontrast.
+- Keine Schatten als Karten-Schmuck; kein Parallax auf Text; keine Endlos-Animationen.
+- Kein Stock- oder KI-Bildmaterial für Menschen, Trucks, Events (unverändert; Gerichtefotos in `img/gerichte/` dürfen retuschierte Studiokulisse haben).
