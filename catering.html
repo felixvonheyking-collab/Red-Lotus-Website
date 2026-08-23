@@ -250,7 +250,10 @@
 
   /* Anlass-Karten */
   .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  .path-card{background:var(--bg-2);padding:54px 40px;position:relative;transition:background .25s ease;}
+  .path-card{background:var(--bg-2);padding:54px 40px;position:relative;transition:background .25s ease;overflow:hidden;}
+  /* Foto oben in jeder Anlass-Karte — läuft über die volle Kartenbreite
+     (gleicht das Karten-Padding per negativer Margin aus). */
+  .path-card .path-img{width:calc(100% + 80px);height:190px;object-fit:cover;display:block;margin:-54px -40px 28px;}
   .path-card:hover{background:#242019;}
   .path-card .eyebrow{display:block;margin-bottom:14px;}
   .path-card h3{font-size:1.5rem;margin-bottom:16px;}
@@ -590,18 +593,21 @@
     </div>
     <div class="paths">
       <div class="path-card">
+        <img class="path-img" src="img/firmenevent-buffet.jpg" alt="Buffet bei einem Firmenevent" width="1600" height="901" loading="lazy">
         <span class="eyebrow">Für Unternehmen</span>
         <h3>Firmenevents</h3>
         <p>Weihnachtsfeiern, Teamevents, Sommerfeste, Messestände und Kundenempfänge. Professionell geplant, mit klarem Angebot für die interne Freigabe und unkomplizierter Abrechnung.</p>
         <a href="catering-firmenevents.html" class="btn-ghost">Firmencatering entdecken →</a>
       </div>
       <div class="path-card">
+        <img class="path-img" src="img/hero-buffet.jpg" alt="Festlich beleuchtetes Buffet vor roter Samtwand" width="1800" height="1013" loading="lazy">
         <span class="eyebrow">Für Brautpaare</span>
         <h3>Hochzeiten</h3>
         <p>Vom sitzenden Menü über das Live-Buffet bis zum Foodtruck vor Ort – auch kombinierbar, etwa Fingerfood zum Sektempfang und Foodtruck als Mitternachtssnack.</p>
         <a href="catering-hochzeiten.html" class="btn-ghost">Hochzeitscatering entdecken →</a>
       </div>
       <div class="path-card">
+        <img class="path-img" src="img/night-event.jpg" alt="Red Lotus Foodtruck bei einem Abendevent mit Lichterketten" width="1800" height="1350" loading="lazy">
         <span class="eyebrow">Für private Feste</span>
         <h3>Private Feiern</h3>
         <p>Geburtstage, Jubiläen und Familienfeste, typischerweise von 15 bis 80 Gästen. Im Garten, auf der Terrasse oder in der gebuchten Location.</p>

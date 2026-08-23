@@ -436,6 +436,11 @@
     nav{gap:18px;}
   }
   @media(max-width:960px){
+    /* Handy: Hero-Verlauf deutlich kräftiger + Textschatten — die helle
+       Mittelzone des Desktop-Verlaufs macht den Text sonst schwer lesbar. */
+    .hero-bg::after{background:linear-gradient(180deg, rgba(19,17,16,0.55) 0%, rgba(19,17,16,0.38) 34%, rgba(19,17,16,0.62) 62%, rgba(19,17,16,0.96) 100%);}
+    .hero h1,.hero p.lead{text-shadow:0 2px 18px rgba(19,17,16,0.9),0 1px 3px rgba(19,17,16,0.8);}
+
     nav{display:none;}
     .nav-toggle{display:flex;}
     header{padding:12px 0;}

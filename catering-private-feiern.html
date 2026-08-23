@@ -256,6 +256,13 @@
     nav{gap:18px;}
   }
   @media(max-width:960px){
+    /* Handy: Hero-Bild zusätzlich abdunkeln + Text mit weichem Schatten
+       absetzen — der Desktop-Verlauf allein ist auf kleinen Screens zu
+       schwach, weil der höhere Textblock in die helle Bildzone rutscht. */
+    .page-hero::after{content:'';position:absolute;inset:0;background:rgba(19,17,16,0.38);pointer-events:none;}
+    .page-hero .wrap{position:relative;z-index:1;}
+    .page-hero h1,.page-hero p.lead,.page-hero .breadcrumb{text-shadow:0 2px 18px rgba(19,17,16,0.9),0 1px 3px rgba(19,17,16,0.8);}
+
     nav{display:none;}
     .nav-toggle{display:flex;width:38px;height:38px;font-size:0.95rem;}
     header{background-color:#131110;background-image:none;padding:14px 0;}
