@@ -1056,11 +1056,16 @@
       return;
     }
 
+    const statusDocs = [];
     snap.forEach((docSnap) => {
+      const data = docSnap.data();
+      if (docSnap.id.startsWith('marktstatus_') || data.type === 'marktstatus') {
+        statusDocs.push({ id: docSnap.id, ...data });
+        return;
+      }
       const card = document.querySelector(`.plan-card[data-plan-doc="${docSnap.id}"]`);
       if (!card) return; // unbekannter Standort/Dokument-Name, ignorieren
 
-      const data = docSnap.data();
       if (!Array.isArray(data.gerichte) || data.gerichte.length === 0) return;
 
       const body = card.querySelector('.plan-body');
@@ -1078,6 +1083,25 @@
         standEl.textContent = `Stand: ${stand}`;
         card.appendChild(standEl);   // ans Kartenende, nicht zwischen die Gerichte
       }
+    });
+
+    // Marktstand-Status: pausierte Standorte zeigen statt des Speiseplans
+    // den in der Kalender-App hinterlegten Hinweis (nach dem Speiseplan
+    // angewendet, damit der Hinweis gewinnt).
+    statusDocs.forEach((status) => {
+      if (!status.pausiert) return;
+      const slug = status.id.replace('marktstatus_', '');
+      const card = document.querySelector(`.plan-card[data-plan-doc="speiseplan_${slug}"]`);
+      if (!card) return;
+      const body = card.querySelector('.plan-body');
+      if (!body) return;
+      body.innerHTML = '';
+      const note = document.createElement('div');
+      note.className = 'plan-empty';
+      note.textContent = status.hinweis || 'Zurzeit findet hier kein Marktstand statt — Infos folgen.';
+      body.appendChild(note);
+      const stand = card.querySelector('.plan-stand');
+      if (stand) stand.remove();
     });
   }
 

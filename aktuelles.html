@@ -861,15 +861,39 @@
     }
 
     const newsDocs = [];
+    const statusDocs = [];
     snap.forEach((docSnap) => {
       const data = docSnap.data();
       if (docSnap.id.startsWith('news_') || data.type === 'news') {
         newsDocs.push(data);
+      } else if (docSnap.id.startsWith('marktstatus_') || data.type === 'marktstatus') {
+        statusDocs.push({ id: docSnap.id, ...data });
       } else {
         zeigeSpeiseplan(docSnap);
       }
     });
     zeigeNews(newsDocs);
+    // Nach dem Speiseplan anwenden, damit der Hinweis gewinnt.
+    statusDocs.forEach(zeigeMarktstatus);
+  }
+
+  // Marktstand-Status: ist ein Standort in der Kalender-App auf "pausiert"
+  // gesetzt (z. B. Markt fällt aus, gerade nicht in Warthausen), zeigt die
+  // Karte statt des Speiseplans den hinterlegten Hinweistext.
+  function zeigeMarktstatus(status) {
+    if (!status.pausiert) return;
+    const slug = status.id.replace('marktstatus_', '');
+    const card = document.querySelector(`.plan-card[data-plan-doc="speiseplan_${slug}"]`);
+    if (!card) return;
+    const body = card.querySelector('.plan-body');
+    if (!body) return;
+    body.innerHTML = '';
+    const note = document.createElement('div');
+    note.className = 'plan-empty';
+    note.textContent = status.hinweis || 'Zurzeit findet hier kein Marktstand statt — Infos folgen.';
+    body.appendChild(note);
+    const stand = card.querySelector('.plan-stand');
+    if (stand) stand.remove();
   }
 
   markiereHeute();
