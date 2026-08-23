@@ -250,6 +250,9 @@
 
   /* Anlass-Karten */
   .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  /* Breites Stimmungsbild direkt unter dem Hero — füllt die vorher leere
+     Zone zwischen Hero-Chips und erster Textsektion. */
+  .catering-hero-img{width:100%;height:clamp(260px,42vw,460px);object-fit:cover;object-position:50% 60%;border-radius:var(--r-img);border:1px solid var(--line);display:block;}
   .path-card{background:var(--bg-2);padding:54px 40px;position:relative;transition:background .25s ease;overflow:hidden;}
   /* Foto oben in jeder Anlass-Karte — läuft über die volle Kartenbreite
      (gleicht das Karten-Padding per negativer Margin aus). */
@@ -581,6 +584,12 @@
     <a href="#formate">Formate</a>
     <a href="#ablauf">Ablauf</a>
     <a href="#gebiet">Einsatzgebiet</a>
+  </div>
+</section>
+
+<section style="padding-top:0;padding-bottom:0;">
+  <div class="wrap">
+    <img class="catering-hero-img" src="img/catering-buffet-pearl.jpg" alt="Pearl vor einem fertig aufgebauten Catering-Buffet mit Fingerfood, Frühlingsrollen und Obstplatte" width="1600" height="936" loading="lazy">
   </div>
 </section>
 
