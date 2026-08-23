@@ -630,15 +630,22 @@
 </script>
 
 <!--
-  Live-Speiseplan aus dem Red Lotus Eventkalender (Firebase/Firestore).
+  Live-Daten aus dem Red Lotus Eventkalender (Firebase/Firestore).
   Liest ausschließlich lesend aus der Collection "website" (öffentlich
   lesbar laut Firestore-Regeln, Schreiben bleibt den Team-Mitgliedern in
-  der App vorbehalten). Ein Dokument pro Standort, ID-Muster
-  "speiseplan_<ort>", Felder: datum (String "YYYY-MM-DD"),
-  gerichte (Array aus { name, variante }).
-  Fällt bei fehlender Verbindung oder fehlenden Daten lautlos auf den
-  HTML-Platzhalter zurück ("Speiseplan folgt in Kürze") — kein Fehler
-  sichtbar für Website-Besucher.
+  der App vorbehalten). Ein einziger Lesevorgang versorgt beide Bereiche:
+
+  1. Speiseplan: ein Dokument pro Standort, ID-Muster "speiseplan_<ort>",
+     Felder: datum (String "YYYY-MM-DD"), gerichte (Array aus
+     { name, variante }).
+  2. News/Termine: ein Dokument pro Termin, ID-Muster "news_<id>",
+     Felder: titel, text, tag, datumVon, optional datumBis und bild
+     (Poster als komprimierte data-URL, in der App hochgeladen).
+
+  Gibt es mindestens eine aktuelle News, ersetzt sie die statisch im HTML
+  hinterlegten Einträge. Fällt bei fehlender Verbindung oder fehlenden
+  Daten lautlos auf die HTML-Platzhalter zurück — kein Fehler sichtbar
+  für Website-Besucher.
 -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
@@ -716,7 +723,122 @@
     });
   }
 
-  async function ladeSpeiseplan() {
+  function zeigeSpeiseplan(docSnap) {
+    const card = document.querySelector(`.plan-card[data-plan-doc="${docSnap.id}"]`);
+    if (!card) return; // unbekannter Standort/Dokument-Name, ignorieren
+
+    const data = docSnap.data();
+    if (!Array.isArray(data.gerichte) || data.gerichte.length === 0) return;
+
+    const body = card.querySelector('.plan-body');
+    if (!body) return;
+    body.innerHTML = '';
+
+    gruppiereGerichte(data.gerichte).forEach((varianten, name) => {
+      body.appendChild(baueGerichtBlock(name, varianten));
+    });
+
+    const stand = formatDatum(data.datum);
+    if (stand) {
+      const standEl = document.createElement('div');
+      standEl.className = 'plan-stand';
+      standEl.textContent = `Stand: ${stand}`;
+      card.appendChild(standEl);   // ans Kartenende, nicht zwischen die Gerichte
+    }
+  }
+
+  // "12.09.2026" bzw. "12.09.–13.09.2026" — bewusst schlicht, passt zum
+  // Stil der statischen Einträge.
+  function formatNewsDatum(von, bis) {
+    const v = formatDatum(von);
+    if (!v) return '–';
+    const b = formatDatum(bis);
+    if (!b || b === v) return v;
+    return `${v.slice(0, 6)}–${b}`;
+  }
+
+  // Poster-Großansicht: data-URLs lassen sich nicht zuverlässig in einem
+  // neuen Tab öffnen, deshalb ein einfaches Overlay direkt auf der Seite.
+  function zeigePosterGross(src, alt) {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:24px;cursor:zoom-out;';
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = alt;
+    img.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;';
+    overlay.appendChild(img);
+    overlay.addEventListener('click', () => overlay.remove());
+    document.addEventListener('keydown', function esc(ev) {
+      if (ev.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', esc); }
+    });
+    document.body.appendChild(overlay);
+  }
+
+  function baueNewsItem(data) {
+    const item = document.createElement('div');
+    item.className = 'news-item';
+
+    const dateEl = document.createElement('div');
+    dateEl.className = 'news-date';
+    dateEl.textContent = formatNewsDatum(data.datumVon, data.datumBis);
+    item.appendChild(dateEl);
+
+    const body = document.createElement('div');
+
+    const tagEl = document.createElement('span');
+    tagEl.className = 'news-tag';
+    tagEl.textContent = data.tag || 'Event';
+    body.appendChild(tagEl);
+
+    const titelEl = document.createElement('h3');
+    titelEl.textContent = data.titel || '';
+    body.appendChild(titelEl);
+
+    const textEl = document.createElement('p');
+    textEl.textContent = data.text || '';
+    body.appendChild(textEl);
+
+    if (typeof data.bild === 'string' && data.bild.startsWith('data:image/')) {
+      const posterLink = document.createElement('a');
+      posterLink.className = 'news-poster';
+      posterLink.href = '#';
+      const posterImg = document.createElement('img');
+      posterImg.src = data.bild;
+      posterImg.alt = 'Veranstaltungsplakat: ' + (data.titel || '');
+      posterImg.loading = 'lazy';
+      posterLink.appendChild(posterImg);
+      posterLink.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        zeigePosterGross(data.bild, posterImg.alt);
+      });
+      body.appendChild(posterLink);
+    }
+
+    item.appendChild(body);
+    return item;
+  }
+
+  function zeigeNews(newsDocs) {
+    // Abgelaufene Einträge ausblenden: sichtbar bis einschließlich datumBis
+    // (bzw. datumVon, wenn kein Ende gesetzt ist). Undatierte bleiben stehen.
+    const heute = new Date();
+    heute.setHours(0, 0, 0, 0);
+    const heuteIso = `${heute.getFullYear()}-${String(heute.getMonth() + 1).padStart(2, '0')}-${String(heute.getDate()).padStart(2, '0')}`;
+    const aktuelle = newsDocs.filter((d) => {
+      const ende = d.datumBis || d.datumVon;
+      return !ende || ende >= heuteIso;
+    });
+    if (aktuelle.length === 0) return; // statische Einträge stehen lassen
+
+    aktuelle.sort((a, b) => (a.datumVon || '9999').localeCompare(b.datumVon || '9999'));
+
+    const liste = document.querySelector('#news .news-list');
+    if (!liste) return;
+    liste.innerHTML = '';
+    aktuelle.forEach((d) => liste.appendChild(baueNewsItem(d)));
+  }
+
+  async function ladeWebsiteDaten() {
     let app, db;
     try {
       app = initializeApp(firebaseConfig);
@@ -733,38 +855,25 @@
     try {
       snap = await getDocs(collection(db, 'website'));
     } catch (err) {
-      // Kein Netz, keine Rechte, o.ä. — Platzhalter bleibt einfach stehen.
-      console.error('Speiseplan konnte nicht geladen werden:', err);
+      // Kein Netz, keine Rechte, o.ä. — Platzhalter bleiben einfach stehen.
+      console.error('Website-Daten konnten nicht geladen werden:', err);
       return;
     }
 
+    const newsDocs = [];
     snap.forEach((docSnap) => {
-      const card = document.querySelector(`.plan-card[data-plan-doc="${docSnap.id}"]`);
-      if (!card) return; // unbekannter Standort/Dokument-Name, ignorieren
-
       const data = docSnap.data();
-      if (!Array.isArray(data.gerichte) || data.gerichte.length === 0) return;
-
-      const body = card.querySelector('.plan-body');
-      if (!body) return;
-      body.innerHTML = '';
-
-      gruppiereGerichte(data.gerichte).forEach((varianten, name) => {
-        body.appendChild(baueGerichtBlock(name, varianten));
-      });
-
-      const stand = formatDatum(data.datum);
-      if (stand) {
-        const standEl = document.createElement('div');
-        standEl.className = 'plan-stand';
-        standEl.textContent = `Stand: ${stand}`;
-        card.appendChild(standEl);   // ans Kartenende, nicht zwischen die Gerichte
+      if (docSnap.id.startsWith('news_') || data.type === 'news') {
+        newsDocs.push(data);
+      } else {
+        zeigeSpeiseplan(docSnap);
       }
     });
+    zeigeNews(newsDocs);
   }
 
   markiereHeute();
-  ladeSpeiseplan();
+  ladeWebsiteDaten();
 </script>
 </body>
 </html>
