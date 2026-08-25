@@ -647,20 +647,65 @@
   hinterlegten Einträge. Fällt bei fehlender Verbindung oder fehlenden
   Daten lautlos auf die HTML-Platzhalter zurück — kein Fehler sichtbar
   für Website-Besucher.
+  Seit 25.08.2026 ohne Firebase-SDK: Die Daten kommen per fetch() direkt
+  von der Firestore-REST-Schnittstelle (gleiches Muster wie auf
+  redlotusstreetfood.com). Es wird kein Programmcode mehr von
+  www.gstatic.com nachgeladen — der Browser spricht nur noch
+  firestore.googleapis.com an (siehe Datenschutzerklärung Ziffer 5).
 -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyA0y6NWpF3N7241mA72Cj-gU_pvbqpNdD4",
-    authDomain: "red-lotus-eventkalender.firebaseapp.com",
-    projectId: "red-lotus-eventkalender",
-    storageBucket: "red-lotus-eventkalender.firebasestorage.app",
-    messagingSenderId: "864967561482",
-    appId: "1:864967561482:web:98ee51f304748e511f2af3",
-    measurementId: "G-BZX4RFERTR"
+  const FIRESTORE_KONFIG = {
+    projektId: "red-lotus-eventkalender",
+    datenbank: "default",   // benannte Datenbank, NICHT Firestores "(default)"
+    apiKey: "AIzaSyA0y6NWpF3N7241mA72Cj-gU_pvbqpNdD4"
   };
+
+  // Übersetzt Firestore-REST-Felder ({ stringValue: … }, { arrayValue: … } …)
+  // in einfache JavaScript-Werte — das Ergebnis entspricht docSnap.data()
+  // des früheren SDK, der restliche Code blieb deshalb unverändert.
+  function feldWert(wert) {
+    if (!wert || typeof wert !== 'object') return undefined;
+    if ('stringValue' in wert) return wert.stringValue;
+    if ('booleanValue' in wert) return wert.booleanValue;
+    if ('integerValue' in wert) return Number(wert.integerValue);
+    if ('doubleValue' in wert) return wert.doubleValue;
+    if ('nullValue' in wert) return null;
+    if ('timestampValue' in wert) return wert.timestampValue;
+    if ('arrayValue' in wert) return ((wert.arrayValue && wert.arrayValue.values) || []).map(feldWert);
+    if ('mapValue' in wert) return felderZuObjekt((wert.mapValue && wert.mapValue.fields) || {});
+    return undefined;
+  }
+  function felderZuObjekt(fields) {
+    const objekt = {};
+    Object.keys(fields || {}).forEach((k) => { objekt[k] = feldWert(fields[k]); });
+    return objekt;
+  }
+
+  // Holt alle Dokumente der Collection "website" über die REST-Schnittstelle.
+  // Bewusst per runQuery: Das ist dieselbe Abfrage, die vorher das SDK
+  // gestellt hat — das einfache Auflisten per GET lehnen die
+  // Firestore-Regeln ab (403), die Collection-Abfrage ist erlaubt.
+  // Rückgabe im SDK-ähnlichen Format: [{ id, data() }, …].
+  async function holeWebsiteDokumente() {
+    const url = `https://firestore.googleapis.com/v1/projects/${FIRESTORE_KONFIG.projektId}`
+      + `/databases/${FIRESTORE_KONFIG.datenbank}/documents:runQuery?key=${FIRESTORE_KONFIG.apiKey}`;
+    const antwort = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ structuredQuery: { from: [{ collectionId: 'website' }] } })
+    });
+    if (!antwort.ok) throw new Error(`Firestore antwortet mit HTTP ${antwort.status}`);
+    const zeilen = await antwort.json();
+    const dokumente = [];
+    (Array.isArray(zeilen) ? zeilen : []).forEach((zeile) => {
+      const dok = zeile && zeile.document;
+      if (!dok) return;   // Zeilen ohne Dokument (z. B. nur readTime) überspringen
+      const id = String(dok.name || '').split('/').pop();
+      const inhalt = felderZuObjekt(dok.fields || {});
+      dokumente.push({ id, data: () => inhalt });
+    });
+    return dokumente;
+  }
 
   function formatDatum(iso) {
     if (typeof iso !== 'string') return '';
@@ -840,21 +885,9 @@
   }
 
   async function ladeWebsiteDaten() {
-    let app, db;
+    let dokumente;
     try {
-      app = initializeApp(firebaseConfig);
-      // "default" ist hier ein benannter Datenbankname, NICHT Firestores
-      // Standard-Datenbank "(default)". Ohne das zweite Argument sucht das
-      // SDK die Standard-Datenbank und bekommt 404 NOT_FOUND.
-      db = getFirestore(app, "default");
-    } catch (err) {
-      console.error('Firebase konnte nicht initialisiert werden:', err);
-      return;
-    }
-
-    let snap;
-    try {
-      snap = await getDocs(collection(db, 'website'));
+      dokumente = await holeWebsiteDokumente();
     } catch (err) {
       // Kein Netz, keine Rechte, o.ä. — Platzhalter bleiben einfach stehen.
       console.error('Website-Daten konnten nicht geladen werden:', err);
@@ -863,7 +896,7 @@
 
     const newsDocs = [];
     const statusDocs = [];
-    snap.forEach((docSnap) => {
+    dokumente.forEach((docSnap) => {
       const data = docSnap.data();
       if (docSnap.id.startsWith('news_') || data.type === 'news') {
         newsDocs.push(data);

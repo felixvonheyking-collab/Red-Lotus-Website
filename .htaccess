@@ -5,12 +5,30 @@
 #   1. Weiterleitungen der alten Wix-URLs auf die neuen .html-Adressen
 #   2. Vereinheitlichung auf die Variante ohne www
 #   3. Kompression und Browser-Caching
+#   4. Sperren interner Dateien und Sicherheits-Header (25.08.2026,
+#      nach dem Sicherheits- und Rechtscheck)
 #
 # Angelegt 19.08.2026 nach dem SEO-Audit. Hintergrund: Beim Umzug von Wix
 # auf die statische Seite (17./18.08.2026) wurden die alten URLs nicht
 # weitergeleitet. Sie stehen aber noch im Google-Index und liefern seither
 # eine Fehlerseite. Die Weiterleitungen übertragen die Ranking-Signale der
 # alten Adressen auf die neuen.
+
+# ---------------------------------------------------------------------------
+# 0. Gesperrte Pfade (Sicherheits-/Rechtscheck 25.08.2026)
+# ---------------------------------------------------------------------------
+# 0a. Alte Seitenversionen (.fuse_hidden…): Mount-Artefakte, die vor der
+#     .gitignore-Erweiterung mit eingecheckt und deployt wurden. Bis das
+#     Repo aufgeräumt ist, liefert der Server für diese Pfade 404 —
+#     darunter war eine veraltete Datenschutzerklärung abrufbar.
+RedirectMatch 404 ^/\.fuse_hidden
+
+# 0b. Interne Arbeitsdateien (Design-/Produktnotizen, Werkzeuge, Audits):
+#     werden für die Arbeit am Projekt gebraucht und bleiben im Repo,
+#     gehören aber nicht öffentlich ins Netz.
+#     llms.txt, robots.txt und sitemap.xml bleiben bewusst öffentlich.
+RedirectMatch 404 ^/(DESIGN|DESIGN-PLAN|PRODUCT|LIVE-SCHALTUNG_DNS)\.md$
+RedirectMatch 404 ^/(tools|referenzen|\.impeccable|\.github)/
 
 RewriteEngine On
 
@@ -95,7 +113,9 @@ RewriteRule ^home/?$                  /                       [R=301,L]
   ExpiresByType font/woff2          "access plus 1 year"
   ExpiresByType text/css            "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType text/html           "access plus 1 hour"
+  # HTML immer frisch ausliefern (25.08.2026, vorher 1 Stunde): Korrekturen
+  # an Rechtstexten sollen Besucher sofort erreichen, wie bei Site 2.
+  ExpiresByType text/html           "access plus 0 seconds"
 </IfModule>
 
 # ---------------------------------------------------------------------------
@@ -103,3 +123,25 @@ RewriteRule ^home/?$                  /                       [R=301,L]
 # ---------------------------------------------------------------------------
 
 AddDefaultCharset UTF-8
+
+# ---------------------------------------------------------------------------
+# 6. Sicherheits-Header (Sicherheits-/Rechtscheck 25.08.2026)
+# ---------------------------------------------------------------------------
+# Die Content-Security-Policy ist auf den tatsächlichen Bestand der Seite
+# zugeschnitten und muss bei neuen externen Einbindungen mitwachsen:
+#   - script-src/style-src 'unsafe-inline': alle Seiten arbeiten mit
+#     Inline-<style>- und Inline-<script>-Blöcken (kein externes JS/CSS).
+#   - img-src data:: Event-Poster aus Firestore kommen als data:-URIs.
+#   - connect-src firestore.googleapis.com: Speiseplan/News per REST.
+#   - connect-src wixformwebhook-…run.app: Ziel der Anfrage-Formulare.
+# Schriften liegen lokal (font-src 'self'), es gibt keine iframes und
+# keine weiteren externen Quellen.
+
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://firestore.googleapis.com https://wixformwebhook-e6seurotja-ew.a.run.app; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
