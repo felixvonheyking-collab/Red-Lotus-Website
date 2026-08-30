@@ -92,8 +92,9 @@ def hole(dokument: str, schluessel: str):
         f = eintrag.get("mapValue", {}).get("fields", {})
         name = f.get("name", {}).get("stringValue", "").strip()
         variante = f.get("variante", {}).get("stringValue", "").strip()
+        beschreibung = f.get("beschreibung", {}).get("stringValue", "").strip()
         if name:
-            gerichte.append((name, variante))
+            gerichte.append((name, variante, beschreibung))
     datum = felder.get("datum", {}).get("stringValue", "").strip()
     return {"gerichte": gerichte, "datum": datum}
 
@@ -104,12 +105,17 @@ def gruppiere(gerichte):
     Spiegelt gruppiereGerichte() im Browser: "Grünes Curry / Hühnchen" und
     "Grünes Curry / Vegan" werden ein Block mit zwei Varianten, nicht zwei
     Blöcke mit demselben Namen. Reihenfolge des ersten Auftretens bleibt.
+
+    Die Beschreibung hängt am Gericht, nicht an der Variante — die erste
+    gefüllte gewinnt, genau wie im Browser.
     """
     gruppen = {}
-    for name, variante in gerichte:
-        liste = gruppen.setdefault(name, [])
-        if variante and variante not in liste:
-            liste.append(variante)
+    for name, variante, beschreibung in gerichte:
+        eintrag = gruppen.setdefault(name, {"varianten": [], "beschreibung": ""})
+        if variante and variante not in eintrag["varianten"]:
+            eintrag["varianten"].append(variante)
+        if beschreibung and not eintrag["beschreibung"]:
+            eintrag["beschreibung"] = beschreibung
     return gruppen
 
 
@@ -123,9 +129,15 @@ def datum_deutsch(iso: str) -> str:
 def baue_koerper(gruppen) -> str:
     """Erzeugt exakt das Markup von baueGerichtBlock() im Browser."""
     zeilen = []
-    for name, varianten in gruppen.items():
+    for name, eintrag in gruppen.items():
+        varianten = eintrag["varianten"]
+        beschreibung = eintrag["beschreibung"]
         zeilen.append('          <div class="plan-dish">')
         zeilen.append(f'            <div class="dish">{html.escape(name, quote=False)}</div>')
+        # Reihenfolge wie im Browser: Name, Beschreibung, Varianten.
+        if beschreibung:
+            text = html.escape(beschreibung, quote=False)
+            zeilen.append(f'            <div class="dish-info">{text}</div>')
         if varianten:
             text = html.escape(" · ".join(varianten), quote=False)
             zeilen.append(f'            <div class="dish-desc">{text}</div>')

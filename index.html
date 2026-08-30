@@ -349,6 +349,7 @@
   .plan-body{display:flex;flex-direction:column;gap:14px;flex:1;}
   .plan-dish + .plan-dish{padding-top:14px;border-top:1px solid rgba(211,183,140,0.10);}
   .plan-card .dish{font-family:var(--serif);font-size:1.2rem;color:var(--cream);line-height:1.3;}
+  .plan-card .dish-info{font-size:0.83rem;line-height:1.45;color:var(--cream-dim);margin-top:6px;opacity:0.85;}
   .plan-card .dish-desc{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-soft);margin-top:5px;}
   .plan-empty{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream-dim);opacity:0.75;}
   .plan-stand{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);opacity:0.6;font-variant-numeric:tabular-nums;}
@@ -1060,11 +1061,16 @@
       if (!g || !g.name) return;
       const name = String(g.name).trim();
       if (!name) return;
-      if (!gruppen.has(name)) gruppen.set(name, []);
+      if (!gruppen.has(name)) gruppen.set(name, { varianten: [], beschreibung: '' });
+      const eintrag = gruppen.get(name);
       const variante = g.variante ? String(g.variante).trim() : '';
-      const liste = gruppen.get(name);
       // Doppelte Varianten (z. B. versehentlich zweimal "Vegan") nur einmal zeigen
-      if (variante && !liste.includes(variante)) liste.push(variante);
+      if (variante && !eintrag.varianten.includes(variante)) eintrag.varianten.push(variante);
+      // Die Beschreibung hängt am Gericht, nicht an der Variante. Die erste
+      // gefüllte gewinnt, damit die Hühnchen- und die Vegan-Zeile desselben
+      // Gerichts nicht zwei verschiedene Texte liefern.
+      const beschreibung = g.beschreibung ? String(g.beschreibung).trim() : '';
+      if (beschreibung && !eintrag.beschreibung) eintrag.beschreibung = beschreibung;
     });
     return gruppen;
   }
@@ -1072,14 +1078,24 @@
   // Ein Gericht = ein eigener Block. Die Trennlinie zwischen den Blöcken macht
   // das CSS (.plan-dish + .plan-dish), damit auch bei nur einem Gericht keine
   // überflüssige Linie stehen bleibt.
-  function baueGerichtBlock(name, varianten) {
+  function baueGerichtBlock(name, eintrag) {
+    const varianten = (eintrag && eintrag.varianten) || [];
+    const beschreibung = (eintrag && eintrag.beschreibung) || '';
     const block = document.createElement('div');
     block.className = 'plan-dish';
     const dish = document.createElement('div');
     dish.className = 'dish';
     dish.textContent = name;
     block.appendChild(dish);
-    if (varianten && varianten.length) {
+    // Reihenfolge: Name, dann was drin ist, dann die Varianten. Fehlt die
+    // Beschreibung (noch nicht in der App gepflegt), bleibt die Zeile weg.
+    if (beschreibung) {
+      const info = document.createElement('div');
+      info.className = 'dish-info';
+      info.textContent = beschreibung;
+      block.appendChild(info);
+    }
+    if (varianten.length) {
       const desc = document.createElement('div');
       desc.className = 'dish-desc';
       desc.textContent = varianten.join(' · ');
@@ -1136,6 +1152,10 @@
 
       const stand = formatDatum(data.datum);
       if (stand) {
+        // Den statisch hinterlegten Stand (vom Speiseplan-Skript) entfernen,
+        // sonst stehen zwei Stand-Zeilen untereinander — der Live-Stand
+        // ersetzt ihn, statt sich dazuzugesellen.
+        card.querySelectorAll('.plan-stand').forEach((alt) => alt.remove());
         const standEl = document.createElement('div');
         standEl.className = 'plan-stand';
         standEl.textContent = `Stand: ${stand}`;

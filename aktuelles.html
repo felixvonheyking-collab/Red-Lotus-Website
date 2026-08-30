@@ -190,6 +190,7 @@
      Varianten mehrerer Gerichte ohne Abgrenzung untereinander. */
   .plan-dish + .plan-dish{padding-top:14px;border-top:1px solid rgba(211,183,140,0.10);}
   .plan-card .dish{font-family:var(--serif);font-size:1.15rem;color:var(--cream);line-height:1.3;}
+  .plan-card .dish-info{font-size:0.83rem;line-height:1.45;color:var(--cream-dim);margin-top:6px;opacity:0.85;}
   .plan-card .dish-desc{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-soft);margin-top:5px;}
   .plan-empty{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream-dim);opacity:0.75;}
   .plan-stand{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);opacity:0.6;}
@@ -372,6 +373,57 @@
   .plan-card{border-radius:var(--r-card);overflow:hidden;}
   .news-item{border-radius:var(--r-card);}
   .news-poster,.news-poster img{border-radius:var(--r-img);}
+
+  /* ============================================================
+     WOCHENKARTE 30.08.2026 — eine Karte statt drei Kacheln.
+     Layout-Vorbild ist die Karten-Sektion der Streetfood-Seite
+     (#karte, „Boarding Pass"): ein Kopf mit großem Titel und
+     Meta-Zeile rechts, gestrichelte Trennlinien als Ticket-Rhythmus,
+     großzügige Gericht-Zeilen mit rechter Spalte. Material bleibt
+     das dieser Seite: stille bg-2-Fläche, 10px-Radius, kein Rand,
+     Gold-Haarlinien, Serif statt Display-Versalien, Rot nur für
+     „Heute". Die inneren Klassen (.plan-card, .plan-head, .plan-body,
+     .plan-dish) behalten Namen und Verschachtelung — Speiseplan-Bot
+     und Live-Skript hängen daran.
+     ============================================================ */
+  .wochenkarte{max-width:56rem;margin:0 auto;background:var(--bg-2);border-radius:var(--r-card);padding:clamp(28px,4.5vw,56px);}
+  .wk-kopf{display:flex;align-items:flex-end;justify-content:space-between;gap:18px 32px;flex-wrap:wrap;padding-bottom:26px;margin-bottom:6px;border-bottom:1px dashed var(--line);}
+  .wk-label{display:block;font-size:0.66rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;}
+  .wk-titel{font-family:var(--serif);font-size:clamp(2rem,4.2vw,2.9rem);line-height:1.05;color:var(--cream);display:block;}
+  .wk-meta{font-size:0.66rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);text-align:right;line-height:2.1;}
+
+  /* Die drei Tage: keine Kacheln mehr, sondern Abschnitte einer Karte */
+  .wochenkarte .plan-grid{display:block;}
+  .wochenkarte .plan-card{background:none;padding:28px 0 24px;border-radius:0;overflow:visible;}
+  .wochenkarte .plan-card + .plan-card{border-top:1px dashed var(--line);}
+  .wochenkarte .plan-card.is-today{background:none;}
+  .wochenkarte .plan-card.is-today::before{content:none;}
+  .wochenkarte .plan-head{display:flex;align-items:baseline;gap:12px 16px;flex-wrap:wrap;border-bottom:none;padding-bottom:0;margin-bottom:16px;}
+  .wochenkarte .plan-card .day{font-size:clamp(1.5rem,2.6vw,1.85rem);}
+  .wochenkarte .plan-card .place{margin:0 0 0 auto;text-align:right;}
+  .wochenkarte .today-tag{margin-bottom:0;}
+
+  /* Gericht-Zeilen: Name groß links, Varianten als rechte Spalte —
+     an der Stelle, wo auf der Streetfood-Karte der Preis steht */
+  .wochenkarte .plan-body{gap:0;}
+  .wochenkarte .plan-dish{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px;align-items:baseline;padding:13px 0;}
+  .wochenkarte .plan-dish + .plan-dish{border-top:1px solid var(--line);padding-top:13px;}
+  .wochenkarte .plan-card .dish{font-size:clamp(1.3rem,2.4vw,1.6rem);line-height:1.2;}
+  .wochenkarte .plan-card .dish-info{grid-column:1;margin-top:4px;max-width:34rem;}
+  .wochenkarte .plan-card .dish-desc{grid-column:2;grid-row:1;margin-top:0;white-space:nowrap;justify-self:end;}
+  .wochenkarte .plan-empty{padding:10px 0;}
+  .wochenkarte .plan-stand{margin-top:14px;padding-top:0;border-top:none;opacity:0.5;}
+
+  /* Hinweiszeile wird zum Kartenfuß (wie pass__fuss drüben) */
+  .wochenkarte .plan-note{max-width:none;margin:10px 0 0;padding:24px 0 0;border:none;border-top:1px dashed var(--line);border-radius:0;text-align:left;font-size:0.8rem;}
+
+  @media(max-width:640px){
+    .wk-kopf{align-items:flex-start;flex-direction:column;}
+    .wk-meta{text-align:left;line-height:1.9;}
+    .wochenkarte .plan-card .place{margin-left:0;text-align:left;flex-basis:100%;}
+    .wochenkarte .plan-dish{grid-template-columns:1fr;}
+    .wochenkarte .plan-card .dish-desc{grid-column:1;grid-row:auto;margin-top:5px;white-space:normal;justify-self:start;}
+  }
 </style>
 </head>
 <body>
@@ -442,8 +494,22 @@
       <span class="eyebrow">Diese Woche</span>
       <h2>Unser Speiseplan</h2>
     </div>
-    <p class="plan-note">Unsere festen Standorte und Zeiten findet ihr auf der <a href="foodtruck.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Foodtruck-Seite</a>. Kurzfristige Änderungen oder Ausfälle kündigen wir hier sowie per <a href="https://wa.me/4915155460254" style="color:var(--gold);border-bottom:1px solid var(--line);">WhatsApp</a> an.</p>
-    <div class="plan-grid" id="planGrid">
+    <!-- Wochenkarte als eine große Karte statt drei kleiner Kacheln —
+         Layout nach dem Vorbild der Streetfood-Seite (Boarding-Pass-Prinzip:
+         ein Kopf, Trennlinien, großzügige Gericht-Zeilen), übersetzt in die
+         Formensprache dieser Seite (Serif, Gold-Haarlinien, dunkler Grund).
+         Die inneren Bausteine (.plan-card, .plan-head, .plan-body, Marker)
+         bleiben unverändert: Sie werden vom Speiseplan-Skript
+         (tools/speiseplan-statisch.py) und dem Live-JavaScript unten befüllt. -->
+    <div class="wochenkarte">
+      <div class="wk-kopf">
+        <div>
+          <span class="wk-label">Frisch am Truck</span>
+          <span class="wk-titel">Wochenkarte</span>
+        </div>
+        <p class="wk-meta">Red Lotus Asian Food<br>Mi · Do · Fr auf dem Wochenmarkt</p>
+      </div>
+      <div class="plan-grid" id="planGrid">
       <div class="plan-card" data-plan-doc="speiseplan_biberach" data-weekday="3">
         <div class="plan-head">
           <span class="day">Mittwoch</span>
@@ -494,6 +560,8 @@
         </div>
         <!--stand:speiseplan_warthausen--><!--/stand:speiseplan_warthausen-->
       </div>
+    </div>
+    <p class="plan-note">Unsere festen Standorte und Zeiten findet ihr auf der <a href="foodtruck.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Foodtruck-Seite</a>. Kurzfristige Änderungen oder Ausfälle kündigen wir hier sowie per <a href="https://wa.me/4915155460254" style="color:var(--gold);border-bottom:1px solid var(--line);">WhatsApp</a> an.</p>
     </div>
   </div>
 </section>
@@ -725,11 +793,16 @@
       if (!g || !g.name) return;
       const name = String(g.name).trim();
       if (!name) return;
-      if (!gruppen.has(name)) gruppen.set(name, []);
+      if (!gruppen.has(name)) gruppen.set(name, { varianten: [], beschreibung: '' });
+      const eintrag = gruppen.get(name);
       const variante = g.variante ? String(g.variante).trim() : '';
-      const liste = gruppen.get(name);
       // Doppelte Varianten (z. B. versehentlich zweimal "Vegan") nur einmal zeigen
-      if (variante && !liste.includes(variante)) liste.push(variante);
+      if (variante && !eintrag.varianten.includes(variante)) eintrag.varianten.push(variante);
+      // Die Beschreibung hängt am Gericht, nicht an der Variante. Die erste
+      // gefüllte gewinnt, damit die Hühnchen- und die Vegan-Zeile desselben
+      // Gerichts nicht zwei verschiedene Texte liefern.
+      const beschreibung = g.beschreibung ? String(g.beschreibung).trim() : '';
+      if (beschreibung && !eintrag.beschreibung) eintrag.beschreibung = beschreibung;
     });
     return gruppen;
   }
@@ -737,14 +810,24 @@
   // Ein Gericht = ein eigener Block. Die Trennlinie zwischen den Blöcken macht
   // das CSS (.plan-dish + .plan-dish), damit auch bei nur einem Gericht keine
   // überflüssige Linie stehen bleibt.
-  function baueGerichtBlock(name, varianten) {
+  function baueGerichtBlock(name, eintrag) {
+    const varianten = (eintrag && eintrag.varianten) || [];
+    const beschreibung = (eintrag && eintrag.beschreibung) || '';
     const block = document.createElement('div');
     block.className = 'plan-dish';
     const dish = document.createElement('div');
     dish.className = 'dish';
     dish.textContent = name;
     block.appendChild(dish);
-    if (varianten && varianten.length) {
+    // Reihenfolge: Name, dann was drin ist, dann die Varianten. Fehlt die
+    // Beschreibung (noch nicht in der App gepflegt), bleibt die Zeile weg.
+    if (beschreibung) {
+      const info = document.createElement('div');
+      info.className = 'dish-info';
+      info.textContent = beschreibung;
+      block.appendChild(info);
+    }
+    if (varianten.length) {
       const desc = document.createElement('div');
       desc.className = 'dish-desc';
       desc.textContent = varianten.join(' · ');
@@ -786,6 +869,10 @@
 
     const stand = formatDatum(data.datum);
     if (stand) {
+      // Den statisch hinterlegten Stand (vom Speiseplan-Skript) entfernen,
+      // sonst stehen zwei Stand-Zeilen untereinander — der Live-Stand ersetzt
+      // ihn, statt sich dazuzugesellen.
+      card.querySelectorAll('.plan-stand').forEach((alt) => alt.remove());
       const standEl = document.createElement('div');
       standEl.className = 'plan-stand';
       standEl.textContent = `Stand: ${stand}`;
