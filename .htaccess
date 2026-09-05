@@ -27,7 +27,7 @@ RedirectMatch 404 ^/\.fuse_hidden
 #     werden für die Arbeit am Projekt gebraucht und bleiben im Repo,
 #     gehören aber nicht öffentlich ins Netz.
 #     llms.txt, robots.txt und sitemap.xml bleiben bewusst öffentlich.
-RedirectMatch 404 ^/(DESIGN|DESIGN-PLAN|PRODUCT|LIVE-SCHALTUNG_DNS)\.md$
+RedirectMatch 404 ^/(DESIGN|DESIGN-PLAN|PRODUCT|LIVE-SCHALTUNG_DNS|HOSTINGER-ANFRAGE_GPTBot)\.md$
 RedirectMatch 404 ^/(tools|referenzen|\.impeccable|\.github)/
 
 RewriteEngine On
