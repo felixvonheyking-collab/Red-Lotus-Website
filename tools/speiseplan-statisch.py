@@ -34,6 +34,11 @@ import urllib.request
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEITEN = ["index.html", "aktuelles.html"]
+REFERENZ_SEITE = "catering-firmenevents.html"
+# Unter dieser Zahl wird der Abschnitt "Wo wir schon waren" gar nicht erst
+# ausgegeben. Eine Referenzliste mit einem einzigen Eintrag wirkt schwaecher
+# als die allgemeinen Aussagen, die sie belegen soll.
+REFERENZ_MINDESTENS = 3
 PROJEKT = "red-lotus-eventkalender"
 DATENBANK = "default"          # benannte Datenbank, nicht "(default)" — siehe LIVE-SCHALTUNG_DNS.md
 SAMMLUNG = "website"
@@ -171,6 +176,108 @@ def baue_koerper(gruppen) -> str:
     return "\n".join(zeilen)
 
 
+def hole_news(schluessel: str):
+    """Alle News-Dokumente holen (für die Referenzliste vergangener Einsätze).
+
+    Anders als hole() fragt das die ganze Sammlung ab, weil die News-IDs
+    zufällig vergeben werden (news_<zufall>). Das Bildfeld wird bewusst NICHT
+    mit ausgelesen: Die Plakate liegen als base64 im Dokument, ein einzelnes
+    wog am 05.09.2026 rund 265 KB. Für die Referenzliste brauchen wir nur Text.
+    """
+    url = (f"https://firestore.googleapis.com/v1/projects/{PROJEKT}/databases/"
+           f"{DATENBANK}/documents:runQuery?key={schluessel}")
+    abfrage = {
+        "structuredQuery": {
+            "from": [{"collectionId": SAMMLUNG}],
+            "where": {"fieldFilter": {
+                "field": {"fieldPath": "type"},
+                "op": "EQUAL",
+                "value": {"stringValue": "news"},
+            }},
+            "select": {"fields": [{"fieldPath": f} for f in
+                                  ("titel", "text", "tag", "datumVon", "datumBis")]},
+        }
+    }
+    anfrage = urllib.request.Request(
+        url, data=json.dumps(abfrage).encode("utf-8"),
+        headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(anfrage, timeout=20) as antwort:
+            zeilen = json.loads(antwort.read().decode("utf-8"))
+    except Exception as fehler:
+        raise Stoerung(f"News: {fehler}") from fehler
+
+    news = []
+    for zeile in zeilen:
+        dok = zeile.get("document")
+        if not dok:
+            continue
+        f = dok.get("fields", {})
+        news.append({k: f.get(k, {}).get("stringValue", "").strip()
+                     for k in ("titel", "text", "tag", "datumVon", "datumBis")})
+    return news
+
+
+def referenzen(news, heute_iso: str, grenze: int = 8):
+    """Vergangene öffentliche Einsätze auswählen, neueste zuerst.
+
+    Drei Bedingungen, alle bewusst eng:
+      1. vorbei — Enddatum (ersatzweise Startdatum) liegt vor heute
+      2. als "Event" verschlagwortet — Urlaubsmeldungen fallen damit raus
+      3. kein organisatorischer Hinweis — fängt Fälle wie
+         "Urlaubsvertretung Dominik", die zwar als Event getaggt sind,
+         aber keine Referenz darstellen (gleiche Wortliste wie im Speiseplan)
+
+    Felix' Vorgabe: Nur öffentliche Veranstaltungen, keine Privatfeiern. Das
+    trägt hier von selbst, weil Privatfeiern gar nicht als News angelegt werden
+    — die Auswahl passiert also schon in der Kalender-App.
+    """
+    treffer = []
+    for n in news:
+        ende = n["datumBis"] or n["datumVon"]
+        if not ende or ende >= heute_iso:
+            continue
+        if (n["tag"] or "").casefold() != "event":
+            continue
+        if ist_hinweis(n["titel"]) or ist_hinweis(n["text"]):
+            continue
+        if not n["titel"]:
+            continue
+        treffer.append(n)
+    treffer.sort(key=lambda n: n["datumBis"] or n["datumVon"], reverse=True)
+    return treffer[:grenze]
+
+
+def baue_referenzen(eintraege) -> str:
+    """Erzeugt den kompletten Abschnitt — oder nichts.
+
+    Nichts heisst hier wirklich nichts: Liegen zu wenige Einsaetze vor, wird der
+    Abschnitt gar nicht ausgegeben, statt eine duenne Liste zu zeigen.
+    """
+    if len(eintraege) < REFERENZ_MINDESTENS:
+        return ""
+    zeilen = ['<section id="wo-wir-waren" style="background:var(--bg-2);">',
+              '  <div class="wrap">',
+              '    <div class="section-head">',
+              '      <span class="eyebrow">Öffentliche Einsätze</span>',
+              '      <h2>Wo wir schon waren</h2>',
+              '      <p>Ein Auszug aus Veranstaltungen, auf denen wir mit dem Foodtruck standen.</p>',
+              '    </div>',
+              '    <ul class="ref-list">']
+    for n in eintraege:
+        datum = datum_deutsch(n["datumBis"] or n["datumVon"])
+        titel = html.escape(n["titel"], quote=False)
+        zeilen.append('      <li class="ref-item">')
+        if datum:
+            zeilen.append(f'        <span class="ref-datum">{datum}</span>')
+        zeilen.append(f'        <span class="ref-titel">{titel}</span>')
+        if n["text"]:
+            zeilen.append(f'        <span class="ref-text">{html.escape(n["text"], quote=False)}</span>')
+        zeilen.append('      </li>')
+    zeilen += ['    </ul>', '  </div>', '</section>']
+    return "\n".join(zeilen)
+
+
 def ersetze(quelle: str, marke: str, inhalt: str) -> str:
     start, ende = f"<!--{marke}-->", f"<!--/{marke}-->"
     i, j = quelle.index(start) + len(start), quelle.index(ende)
@@ -198,6 +305,17 @@ def main() -> int:
         print("Dateien bleiben unverändert.")
         return 0
 
+    # Vergangene oeffentliche Einsaetze fuer die Referenzliste.
+    # Scheitert das, bleibt nur die Referenzliste unveraendert — der Speiseplan
+    # soll deswegen nicht ausfallen.
+    referenz_liste = []
+    try:
+        heute_iso = __import__("datetime").date.today().isoformat()
+        referenz_liste = referenzen(hole_news(schluessel), heute_iso)
+        print(f"  Referenzen: {len(referenz_liste)} vergangene Einsaetze")
+    except Stoerung as fehler:
+        print(f"  Referenzen uebersprungen: {fehler}")
+
     geaendert = []
     for seite in SEITEN:
         pfad = os.path.join(WURZEL, seite)
@@ -221,6 +339,20 @@ def main() -> int:
 
         if neu != quelle:
             geaendert.append(seite)
+            if not nur_pruefen:
+                open(pfad, "w", encoding="utf-8").write(neu)
+
+    # Referenzliste vergangener oeffentlicher Einsaetze auf der Firmenseite.
+    # Bewusst hier gebacken und nicht nur im Browser nachgeladen: Der Zweck der
+    # Liste ist, Erfahrung gegenueber Suchmaschinen und KI-Systemen zu belegen —
+    # die rendern aber meist kein JavaScript. Nur im HTML nuetzt sie etwas.
+    if True:   # immer anfassen: auch das Entfernen des Abschnitts ist ein Ergebnis
+        pfad = os.path.join(WURZEL, REFERENZ_SEITE)
+        quelle = open(pfad, encoding="utf-8").read()
+        inhalt = baue_referenzen(referenz_liste)
+        neu = ersetze(quelle, "referenzen", ("\n" + inhalt + "\n") if inhalt else "")
+        if neu != quelle:
+            geaendert.append(REFERENZ_SEITE)
             if not nur_pruefen:
                 open(pfad, "w", encoding="utf-8").write(neu)
 

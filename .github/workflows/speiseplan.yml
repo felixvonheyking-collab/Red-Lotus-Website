@@ -1,4 +1,4 @@
-name: Speiseplan statisch schreiben
+name: Speiseplan und Referenzen statisch schreiben
 
 # Trägt den aktuellen Speiseplan aus Firestore als HTML in index.html und
 # aktuelles.html ein. Grund: Das JavaScript auf den Seiten holt die Daten erst
@@ -41,6 +41,6 @@ jobs:
           fi
           git config user.name  "Speiseplan-Bot"
           git config user.email "actions@github.com"
-          git add index.html aktuelles.html
-          git commit -m "Speiseplan aktualisiert ($(date -u +%d.%m.%Y))"
+          git add index.html aktuelles.html catering-firmenevents.html
+          git commit -m "Speiseplan und Referenzen aktualisiert ($(date -u +%d.%m.%Y))"
           git push
