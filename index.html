@@ -1093,7 +1093,30 @@
     const antwort = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ structuredQuery: { from: [{ collectionId: 'website' }] } })
+      // Nur die Dokumenttypen holen, die diese Seite auch anzeigt.
+      // Ohne Filter kam die komplette Collection mit — am 05.09.2026 waren das
+      // 271 KB, davon 265 KB ein Veranstaltungsplakat, das als base64 im
+      // News-Dokument liegt und auf der Startseite gar nicht vorkommt. Jeder
+      // Besucher lud es trotzdem herunter, und mit jedem weiteren Plakat wäre es
+      // mehr geworden. Die News samt Plakaten holt weiterhin aktuelles.html,
+      // wo sie auch angezeigt werden.
+      // Annahme: Die App schreibt bei jedem Dokument ein "type"-Feld — bei allen
+      // vorhandenen Dokumenten geprüft.
+      body: JSON.stringify({
+        structuredQuery: {
+          from: [{ collectionId: 'website' }],
+          where: {
+            fieldFilter: {
+              field: { fieldPath: 'type' },
+              op: 'IN',
+              value: { arrayValue: { values: [
+                { stringValue: 'speiseplan' },
+                { stringValue: 'marktstatus' }
+              ] } }
+            }
+          }
+        }
+      })
     });
     if (!antwort.ok) throw new Error(`Firestore antwortet mit HTTP ${antwort.status}`);
     const zeilen = await antwort.json();
