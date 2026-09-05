@@ -130,17 +130,32 @@
     {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": "Wednesday", "opens": "09:30", "closes": "14:30",
-      "description": "Wochenmarkt Biberach"
+      "description": "Wochenmarkt Biberach",
+      "location": {
+        "@type": "Place",
+        "name": "Wochenmarkt Biberach an der Riß",
+        "address": { "@type": "PostalAddress", "addressLocality": "Biberach an der Riß", "postalCode": "88400", "addressCountry": "DE" }
+      }
     },
     {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": "Thursday", "opens": "09:30", "closes": "14:30",
-      "description": "Wochenmarkt Laupheim"
+      "description": "Wochenmarkt Laupheim",
+      "location": {
+        "@type": "Place",
+        "name": "Wochenmarkt Laupheim",
+        "address": { "@type": "PostalAddress", "addressLocality": "Laupheim", "postalCode": "88471", "addressCountry": "DE" }
+      }
     },
     {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": "Friday", "opens": "10:00", "closes": "13:00",
-      "description": "Wochenmarkt Warthausen"
+      "description": "Wochenmarkt Warthausen",
+      "location": {
+        "@type": "Place",
+        "name": "Wochenmarkt Warthausen",
+        "address": { "@type": "PostalAddress", "addressLocality": "Warthausen", "postalCode": "88447", "addressCountry": "DE" }
+      }
     }
   ],
   "hasOfferCatalog": {
@@ -189,6 +204,11 @@
     --bg-3:#242019;
     --red:#c8382b;
     --red-bright:#e0473a;
+    /* Aufgehellte Variante des Markenrots, nur fuer KLEINEN Text auf dunklem
+       Grund. #c8382b erreicht dort nur 3,3–3,6:1 und bleibt damit unter dem
+       Lesbarkeitswert 4,5:1. #d65c51 hat denselben Farbton und schafft 4,9:1
+       auf --bg und 4,5:1 auf --bg-2. Flaechen und grosse Schrift behalten --red. */
+    --red-text:#d65c51;
     --gold:#d3b78c;
     --gold-soft:#bfa274;
     --cream:#f5f0e6;
@@ -638,7 +658,12 @@
 <section id="wochenkarte">
   <div class="wrap">
     <div class="section-head">
-      <span class="chip">Diese Woche auf dem Markt</span>
+      <!-- "Nächste Markttage" statt "Diese Woche": Der Plan steht oft schon für
+           die kommende Woche, während die laufende noch nicht vorbei ist. Am
+           05.09. (Samstag) zeigten die Karten den 09.–11.09. — unter "Diese
+           Woche" gelesen wirkte das falsch. Das genaue Datum steht ohnehin
+           auf jeder Karte. -->
+      <span class="chip">Nächste Markttage</span>
       <h2>Was gibt es zu essen?</h2>
       <p>Frisch am Truck gekocht — immer mit mindestens einem veganen Gericht und einem Gericht ohne glutenhaltige Zutaten.</p>
     </div>
@@ -664,7 +689,7 @@
           </div>
           <!--/speiseplan:speiseplan_biberach-->
         </div>
-        <!--stand:speiseplan_biberach--><div class="plan-stand">Stand: 09.09.2026</div><!--/stand:speiseplan_biberach-->
+        <!--stand:speiseplan_biberach--><div class="plan-stand">Gültig für 09.09.2026</div><!--/stand:speiseplan_biberach-->
       </div>
       <div class="plan-card reveal" data-plan-doc="speiseplan_laupheim" data-weekday="4" style="--d:.1s">
         <div class="plan-head">
@@ -687,7 +712,7 @@
           </div>
           <!--/speiseplan:speiseplan_laupheim-->
         </div>
-        <!--stand:speiseplan_laupheim--><div class="plan-stand">Stand: 10.09.2026</div><!--/stand:speiseplan_laupheim-->
+        <!--stand:speiseplan_laupheim--><div class="plan-stand">Gültig für 10.09.2026</div><!--/stand:speiseplan_laupheim-->
       </div>
       <div class="plan-card reveal" data-plan-doc="speiseplan_warthausen" data-weekday="5" style="--d:.2s">
         <div class="plan-head">
@@ -696,13 +721,10 @@
         </div>
         <div class="plan-body">
           <!--speiseplan:speiseplan_warthausen-->
-          <div class="plan-dish">
-            <div class="dish">Vertretung durch Dominik</div>
-            <div class="dish-desc">Hühnchen</div>
-          </div>
+          <div class="plan-empty">Vertretung durch Dominik</div>
           <!--/speiseplan:speiseplan_warthausen-->
         </div>
-        <!--stand:speiseplan_warthausen--><div class="plan-stand">Stand: 11.09.2026</div><!--/stand:speiseplan_warthausen-->
+        <!--stand:speiseplan_warthausen--><div class="plan-stand">Gültig für 11.09.2026</div><!--/stand:speiseplan_warthausen-->
       </div>
     </div>
     <div style="text-align:center;margin-top:44px;">
@@ -1098,6 +1120,20 @@
   // Aus "Grünes Curry/Hühnchen" + "Grünes Curry/Vegan" wird ein Eintrag
   // "Grünes Curry" mit der Variantenzeile "Hühnchen · Vegan".
   // Reihenfolge richtet sich nach dem ersten Auftreten im Firestore-Array.
+  // Organisatorische Hinweise vom Speiseplan trennen.
+  // Anlass: Am 05.09.2026 stand "Vertretung durch Dominik" mit dem Zusatz
+  // "Hühnchen" öffentlich als Speise auf der Startseite — eine interne Notiz,
+  // die über das Gerichte-Feld der Kalender-App durchgeschlagen war.
+  // Bewusst knappe Liste: Lieber ein Hinweis, der als Gericht durchrutscht,
+  // als ein echtes Gericht, das fälschlich verschwindet. Der saubere Weg
+  // bleibt das Statusfeld der App (marktstatus_<ort> mit "hinweis").
+  const HINWEIS_WOERTER = ['vertretung','urlaub','ausfall','entfällt','entfaellt',
+    'kein markt','kein stand','geschlossen','feiertag','krank','pause'];
+  function istHinweis(name){
+    const n = String(name || '').toLowerCase();
+    return HINWEIS_WOERTER.some((w) => n.includes(w));
+  }
+
   function gruppiereGerichte(gerichte) {
     const gruppen = new Map();
     gerichte.forEach((g) => {
@@ -1190,6 +1226,13 @@
       body.innerHTML = '';
 
       gruppiereGerichte(data.gerichte).forEach((varianten, name) => {
+        if (istHinweis(name)) {
+          const hinweis = document.createElement('div');
+          hinweis.className = 'plan-empty';
+          hinweis.textContent = String(name).trim();
+          body.appendChild(hinweis);   // kein Gericht, also auch keine Variantenzeile
+          return;
+        }
         body.appendChild(baueGerichtBlock(name, varianten));
       });
 
@@ -1201,7 +1244,7 @@
         card.querySelectorAll('.plan-stand').forEach((alt) => alt.remove());
         const standEl = document.createElement('div');
         standEl.className = 'plan-stand';
-        standEl.textContent = `Stand: ${stand}`;
+        standEl.textContent = `Gültig für ${stand}`;
         card.appendChild(standEl);   // ans Kartenende, nicht zwischen die Gerichte
       }
     });

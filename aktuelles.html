@@ -88,6 +88,11 @@
     --bg-3:#242019;
     --red:#c8382b;
     --red-bright:#e0473a;
+    /* Aufgehellte Variante des Markenrots, nur fuer KLEINEN Text auf dunklem
+       Grund. #c8382b erreicht dort nur 3,3–3,6:1 und bleibt damit unter dem
+       Lesbarkeitswert 4,5:1. #d65c51 hat denselben Farbton und schafft 4,9:1
+       auf --bg und 4,5:1 auf --bg-2. Flaechen und grosse Schrift behalten --red. */
+    --red-text:#d65c51;
     --gold:#d3b78c;
     --gold-soft:#bfa274;
     --cream:#f5f0e6;
@@ -196,7 +201,7 @@
   .plan-card.is-today{background:linear-gradient(to bottom, rgba(200,56,43,0.07), transparent 220px);}
   .plan-card.is-today::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);}
   .plan-card.is-today .day{color:var(--red);}
-  .today-tag{display:inline-block;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);border:1px solid var(--red);border-radius:999px;padding:3px 12px;margin-bottom:12px;}
+  .today-tag{display:inline-block;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red-text);border:1px solid var(--red-text);border-radius:999px;padding:3px 12px;margin-bottom:12px;}
   .plan-body{display:flex;flex-direction:column;gap:14px;flex:1;}
   /* Jedes Gericht als eigener Block mit Trennlinie — vorher standen Name und
      Varianten mehrerer Gerichte ohne Abgrenzung untereinander. */
@@ -210,7 +215,7 @@
   /* News/Events */
   .news-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:18px;}
   .news-item{background:var(--bg);padding:32px 36px;display:grid;grid-template-columns:140px 1fr;gap:28px;align-items:start;}
-  .news-date{font-family:var(--serif);font-size:1.2rem;color:var(--red);}
+  .news-date{font-family:var(--serif);font-size:1.2rem;color:var(--red-text);}
   .news-tag{display:inline-block;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:4px 14px;margin-bottom:10px;}
   .news-item h3{font-size:1.15rem;margin-bottom:8px;}
   .news-item p{color:var(--cream-dim);font-size:0.9rem;}
@@ -503,7 +508,9 @@
 <section id="speiseplan">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Diese Woche</span>
+      <!-- Siehe Kommentar auf index.html: Der Plan steht oft schon für die
+           kommende Woche, "Diese Woche" wäre dann irreführend. -->
+      <span class="eyebrow">Nächste Markttage</span>
       <h2>Unser Speiseplan</h2>
     </div>
     <!-- Wochenkarte als eine große Karte statt drei kleiner Kacheln —
@@ -543,7 +550,7 @@
           </div>
           <!--/speiseplan:speiseplan_biberach-->
         </div>
-        <!--stand:speiseplan_biberach--><div class="plan-stand">Stand: 09.09.2026</div><!--/stand:speiseplan_biberach-->
+        <!--stand:speiseplan_biberach--><div class="plan-stand">Gültig für 09.09.2026</div><!--/stand:speiseplan_biberach-->
       </div>
       <div class="plan-card" data-plan-doc="speiseplan_laupheim" data-weekday="4">
         <div class="plan-head">
@@ -566,7 +573,7 @@
           </div>
           <!--/speiseplan:speiseplan_laupheim-->
         </div>
-        <!--stand:speiseplan_laupheim--><div class="plan-stand">Stand: 10.09.2026</div><!--/stand:speiseplan_laupheim-->
+        <!--stand:speiseplan_laupheim--><div class="plan-stand">Gültig für 10.09.2026</div><!--/stand:speiseplan_laupheim-->
       </div>
       <div class="plan-card" data-plan-doc="speiseplan_warthausen" data-weekday="5">
         <div class="plan-head">
@@ -575,13 +582,10 @@
         </div>
         <div class="plan-body">
           <!--speiseplan:speiseplan_warthausen-->
-          <div class="plan-dish">
-            <div class="dish">Vertretung durch Dominik</div>
-            <div class="dish-desc">Hühnchen</div>
-          </div>
+          <div class="plan-empty">Vertretung durch Dominik</div>
           <!--/speiseplan:speiseplan_warthausen-->
         </div>
-        <!--stand:speiseplan_warthausen--><div class="plan-stand">Stand: 11.09.2026</div><!--/stand:speiseplan_warthausen-->
+        <!--stand:speiseplan_warthausen--><div class="plan-stand">Gültig für 11.09.2026</div><!--/stand:speiseplan_warthausen-->
       </div>
     </div>
     <p class="plan-note">Unsere festen Standorte und Zeiten findet ihr auf der <a href="foodtruck.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Foodtruck-Seite</a>. Kurzfristige Änderungen oder Ausfälle kündigen wir hier sowie per <a href="https://wa.me/4915155460254" style="color:var(--gold);border-bottom:1px solid var(--line);">WhatsApp</a> an.</p>
@@ -810,6 +814,20 @@
   // Aus "Grünes Curry/Hühnchen" + "Grünes Curry/Vegan" wird ein Eintrag
   // "Grünes Curry" mit der Variantenzeile "Hühnchen · Vegan".
   // Reihenfolge richtet sich nach dem ersten Auftreten im Firestore-Array.
+  // Organisatorische Hinweise vom Speiseplan trennen.
+  // Anlass: Am 05.09.2026 stand "Vertretung durch Dominik" mit dem Zusatz
+  // "Hühnchen" öffentlich als Speise auf der Startseite — eine interne Notiz,
+  // die über das Gerichte-Feld der Kalender-App durchgeschlagen war.
+  // Bewusst knappe Liste: Lieber ein Hinweis, der als Gericht durchrutscht,
+  // als ein echtes Gericht, das fälschlich verschwindet. Der saubere Weg
+  // bleibt das Statusfeld der App (marktstatus_<ort> mit "hinweis").
+  const HINWEIS_WOERTER = ['vertretung','urlaub','ausfall','entfällt','entfaellt',
+    'kein markt','kein stand','geschlossen','feiertag','krank','pause'];
+  function istHinweis(name){
+    const n = String(name || '').toLowerCase();
+    return HINWEIS_WOERTER.some((w) => n.includes(w));
+  }
+
   function gruppiereGerichte(gerichte) {
     const gruppen = new Map();
     gerichte.forEach((g) => {
@@ -887,6 +905,13 @@
     body.innerHTML = '';
 
     gruppiereGerichte(data.gerichte).forEach((varianten, name) => {
+      if (istHinweis(name)) {
+        const hinweis = document.createElement('div');
+        hinweis.className = 'plan-empty';
+        hinweis.textContent = String(name).trim();
+        body.appendChild(hinweis);   // kein Gericht, also auch keine Variantenzeile
+        return;
+      }
       body.appendChild(baueGerichtBlock(name, varianten));
     });
 
@@ -898,7 +923,7 @@
       card.querySelectorAll('.plan-stand').forEach((alt) => alt.remove());
       const standEl = document.createElement('div');
       standEl.className = 'plan-stand';
-      standEl.textContent = `Stand: ${stand}`;
+      standEl.textContent = `Gültig für ${stand}`;
       card.appendChild(standEl);   // ans Kartenende, nicht zwischen die Gerichte
     }
   }

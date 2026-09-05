@@ -126,12 +126,38 @@ def datum_deutsch(iso: str) -> str:
     return f"{t}.{m}.{j}"
 
 
+# Wörter, die einen organisatorischen Hinweis kennzeichnen statt eines Gerichts.
+# Anlass: Am 05.09.2026 stand "Vertretung durch Dominik" mit dem Zusatz "Hühnchen"
+# öffentlich als Speise auf der Startseite — eine interne Notiz, die über das
+# Gerichte-Feld der Kalender-App durchgeschlagen war.
+#
+# Bewusst kurz und eindeutig gehalten: Lieber ein Hinweis, der versehentlich als
+# Gericht durchrutscht, als ein echtes Gericht, das fälschlich verschwindet.
+# Der saubere Weg bleibt das Statusfeld der App (marktstatus_<ort> mit "hinweis") —
+# das hier ist nur das Sicherheitsnetz.
+HINWEIS_WOERTER = (
+    "vertretung", "urlaub", "ausfall", "entfällt", "entfaellt", "kein markt",
+    "kein stand", "geschlossen", "feiertag", "krank", "pause",
+)
+
+
+def ist_hinweis(name: str) -> bool:
+    n = (name or "").casefold()
+    return any(w in n for w in HINWEIS_WOERTER)
+
+
 def baue_koerper(gruppen) -> str:
     """Erzeugt exakt das Markup von baueGerichtBlock() im Browser."""
     zeilen = []
     for name, eintrag in gruppen.items():
         varianten = eintrag["varianten"]
         beschreibung = eintrag["beschreibung"]
+        if ist_hinweis(name):
+            # Als Hinweis darstellen, nicht als Speise — und ohne die
+            # Variantenzeile, die sonst "Hühnchen" an eine Absage hängt.
+            text = html.escape(name.strip(), quote=False)
+            zeilen.append(f'          <div class="plan-empty">{text}</div>')
+            continue
         zeilen.append('          <div class="plan-dish">')
         zeilen.append(f'            <div class="dish">{html.escape(name, quote=False)}</div>')
         # Reihenfolge wie im Browser: Name, Beschreibung, Varianten.
@@ -182,7 +208,11 @@ def main() -> int:
                 gruppen, datum = daten[dokument]
                 koerper = "\n" + baue_koerper(gruppen) + "\n          "
                 stand = datum_deutsch(datum)
-                stand_html = f'<div class="plan-stand">Stand: {stand}</div>' if stand else ""
+                # "Gültig für", nicht "Stand": Das Feld "datum" aus Firestore ist
+                # der Markttag, an dem es dieses Essen gibt — nicht der Zeitpunkt
+                # der letzten Änderung. Als "Stand" gelesen wirkte ein in der
+                # Zukunft liegendes Datum wie ein Fehler.
+                stand_html = f'<div class="plan-stand">Gültig für {stand}</div>' if stand else ""
             else:
                 koerper = ('\n          <div class="plan-empty">Speiseplan folgt in Kürze</div>\n          ')
                 stand_html = ""

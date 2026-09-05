@@ -1,2 +1,6 @@
 .DS_Store
 .fuse_hidden*
+
+# Nebenprodukt von Python-Syntaxpruefungen, gehoert nicht ins Repo
+__pycache__/
+*.pyc
