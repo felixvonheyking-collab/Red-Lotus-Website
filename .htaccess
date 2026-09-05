@@ -124,6 +124,16 @@ RewriteRule ^home/?$                  /                       [R=301,L]
 
 AddDefaultCharset UTF-8
 
+# pricing.md ist die maschinenlesbare Preisliste für KI-Systeme und -Agenten
+# (GEO-Check 05.09.2026). Ohne diese Zeile liefert der Server .md je nach
+# Konfiguration als Download aus, statt es als Text darzustellen. Die Sperrliste
+# in Abschnitt 1 betrifft ausschließlich die internen Arbeitsdateien —
+# pricing.md steht dort bewusst nicht drin und bleibt öffentlich.
+<Files "pricing.md">
+  ForceType text/plain
+  Header set Content-Type "text/plain; charset=UTF-8"
+</Files>
+
 # ---------------------------------------------------------------------------
 # 6. Sicherheits-Header (Sicherheits-/Rechtscheck 25.08.2026)
 # ---------------------------------------------------------------------------

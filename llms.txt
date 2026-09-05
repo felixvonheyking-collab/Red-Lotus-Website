@@ -130,6 +130,7 @@ kalkuliert. Anfragen sind unverbindlich und kostenlos.
 - Galerie: https://redlotus-asianfood.com/galerie.html
 - Aktuelles und Speiseplan: https://redlotus-asianfood.com/aktuelles.html
 - Speisekarte: https://redlotus-asianfood.com/speisekarte.html
+- Preise, maschinenlesbar: https://redlotus-asianfood.com/pricing.md
 - Häufige Fragen: https://redlotus-asianfood.com/faq.html
 - Impressum: https://redlotus-asianfood.com/impressum.html
 - Datenschutz: https://redlotus-asianfood.com/datenschutz.html
@@ -140,4 +141,4 @@ kalkuliert. Anfragen sind unverbindlich und kostenlos.
 - Facebook: https://www.facebook.com/profile.php?id=100082880545078
 - Listando: https://www.listando.com/de-de/auftragnehmer/red-lotus-asian-food
 
-Stand: 19. August 2026
+Stand: 5. September 2026
