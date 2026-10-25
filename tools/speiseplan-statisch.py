@@ -39,6 +39,16 @@ REFERENZ_SEITE = "catering-firmenevents.html"
 # ausgegeben. Eine Referenzliste mit einem einzigen Eintrag wirkt schwaecher
 # als die allgemeinen Aussagen, die sie belegen soll.
 REFERENZ_MINDESTENS = 3
+
+# Abgeschaltet am 25.10.2026 auf Wunsch von Felix: "bitte keine Referenzen, da wir
+# die Anonymitaet unserer Kunden auch schaetzen." Die Liste nannte Veranstalter und
+# Orte namentlich (zuletzt EssEck, Staudengaertnerei Gaissmayer, Canucks Biergarten).
+#
+# BEWUSST NICHT GELOESCHT, sondern stillgelegt: Der Code bleibt nachvollziehbar und
+# laesst sich mit einem True wieder anschalten, falls die Haltung sich aendert. Wer
+# das erwaegt, braucht vorher Felix' ausdrueckliche Zustimmung — die Entscheidung
+# ist eine Datenschutz-/Kundenhaltung, keine technische.
+REFERENZEN_AKTIV = False
 PROJEKT = "red-lotus-eventkalender"
 DATENBANK = "default"          # benannte Datenbank, nicht "(default)" — siehe LIVE-SCHALTUNG_DNS.md
 SAMMLUNG = "website"
@@ -254,6 +264,8 @@ def baue_referenzen(eintraege) -> str:
     Nichts heisst hier wirklich nichts: Liegen zu wenige Einsaetze vor, wird der
     Abschnitt gar nicht ausgegeben, statt eine duenne Liste zu zeigen.
     """
+    if not REFERENZEN_AKTIV:
+        return ""   # siehe Begruendung bei REFERENZEN_AKTIV
     if len(eintraege) < REFERENZ_MINDESTENS:
         return ""
     zeilen = ['<section id="wo-wir-waren" style="background:var(--bg-2);">',
