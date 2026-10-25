@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#131110">
-<title>Asiatisches Firmencatering Biberach &amp; Ulm – Red Lotus</title>
-<meta name="description" content="Asiatisches Catering für Weihnachtsfeiern, Teamevents und Firmenfeste in Biberach, Ulm und Umgebung. Foodtruck live vor Ort oder Buffet im Haus.">
+<title>Firmencatering Biberach &amp; Ulm – bis 700 Gäste | Red Lotus</title>
+<meta name="description" content="Asiatisches Catering für Weihnachtsfeiern, Betriebsfeste und Sommerfeste in Biberach, Ulm und Umgebung – von 20 bis über 700 Gästen. Foodtruck live vor Ort oder Buffet im Haus.">
 <link rel="canonical" href="https://redlotus-asianfood.com/catering-firmenevents.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Asiatisches Firmencatering Biberach &amp; Ulm – Red Lotus">
-<meta property="og:description" content="Asiatisches Catering für Weihnachtsfeiern, Teamevents und Firmenfeste in Biberach, Ulm und Umgebung. Foodtruck live vor Ort oder Buffet im Haus.">
+<meta property="og:title" content="Firmencatering Biberach &amp; Ulm – bis 700 Gäste | Red Lotus">
+<meta property="og:description" content="Asiatisches Catering für Weihnachtsfeiern, Betriebsfeste und Sommerfeste in Biberach, Ulm und Umgebung – von 20 bis über 700 Gästen. Foodtruck live vor Ort oder Buffet im Haus.">
 <meta property="og:url" content="https://redlotus-asianfood.com/catering-firmenevents.html">
 <meta property="og:image" content="https://redlotus-asianfood.com/img/og/og-firmenevents.jpg">
 <meta property="og:locale" content="de_DE">
@@ -46,7 +46,7 @@
   "name": "Asiatisches Firmencatering",
   "serviceType": "Firmencatering",
   "url": "https://redlotus-asianfood.com/catering-firmenevents.html",
-  "description": "Asiatisches Catering für Weihnachtsfeiern, Teamevents, Sommerfeste und Kundenempfänge in Biberach, Ulm und Umgebung – als Foodtruck mit Live-Cooking vor Ort oder als Buffet im Haus. Planung, Zubereitung, Aufbau und Abbau aus einer Hand.",
+  "description": "Asiatisches Catering für Weihnachtsfeiern, Betriebsfeste, Teamevents, Sommerfeste und Kundenempfänge in Biberach, Ulm und Umgebung – als Foodtruck mit Live-Cooking vor Ort oder als Buffet im Haus. Von etwa 20 Gästen bis zu Großveranstaltungen; größter bisheriger Einsatz rund 700 Gäste. Planung, Zubereitung, Aufbau und Abbau aus einer Hand.",
   "provider": { "@id": "https://redlotus-asianfood.com/#organization" },
   "areaServed": [
     { "@type": "City", "name": "Biberach an der Riß" },
@@ -253,6 +253,15 @@
   .form-success{display:none;background:rgba(211,183,140,0.08);border:1px solid var(--line);padding:20px 24px;margin-top:24px;font-size:0.9rem;color:var(--cream-dim);}
   .form-success.show{display:block;}
 
+
+  /* Der Rahmen-Abschnitt nutzt dieselbe Liste wie die Referenzen, hat in der
+     ersten Spalte aber Wörter statt Datumsangaben ("Einsatzgebiet" passt nicht
+     in die 120 px der Referenzliste). Etwas breiter, und Umbruch erlaubt. */
+  #rahmen .ref-item{grid-template-columns:150px 1fr;}
+  #rahmen .ref-datum{white-space:normal;color:var(--gold);font-family:var(--sans);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;}
+  @media(max-width:700px){
+    #rahmen .ref-item{grid-template-columns:1fr;}
+  }
 
   /* Liste vergangener oeffentlicher Einsaetze. Inhalt kommt vom Backskript. */
   .ref-list{list-style:none;max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);}
@@ -525,7 +534,7 @@
     <div class="page-hero-content">
       <span class="breadcrumb"><a href="/">Start</a> · Catering · Firmenevents</span>
       <h1>Ein Firmencatering, das in guter Erinnerung bleibt.</h1>
-      <p class="lead">Red Lotus Asian Food bietet asiatisches Firmencatering in Biberach, Ulm und Umgebung – als Foodtruck live vor Ort oder als Buffet im Haus. Ob lockeres Sommerfest, festliche Weihnachtsfeier, Messestand oder Kundenempfang – wir übernehmen Planung, Kochen und Aufbau, damit ihr euch ganz auf eure Gäste konzentrieren könnt. Frisch zubereitet, zuverlässig geliefert, unkompliziert abgerechnet.</p>
+      <p class="lead">Red Lotus Asian Food bietet asiatisches Firmencatering in Biberach, Ulm und Umgebung – als Foodtruck live vor Ort oder als Buffet im Haus. Vom Teamessen mit 20 Personen bis zur Großveranstaltung mit mehreren hundert Gästen: Unser bisher größter Einsatz lag bei rund 700. Ob Sommerfest, Weihnachtsfeier, Betriebsfest, Messestand oder Kundenempfang – wir übernehmen Planung, Kochen und Aufbau, damit ihr euch ganz auf eure Gäste konzentrieren könnt.</p>
       <div class="hero-ctas">
         <a href="#anfrage" class="btn btn-primary">Jetzt anfragen</a>
         <a href="https://wa.me/4915155460254" class="btn btn-outline">Direkt per WhatsApp</a>
@@ -592,15 +601,76 @@
   </div>
 </section>
 
+<!-- Entscheidungskriterien für größere Firmenfeiern an einer Stelle.
+     Anlass (25.10.2026): Die Seite nannte keinerlei Rahmendaten; wer ein
+     Betriebsfest für mehrere hundert Leute plant, muss Strom, Stellfläche und
+     Vorlauf aber früh wissen. Alle Angaben stammen aus den bereits auf
+     foodtruck.html belegten Truck-Daten — hier nichts Neues behauptet. -->
+<section id="rahmen">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Gut zu wissen</span>
+      <h2>Der Rahmen für größere Feiern</h2>
+      <p>Damit ihr früh einschätzen könnt, ob es bei euch vor Ort passt.</p>
+    </div>
+    <ul class="ref-list">
+      <li class="ref-item">
+        <span class="ref-datum">Gästezahl</span>
+        <span class="ref-titel">Ab etwa 20, nach oben offen</span>
+        <span class="ref-text">Größter Einsatz bisher rund 700 Gäste. Ein Betriebsfest mit 300 Personen ist Routine.</span>
+      </li>
+      <li class="ref-item">
+        <span class="ref-datum">Formate</span>
+        <span class="ref-titel">Foodtruck, Buffet oder Fingerfood</span>
+        <span class="ref-text">Live-Cooking am Truck, warmes Buffet in euren Räumen oder Häppchen für Empfänge – auch kombinierbar.</span>
+      </li>
+      <li class="ref-item">
+        <span class="ref-datum">Strom</span>
+        <span class="ref-titel">16 A Starkstrom genügt</span>
+        <span class="ref-text">Der kleine Truck braucht 1×16 A, der große wahlweise 1×16 A, 1×32 A oder 2×16 A.</span>
+      </li>
+      <li class="ref-item">
+        <span class="ref-datum">Wasser</span>
+        <span class="ref-titel">Kein Anschluss nötig</span>
+        <span class="ref-text">Beide Trucks arbeiten autark mit eigenem Wasservorrat.</span>
+      </li>
+      <li class="ref-item">
+        <span class="ref-datum">Stellfläche</span>
+        <span class="ref-titel">Ab 3,20 × 2 m</span>
+        <span class="ref-text">Kleiner Truck ca. 3,20 × 2 m, großer Truck ca. 4,50 × 2,60 m.</span>
+      </li>
+      <li class="ref-item">
+        <span class="ref-datum">Einsatzgebiet</span>
+        <span class="ref-titel">150 km um Biberach</span>
+        <span class="ref-text">Unter anderem Ulm, Neu-Ulm, Laupheim, Memmingen, Ravensburg, Friedrichshafen und Augsburg.</span>
+      </li>
+      <li class="ref-item">
+        <span class="ref-datum">Ernährung</span>
+        <span class="ref-titel">Vegan und ohne glutenhaltige Zutaten</span>
+        <span class="ref-text">Immer mit im Angebot. Spuren lassen sich im Truck nicht ausschließen – sprecht uns bei Allergien an.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <section id="referenz">
   <div class="split">
     <div class="split-text">
       <div>
-        <span class="eyebrow">Erfahrung bei zahlreichen Firmenevents</span>
-        <h2>Zuverlässig für Teams jeder Größe.</h2>
-        <p>Vom kleinen Team-Event bis zum Sommerfest mit der gesamten Belegschaft – wir passen Menge, Format und Aufbau an euer Event an, im Umkreis von 150&nbsp;km um Biberach.</p>
-        <ul>
-          <li>Klare Angebote, unkomplizierte Abrechnung für die Buchhaltung</li>
+        <span class="eyebrow">Von 20 bis über 700 Gäste</span>
+        <!-- Bis 25.10.2026 stand hier nur "Teams jeder Größe" und "größere Runden".
+             Auf der ganzen Website kam keine einzige dreistellige Gästezahl vor, während
+             die einzige konkrete Angabe ("15 bis 80 Gäste", private Feiern) die
+             Vorstellung nach oben deckelte. Wer eine Feier für 150 Leute plante, las
+             daraus, Red Lotus sei zu klein. Deshalb hier jetzt Zahlen statt Adjektive.
+             Der 700er-Beleg ist bewusst anonym (Felix, 25.10.2026): kein Veranstalter,
+             kein Ort, kein Anlass. -->
+        <h2>Auch wenn die ganze Belegschaft kommt.</h2>
+          <p>Unsere bislang größte Veranstaltung haben wir im September 2026 mit <strong>rund 700 Gästen</strong> beliefert – frisch vor Ort gekocht, wie immer. Ein Betriebsfest mit 300 Personen ist für uns deshalb Routine und kein Sonderfall.</p>
+          <p>Nach unten gilt dasselbe: Ein Teamessen für 20 planen wir genauso sorgfältig, nur mit weniger Töpfen. Wir kommen im Umkreis von 150&nbsp;km um Biberach.</p>
+          <ul>
+            <li><strong>Gästezahl:</strong> ab etwa 20, nach oben offen – größter Einsatz bisher rund 700</li>
+            <li>Klare Angebote, unkomplizierte Abrechnung für die Buchhaltung, unkomplizierte Abrechnung für die Buchhaltung</li>
           <li>Vegane Gerichte und Gerichte ohne glutenhaltige Zutaten möglich</li>
           <li>Ein fester Ansprechpartner von Anfrage bis Abbau</li>
         </ul>
