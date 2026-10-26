@@ -231,6 +231,30 @@
     .news-item.has-bild .news-text{padding:40px 44px;justify-content:center;}
   }
 
+
+  /* Aktions-Banner (z. B. Asiawoche). Als HTML statt als fertiges Bild,
+     damit Text lesbar, anklickbar und mobil sauber bleibt. Mit data-ende
+     blendet sich der Banner nach dem letzten Termin selbst aus. */
+  .promo{padding:0 0 40px;}
+  .promo-card{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);background:var(--bg-2);border-radius:var(--r-card);overflow:hidden;}
+  .promo-text{padding:56px 56px 56px 60px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:20px;}
+  .promo-chip{font-size:0.66rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);background:var(--glass);border:1px solid var(--glass-line);border-radius:999px;padding:7px 16px;}
+  .promo h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,3.6vw,3.1rem);line-height:1.05;color:var(--cream);}
+  .promo h2 em{font-style:italic;font-weight:500;color:var(--red-bright);}
+  .promo p{color:var(--cream-dim);font-size:1rem;line-height:1.6;max-width:460px;}
+  .promo p strong{color:var(--cream);font-weight:600;}
+  .promo-fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;min-height:380px;}
+  .promo-fotos picture,.promo-fotos img{display:block;width:100%;height:100%;}
+  .promo-fotos img{object-fit:cover;}
+  @media(max-width:960px){
+    .promo-card{grid-template-columns:minmax(0,1fr);}
+    .promo-text{min-width:0;}
+    .promo .btn{font-size:0.7rem;letter-spacing:0.1em;padding:16px 24px;}
+    .promo-chip{letter-spacing:0.14em;line-height:1.5;}
+    .promo-fotos{order:-1;min-height:0;height:220px;}
+    .promo-text{padding:30px 24px 34px;}
+  }
+
   /* CTA band */
   .cta-band{background:var(--bg-2);text-align:center;}
   .cta-band h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:20px;}
@@ -507,6 +531,33 @@
     <p>Unser Speiseplan für diese Woche sowie News, Specials und Events – Urlaube, Ausfälle und wo ihr uns sonst noch antrefft.</p>
   </div>
 </section>
+
+<section class="promo" id="asiawoche" data-ende="2026-11-07" aria-label="Asiawoche 2.0 mit EssEck">
+  <div class="wrap">
+    <div class="promo-card">
+      <div class="promo-text">
+        <span class="promo-chip">Red Lotus meets EssEck · Asiawoche 2.0</span>
+        <h2>Danke für ein <em>großartiges</em> Wochenende.</h2>
+        <p>An alle, die da waren: vielen Dank für euer tolles Feedback! Zweite Runde am <strong>Fr 6.11. &amp; Sa 7.11.</strong> im EssEck in Schemmerhofen – ein Herbstmenü in sieben Akten.</p>
+        <a class="btn btn-primary" href="https://www.ess-eck.de" target="_blank" rel="noopener">Tisch reservieren auf ess-eck.de</a>
+      </div>
+      <div class="promo-fotos">
+        <picture><source type="image/webp" srcset="img/asiawoche/larb.webp"><img src="img/asiawoche/larb.jpg" alt="Forelle Larb Style: Lachsforellentatar im knusprigen Körbchen mit Kresse" width="720" height="960" loading="lazy" decoding="async"></picture>
+        <picture><source type="image/webp" srcset="img/asiawoche/ramen.webp"><img src="img/asiawoche/ramen.jpg" alt="Aki Ramen mit Ei, Shiitake und Lotuswurzel-Chip" width="720" height="960" loading="lazy" decoding="async"></picture>
+        <picture><source type="image/webp" srcset="img/asiawoche/momiji.webp"><img src="img/asiawoche/momiji.jpg" alt="Momiji Mau: Kürbisküchlein mit Eis, Kürbis und Minze" width="720" height="960" loading="lazy" decoding="async"></picture>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  // Banner nach dem letzten Termin ausblenden (ohne JavaScript bleibt er stehen).
+  (function () {
+    var el = document.getElementById('asiawoche');
+    if (!el) return;
+    var d = new Date(), heute = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    if (heute > el.getAttribute('data-ende')) el.remove();
+  })();
+</script>
 
 <section id="speiseplan">
   <div class="wrap">
