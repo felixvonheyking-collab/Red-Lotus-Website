@@ -28,7 +28,7 @@ Premium positioning within the Red Lotus family: authentic, hand-cooked Thai/Asi
 
 ## Operating Context
 
-- Wochenmärkte at fixed weekly locations (Mittwoch Biberach, Donnerstag Laupheim, Freitag Warthausen) — the current location/day must be easy to find, not buried in an FAQ as on the old site.
+- Wochenmärkte at fixed weekly locations (Mittwoch Biberach, Donnerstag Laupheim; samstags Biberach als Red Lotus Streetfood) — the current location/day must be easy to find, not buried in an FAQ as on the old site.
 - Catering delivered on-site for company events, weddings, and private parties, booked via three separate segment-specific inquiry forms.
 - Kochkurse run as hands-on group sessions (dumpling-folding, shared prep), bookable by private groups and companies (team event framing).
 - Contact happens via WhatsApp, Instagram, and email — no dedicated contact page, just header/footer icons (WhatsApp must link to a real wa.me URL, a bug on the old site).

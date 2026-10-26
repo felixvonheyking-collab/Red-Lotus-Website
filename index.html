@@ -149,12 +149,12 @@
     },
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Friday", "opens": "10:00", "closes": "13:00",
-      "description": "Wochenmarkt Warthausen",
+      "dayOfWeek": "Saturday", "opens": "10:00", "closes": "14:00",
+      "description": "Wochenmarkt Biberach (als Red Lotus Streetfood)",
       "location": {
         "@type": "Place",
-        "name": "Wochenmarkt Warthausen",
-        "address": { "@type": "PostalAddress", "addressLocality": "Warthausen", "postalCode": "88447", "addressCountry": "DE" }
+        "name": "Wochenmarkt Biberach",
+        "address": { "@type": "PostalAddress", "addressLocality": "Biberach an der Riß", "postalCode": "88400", "addressCountry": "DE" }
       }
     }
   ],
@@ -648,7 +648,7 @@
     <div class="days">
       <span><b>Mittwoch</b> — Wochenmarkt Biberach (9:30–14:30 Uhr)</span>
       <span><b>Donnerstag</b> — Wochenmarkt Laupheim (9:30–14:30 Uhr)</span>
-      <span><b>Freitag</b> — Wochenmarkt Warthausen (10:00–13:00 Uhr)</span>
+      <span><b>Samstag</b> — Wochenmarkt Biberach (10:00–14:00 Uhr) als <a href="https://redlotusstreetfood.com" rel="noopener" style="color:var(--gold);border-bottom:1px solid var(--line);">Red Lotus Streetfood</a></span>
     </div>
   </div>
 </div>
@@ -706,17 +706,23 @@
         </div>
         <!--stand:speiseplan_laupheim--><div class="plan-stand">Gültig für 29.10.2026</div><!--/stand:speiseplan_laupheim-->
       </div>
-      <div class="plan-card reveal" data-plan-doc="speiseplan_warthausen" data-weekday="5" style="--d:.2s">
+      <div class="plan-card reveal" data-weekday="6" style="--d:.2s">
         <div class="plan-head">
-          <span class="day">Freitag</span>
-          <span class="place">Wochenmarkt Warthausen</span>
+          <span class="day">Samstag</span>
+          <span class="place">Wochenmarkt Biberach</span>
         </div>
         <div class="plan-body">
-          <!--speiseplan:speiseplan_warthausen-->
-          <div class="plan-empty">Vertretung durch Dominik</div>
-          <!--/speiseplan:speiseplan_warthausen-->
+          <!-- Samstags steht Red Lotus Streetfood auf dem Markt. Bewusst ohne
+               speiseplan-Marker: Die Wochenkarte pflegt die Streetfood-Seite. -->
+          <div class="plan-dish">
+            <div class="dish">Red Lotus Streetfood</div>
+            <div class="dish-info">Unsere kleine Schwester: Loaded Fries, Bowls &amp; Asia-Klassiker – jede Woche eine neue Karte.</div>
+          </div>
+          <div class="plan-dish">
+            <a href="https://redlotusstreetfood.com/#karte" rel="noopener" style="color:var(--gold);border-bottom:1px solid var(--line);">Zur Streetfood-Wochenkarte →</a>
+          </div>
         </div>
-        <!--stand:speiseplan_warthausen--><div class="plan-stand">Gültig für 11.09.2026</div><!--/stand:speiseplan_warthausen-->
+        <div class="plan-stand">Samstags 10:00–14:00 Uhr</div>
       </div>
     </div>
     <div style="text-align:center;margin-top:44px;">

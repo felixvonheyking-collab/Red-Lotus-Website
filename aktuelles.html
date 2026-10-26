@@ -570,17 +570,23 @@
         </div>
         <!--stand:speiseplan_laupheim--><div class="plan-stand">Gültig für 29.10.2026</div><!--/stand:speiseplan_laupheim-->
       </div>
-      <div class="plan-card" data-plan-doc="speiseplan_warthausen" data-weekday="5">
+      <div class="plan-card" data-weekday="6">
         <div class="plan-head">
-          <span class="day">Freitag</span>
-          <span class="place">Wochenmarkt Warthausen</span>
+          <span class="day">Samstag</span>
+          <span class="place">Wochenmarkt Biberach</span>
         </div>
         <div class="plan-body">
-          <!--speiseplan:speiseplan_warthausen-->
-          <div class="plan-empty">Vertretung durch Dominik</div>
-          <!--/speiseplan:speiseplan_warthausen-->
+          <!-- Samstags steht Red Lotus Streetfood auf dem Markt. Bewusst ohne
+               speiseplan-Marker: Die Wochenkarte pflegt die Streetfood-Seite. -->
+          <div class="plan-dish">
+            <div class="dish">Red Lotus Streetfood</div>
+            <div class="dish-info">Unsere kleine Schwester: Loaded Fries, Bowls &amp; Asia-Klassiker – jede Woche eine neue Karte.</div>
+          </div>
+          <div class="plan-dish">
+            <a href="https://redlotusstreetfood.com/#karte" rel="noopener" style="color:var(--gold);border-bottom:1px solid var(--line);">Zur Streetfood-Wochenkarte →</a>
+          </div>
         </div>
-        <!--stand:speiseplan_warthausen--><div class="plan-stand">Gültig für 11.09.2026</div><!--/stand:speiseplan_warthausen-->
+        <div class="plan-stand">Samstags 10:00–14:00 Uhr</div>
       </div>
     </div>
     <p class="plan-note">Unsere festen Standorte und Zeiten findet ihr auf der <a href="foodtruck.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Foodtruck-Seite</a>. Kurzfristige Änderungen oder Ausfälle kündigen wir hier sowie per <a href="https://wa.me/4915155460254" style="color:var(--gold);border-bottom:1px solid var(--line);">WhatsApp</a> an.</p>
@@ -1104,7 +1110,7 @@
   }
 
   // Marktstand-Status: ist ein Standort in der Kalender-App auf "pausiert"
-  // gesetzt (z. B. Markt fällt aus, gerade nicht in Warthausen), zeigt die
+  // gesetzt (z. B. Markt fällt aus), zeigt die
   // Karte statt des Speiseplans den hinterlegten Hinweistext.
   function zeigeMarktstatus(status) {
     if (!status.pausiert) return;

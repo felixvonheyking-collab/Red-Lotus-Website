@@ -52,7 +52,9 @@ REFERENZEN_AKTIV = False
 PROJEKT = "red-lotus-eventkalender"
 DATENBANK = "default"          # benannte Datenbank, nicht "(default)" — siehe LIVE-SCHALTUNG_DNS.md
 SAMMLUNG = "website"
-DOKUMENTE = ["speiseplan_biberach", "speiseplan_laupheim", "speiseplan_warthausen"]
+# Warthausen am 26.10.2026 entfernt: Freitag Warthausen entfällt, samstags steht
+# Red Lotus Streetfood in Biberach (Karte dort ohne speiseplan-Marker).
+DOKUMENTE = ["speiseplan_biberach", "speiseplan_laupheim"]
 
 MONATE_OK = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
